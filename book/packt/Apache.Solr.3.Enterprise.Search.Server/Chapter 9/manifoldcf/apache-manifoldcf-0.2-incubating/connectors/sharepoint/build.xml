@@ -1,0 +1,164 @@
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<project default="all">
+
+    <target name="clean">
+        <delete dir="build"/>
+        <delete dir="dist"/>
+    </target>
+
+    
+    <target name="calculate-condition">
+        <available file="wsdls/DspSts.wsdl" property="DspStsStatus"/>
+        <available file="wsdls/Lists.wsdl" property="ListsStatus"/>
+        <available file="wsdls/Permissions.wsdl" property="PermissionsStatus"/>
+        <available file="wsdls/usergroup.wsdl" property="usergroupStatus"/>
+        <available file="wsdls/versions.wsdl" property="versionsStatus"/>
+        <available file="wsdls/webs.wsdl" property="websStatus"/>
+        <condition property="canBuild">
+            <and>
+                <isset property="DspStsStatus"/>
+                <isset property="ListsStatus"/>
+                <isset property="PermissionsStatus"/>
+                <isset property="usergroupStatus"/>
+                <isset property="versionsStatus"/>
+                <isset property="websStatus"/>
+            </and>
+        </condition>
+    </target>
+    
+    <target name="precompile-check" depends="calculate-condition" unless="canBuild">
+        <echo message="SharePoint Connector cannot be built without DspSts.wsdl, Lists.wsdl, Permissions.wsdl, usergroup.wsdl, versions.wsdl, and webs.wsdl"/>
+    </target>
+
+    <target name="build-webservice" depends="precompile-check" if="canBuild">
+        <copy todir="webservice/References/SPPermissionsService" file="wsdls/Permissions.wsdl"/>
+        <exec executable="cmd" dir="webservice">
+            <arg value="/c"/>
+            <arg value="build.bat"/>
+        </exec>
+    </target>
+
+    <target name="classcreate-wsdl">
+        <mkdir dir="build/wsdljava"/>
+        <java classname="org.apache.axis.wsdl.WSDL2Java" fork="true">
+            <classpath>
+                <fileset dir="lib" includes="*.jar"/>
+            </classpath>
+            <arg value="--timeout"/>
+            <arg value="0"/>
+            <arg value="--noImports"/>
+            <arg value="-o"/>
+            <arg value="build/wsdljava"/>
+            <arg value="${wsdlname}"/>
+        </java>
+    </target>
+    
+    <target name="classcreate-wsdls" depends="precompile-check" if="canBuild">
+        <antcall target="classcreate-wsdl">
+            <param name="wsdlname" value="wsdls/DspSts.wsdl"/>
+        </antcall>
+        <antcall target="classcreate-wsdl">
+            <param name="wsdlname" value="wsdls/Lists.wsdl"/>
+        </antcall>
+        <antcall target="classcreate-wsdl">
+            <param name="wsdlname" value="wsdls/MCPermissions.wsdl"/>
+        </antcall>
+        <antcall target="classcreate-wsdl">
+            <param name="wsdlname" value="wsdls/Permissions.wsdl"/>
+        </antcall>
+        <antcall target="classcreate-wsdl">
+            <param name="wsdlname" value="wsdls/usergroup.wsdl"/>
+        </antcall>
+        <antcall target="classcreate-wsdl">
+            <param name="wsdlname" value="wsdls/versions.wsdl"/>
+        </antcall>
+        <antcall target="classcreate-wsdl">
+            <param name="wsdlname" value="wsdls/webs.wsdl"/>
+        </antcall>
+    </target>
+
+    <target name="compile-wsdls" depends="classcreate-wsdls,precompile-check" if="canBuild">
+        <mkdir dir="build/wsdlclasses"/>
+        <javac srcdir="build/wsdljava" destdir="build/wsdlclasses" target="1.5" source="1.4" debug="true" debuglevel="lines,vars,source">
+            <classpath>
+                <fileset dir="lib" includes="*.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="doc" depends="precompile-check,compile-wsdls" if="canBuild">
+        <mkdir dir="dist/doc"/>
+        <javadoc destdir="dist/doc" source="1.4">
+            <classpath>
+                <fileset dir="lib" includes="*.jar"/>
+                <pathelement location="build/wsdlclasses"/>
+            </classpath>
+            <fileset dir="connector/src/main/java" includes="**/*.java"/>
+        </javadoc>
+    </target>
+
+    <target name="compile-connector" depends="compile-wsdls,precompile-check" if="canBuild">
+        <mkdir dir="build/connector/classes"/>
+        <javac srcdir="connector/src/main/java" destdir="build/connector/classes" target="1.5" source="1.4" debug="true" debuglevel="lines,vars,source">
+            <classpath>
+                <fileset dir="lib" includes="*.jar"/>
+                <pathelement location="build/wsdlclasses"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="jar-connector" depends="compile-connector,precompile-check" if="canBuild">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/mcf-sharepoint-connector.jar" basedir="build/connector/classes"/>
+    </target>
+    
+    <target name="jar-wsdls" depends="compile-wsdls,precompile-check" if="canBuild">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/mcf-sharepoint-wsdlstub.jar" basedir="build/wsdlclasses"/>
+    </target>
+
+    <target name="wsdd" depends="precompile-check" if="canBuild">
+        <mkdir dir="dist/wsdd"/>
+        <copy todir="dist/wsdd" file="sharepoint-client-config.wsdd"/>
+    </target>
+
+    <target name="lib" depends="jar-connector,jar-wsdls,precompile-check" if="canBuild">
+        <mkdir dir="dist/lib"/>
+        <copy todir="dist/lib">
+            <fileset dir="build/jar">
+                <include name="mcf-sharepoint-connector.jar"/>
+                <include name="mcf-sharepoint-wsdlstub.jar"/>
+            </fileset>
+            <fileset dir="lib">
+                <include name="axis*.jar"/>
+                <include name="wsdl4j*.jar"/>
+                <include name="commons-discovery*.jar"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="build" depends="lib,wsdd"/>
+    <target name="build-tests">
+      <mkdir dir="build/test-jar"/>
+    </target>
+    <target name="run-tests"/>
+    <target name="run-tests-postgresql"/>
+    <target name="all" depends="build,doc,build-tests,run-tests,run-tests-postgresql"/>
+    
+</project>

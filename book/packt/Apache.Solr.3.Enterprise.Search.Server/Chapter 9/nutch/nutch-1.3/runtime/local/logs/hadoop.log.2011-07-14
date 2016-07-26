@@ -1,0 +1,568 @@
+2011-07-14 18:25:39,866 INFO  crawl.Crawl - crawl started in: crawl-20110714182537
+2011-07-14 18:25:40,483 INFO  crawl.Crawl - rootUrlDir = urls
+2011-07-14 18:25:40,483 INFO  crawl.Crawl - threads = 10
+2011-07-14 18:25:40,483 INFO  crawl.Crawl - depth = 1
+2011-07-14 18:25:40,483 INFO  crawl.Crawl - solrUrl=http://localhost:8983/solr/nutch/
+2011-07-14 18:25:40,483 INFO  crawl.Crawl - topN = 500
+2011-07-14 18:25:41,033 INFO  crawl.Injector - Injector: starting at 2011-07-14 18:25:41
+2011-07-14 18:25:41,033 INFO  crawl.Injector - Injector: crawlDb: crawl-20110714182537/crawldb
+2011-07-14 18:25:41,033 INFO  crawl.Injector - Injector: urlDir: urls
+2011-07-14 18:25:41,091 INFO  crawl.Injector - Injector: Converting injected urls to crawl db entries.
+2011-07-14 18:25:46,645 INFO  plugin.PluginRepository - Plugins: looking in: /Users/epugh/Documents/projects/solrbook/trunk/examples/9/nutch/nutch-1.3/runtime/local/plugins
+2011-07-14 18:25:46,671 WARN  plugin.PluginRepository - java.io.FileNotFoundException: /Users/epugh/Documents/projects/solrbook/trunk/examples/9/nutch/nutch-1.3/runtime/local/plugins/.svn/plugin.xml (No such file or directory)
+2011-07-14 18:25:50,937 INFO  plugin.PluginRepository - Plugin Auto-activation mode: [true]
+2011-07-14 18:25:50,937 INFO  plugin.PluginRepository - Registered Plugins:
+2011-07-14 18:25:50,937 INFO  plugin.PluginRepository - 	the nutch core extension points (nutch-extensionpoints)
+2011-07-14 18:25:50,937 INFO  plugin.PluginRepository - 	Basic URL Normalizer (urlnormalizer-basic)
+2011-07-14 18:25:50,937 INFO  plugin.PluginRepository - 	Html Parse Plug-in (parse-html)
+2011-07-14 18:25:50,937 INFO  plugin.PluginRepository - 	Basic Indexing Filter (index-basic)
+2011-07-14 18:25:50,937 INFO  plugin.PluginRepository - 	HTTP Framework (lib-http)
+2011-07-14 18:25:50,937 INFO  plugin.PluginRepository - 	More Indexing Filter (index-more)
+2011-07-14 18:25:50,937 INFO  plugin.PluginRepository - 	Pass-through URL Normalizer (urlnormalizer-pass)
+2011-07-14 18:25:50,937 INFO  plugin.PluginRepository - 	Regex URL Filter (urlfilter-regex)
+2011-07-14 18:25:50,937 INFO  plugin.PluginRepository - 	Http Protocol Plug-in (protocol-http)
+2011-07-14 18:25:50,937 INFO  plugin.PluginRepository - 	Regex URL Normalizer (urlnormalizer-regex)
+2011-07-14 18:25:50,937 INFO  plugin.PluginRepository - 	Tika Parser Plug-in (parse-tika)
+2011-07-14 18:25:50,937 INFO  plugin.PluginRepository - 	OPIC Scoring Plug-in (scoring-opic)
+2011-07-14 18:25:50,937 INFO  plugin.PluginRepository - 	CyberNeko HTML Parser (lib-nekohtml)
+2011-07-14 18:25:50,937 INFO  plugin.PluginRepository - 	Anchor Indexing Filter (index-anchor)
+2011-07-14 18:25:50,938 INFO  plugin.PluginRepository - 	Regex URL Filter Framework (lib-regex-filter)
+2011-07-14 18:25:50,938 INFO  plugin.PluginRepository - Registered Extension-Points:
+2011-07-14 18:25:50,938 INFO  plugin.PluginRepository - 	Nutch URL Normalizer (org.apache.nutch.net.URLNormalizer)
+2011-07-14 18:25:50,938 INFO  plugin.PluginRepository - 	Nutch Protocol (org.apache.nutch.protocol.Protocol)
+2011-07-14 18:25:50,938 INFO  plugin.PluginRepository - 	Nutch Segment Merge Filter (org.apache.nutch.segment.SegmentMergeFilter)
+2011-07-14 18:25:50,938 INFO  plugin.PluginRepository - 	Nutch URL Filter (org.apache.nutch.net.URLFilter)
+2011-07-14 18:25:50,938 INFO  plugin.PluginRepository - 	Nutch Indexing Filter (org.apache.nutch.indexer.IndexingFilter)
+2011-07-14 18:25:50,938 INFO  plugin.PluginRepository - 	HTML Parse Filter (org.apache.nutch.parse.HtmlParseFilter)
+2011-07-14 18:25:50,938 INFO  plugin.PluginRepository - 	Nutch Content Parser (org.apache.nutch.parse.Parser)
+2011-07-14 18:25:50,938 INFO  plugin.PluginRepository - 	Nutch Scoring (org.apache.nutch.scoring.ScoringFilter)
+2011-07-14 18:25:51,395 WARN  regex.RegexURLNormalizer - can't find rules for scope 'inject', using default
+2011-07-14 18:25:53,731 INFO  crawl.Injector - Injector: Merging injected urls into crawl db.
+2011-07-14 18:25:58,509 WARN  util.NativeCodeLoader - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+2011-07-14 18:26:00,599 INFO  crawl.Injector - Injector: finished at 2011-07-14 18:26:00, elapsed: 00:00:19
+2011-07-14 18:26:01,156 INFO  crawl.Generator - Generator: starting at 2011-07-14 18:26:01
+2011-07-14 18:26:01,156 INFO  crawl.Generator - Generator: Selecting best-scoring urls due for fetch.
+2011-07-14 18:26:01,156 INFO  crawl.Generator - Generator: filtering: true
+2011-07-14 18:26:01,157 INFO  crawl.Generator - Generator: normalizing: true
+2011-07-14 18:26:01,157 INFO  crawl.Generator - Generator: topN: 500
+2011-07-14 18:26:01,158 INFO  crawl.Generator - Generator: jobtracker is 'local', generating exactly one partition.
+2011-07-14 18:26:02,384 INFO  crawl.FetchScheduleFactory - Using FetchSchedule impl: org.apache.nutch.crawl.DefaultFetchSchedule
+2011-07-14 18:26:02,385 INFO  crawl.AbstractFetchSchedule - defaultInterval=2592000
+2011-07-14 18:26:02,385 INFO  crawl.AbstractFetchSchedule - maxInterval=7776000
+2011-07-14 18:26:02,415 WARN  regex.RegexURLNormalizer - can't find rules for scope 'partition', using default
+2011-07-14 18:26:02,611 INFO  crawl.FetchScheduleFactory - Using FetchSchedule impl: org.apache.nutch.crawl.DefaultFetchSchedule
+2011-07-14 18:26:02,611 INFO  crawl.AbstractFetchSchedule - defaultInterval=2592000
+2011-07-14 18:26:02,611 INFO  crawl.AbstractFetchSchedule - maxInterval=7776000
+2011-07-14 18:26:02,612 WARN  regex.RegexURLNormalizer - can't find rules for scope 'generate_host_count', using default
+2011-07-14 18:26:03,159 INFO  crawl.Generator - Generator: Partitioning selected urls for politeness.
+2011-07-14 18:26:04,160 INFO  crawl.Generator - Generator: segment: crawl-20110714182537/segments/20110714182604
+2011-07-14 18:26:05,021 WARN  regex.RegexURLNormalizer - can't find rules for scope 'partition', using default
+2011-07-14 18:26:05,821 INFO  crawl.Generator - Generator: finished at 2011-07-14 18:26:05, elapsed: 00:00:04
+2011-07-14 18:26:05,822 INFO  fetcher.Fetcher - Fetcher: starting at 2011-07-14 18:26:05
+2011-07-14 18:26:05,822 INFO  fetcher.Fetcher - Fetcher: segment: crawl-20110714182537/segments/20110714182604
+2011-07-14 18:26:06,285 INFO  fetcher.Fetcher - Fetcher: threads: 10
+2011-07-14 18:26:06,325 INFO  fetcher.Fetcher - QueueFeeder finished: total 298 records + hit by time limit :0
+2011-07-14 18:26:06,355 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Anberlin
+2011-07-14 18:26:06,355 INFO  fetcher.Fetcher - fetching http://de.wikipedia.org/wiki/A-ha
+2011-07-14 18:26:06,446 INFO  http.Http - http.proxy.host = null
+2011-07-14 18:26:06,447 INFO  http.Http - http.proxy.port = 8080
+2011-07-14 18:26:06,447 INFO  http.Http - http.timeout = 10000
+2011-07-14 18:26:06,447 INFO  http.Http - http.content.limit = 65536
+2011-07-14 18:26:06,447 INFO  http.Http - http.agent = SolrESSBookSpider/Nutch-1.3 (Demo of using Nutch with Solr)
+2011-07-14 18:26:06,447 INFO  http.Http - http.accept.language = en-us,en-gb,en;q=0.7,*;q=0.3
+2011-07-14 18:26:06,447 INFO  http.Http - http.proxy.host = null
+2011-07-14 18:26:06,447 INFO  http.Http - http.proxy.port = 8080
+2011-07-14 18:26:06,447 INFO  http.Http - http.timeout = 10000
+2011-07-14 18:26:06,447 INFO  http.Http - http.content.limit = 65536
+2011-07-14 18:26:06,447 INFO  http.Http - http.agent = SolrESSBookSpider/Nutch-1.3 (Demo of using Nutch with Solr)
+2011-07-14 18:26:06,447 INFO  http.Http - http.accept.language = en-us,en-gb,en;q=0.7,*;q=0.3
+2011-07-14 18:26:07,169 WARN  api.RobotRulesParser - error parsing robots rules- can't decode path: /wiki/Wikipedia%3Mediation_Committee/
+2011-07-14 18:26:07,170 WARN  api.RobotRulesParser - error parsing robots rules- can't decode path: /wiki/Wikipedia_talk%3Mediation_Committee/
+2011-07-14 18:26:07,170 WARN  api.RobotRulesParser - error parsing robots rules- can't decode path: /wiki/Wikipedia%3Mediation_Cabal/Cases/
+2011-07-14 18:26:07,367 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=8, fetchQueues.totalSize=296
+2011-07-14 18:26:08,368 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=296
+2011-07-14 18:26:09,368 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=296
+2011-07-14 18:26:10,376 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=296
+2011-07-14 18:26:11,377 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=296
+2011-07-14 18:26:12,377 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=296
+2011-07-14 18:26:12,840 INFO  fetcher.Fetcher - fetching http://de.wikipedia.org/wiki/Superpunk
+2011-07-14 18:26:12,840 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Iio
+2011-07-14 18:26:13,377 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=294
+2011-07-14 18:26:14,377 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=294
+2011-07-14 18:26:15,378 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=294
+2011-07-14 18:26:16,378 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=294
+2011-07-14 18:26:17,378 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=294
+2011-07-14 18:26:18,011 INFO  fetcher.Fetcher - fetching http://de.wikipedia.org/wiki/Mot%C3%B6rhead
+2011-07-14 18:26:18,012 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Eagle-Eye_Cherry
+2011-07-14 18:26:18,378 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=292
+2011-07-14 18:26:19,378 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=292
+2011-07-14 18:26:20,379 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=292
+2011-07-14 18:26:21,379 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=292
+2011-07-14 18:26:22,379 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=292
+2011-07-14 18:26:23,168 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Athlete_(band)
+2011-07-14 18:26:23,286 INFO  fetcher.Fetcher - fetching http://de.wikipedia.org/wiki/J.B.O
+2011-07-14 18:26:23,391 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=290
+2011-07-14 18:26:24,391 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=290
+2011-07-14 18:26:25,391 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=290
+2011-07-14 18:26:26,391 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=290
+2011-07-14 18:26:27,392 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=290
+2011-07-14 18:26:28,377 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Strung_Out
+2011-07-14 18:26:28,392 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=289
+2011-07-14 18:26:28,433 INFO  fetcher.Fetcher - fetching http://de.wikipedia.org/wiki/Rammstein
+2011-07-14 18:26:29,395 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=288
+2011-07-14 18:26:30,395 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=288
+2011-07-14 18:26:31,395 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=288
+2011-07-14 18:26:32,396 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=288
+2011-07-14 18:26:33,396 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=288
+2011-07-14 18:26:33,576 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Eminem
+2011-07-14 18:26:33,730 INFO  fetcher.Fetcher - fetching http://de.wikipedia.org/wiki/Die_%C3%84rzte
+2011-07-14 18:26:34,396 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=286
+2011-07-14 18:26:35,396 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=286
+2011-07-14 18:26:36,397 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=286
+2011-07-14 18:26:37,397 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=286
+2011-07-14 18:26:38,397 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=286
+2011-07-14 18:26:38,954 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Pennywise_(band)
+2011-07-14 18:26:38,987 INFO  fetcher.Fetcher - fetching http://de.wikipedia.org/wiki/Guano_Apes
+2011-07-14 18:26:39,397 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=284
+2011-07-14 18:26:40,397 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=284
+2011-07-14 18:26:41,398 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=284
+2011-07-14 18:26:42,398 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=284
+2011-07-14 18:26:43,399 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=284
+2011-07-14 18:26:44,149 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Elysian_Fields_(band)
+2011-07-14 18:26:44,199 INFO  fetcher.Fetcher - fetching http://de.wikipedia.org/wiki/B%C3%B6hse_Onkelz
+2011-07-14 18:26:44,399 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=282
+2011-07-14 18:26:45,399 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=282
+2011-07-14 18:26:46,400 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=282
+2011-07-14 18:26:47,400 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=282
+2011-07-14 18:26:48,400 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=282
+2011-07-14 18:26:49,302 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Sentenced
+2011-07-14 18:26:49,400 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=281
+2011-07-14 18:26:49,499 INFO  fetcher.Fetcher - fetching http://de.wikipedia.org/wiki/Depeche_Mode
+2011-07-14 18:26:50,400 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=280
+2011-07-14 18:26:51,401 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=280
+2011-07-14 18:26:52,401 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=280
+2011-07-14 18:26:53,401 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=280
+2011-07-14 18:26:54,402 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=280
+2011-07-14 18:26:54,501 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Lunatic_Calm
+2011-07-14 18:26:54,747 INFO  fetcher.Fetcher - fetching http://de.wikipedia.org/wiki/Norah_Jones
+2011-07-14 18:26:55,402 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=278
+2011-07-14 18:26:56,402 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=278
+2011-07-14 18:26:57,402 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=278
+2011-07-14 18:26:58,403 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=278
+2011-07-14 18:26:59,403 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=278
+2011-07-14 18:26:59,647 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Bush_(band)
+2011-07-14 18:26:59,951 INFO  fetcher.Fetcher - fetching http://de.wikipedia.org/wiki/Bad_Religion
+2011-07-14 18:27:00,403 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=276
+2011-07-14 18:27:01,403 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=276
+2011-07-14 18:27:02,404 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=276
+2011-07-14 18:27:03,404 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=276
+2011-07-14 18:27:04,404 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=276
+2011-07-14 18:27:04,846 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Paradise_Lost_(band)
+2011-07-14 18:27:05,404 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=275
+2011-07-14 18:27:05,518 INFO  fetcher.Fetcher - fetching http://de.wikipedia.org/wiki/Aphex_Twin
+2011-07-14 18:27:06,404 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=274
+2011-07-14 18:27:07,405 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=274
+2011-07-14 18:27:08,405 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=274
+2011-07-14 18:27:09,405 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=274
+2011-07-14 18:27:10,042 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Alannah_Myles
+2011-07-14 18:27:10,405 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=273
+2011-07-14 18:27:10,728 INFO  fetcher.Fetcher - fetching http://de.wikipedia.org/wiki/AC/DC
+2011-07-14 18:27:11,405 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=272
+2011-07-14 18:27:12,406 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=272
+2011-07-14 18:27:13,406 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=272
+2011-07-14 18:27:14,406 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=272
+2011-07-14 18:27:15,239 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Barenaked_Ladies
+2011-07-14 18:27:15,406 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=271
+2011-07-14 18:27:16,002 INFO  fetcher.Fetcher - fetching http://de.wikipedia.org/wiki/The_Juliana_Theory
+2011-07-14 18:27:16,407 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=270
+2011-07-14 18:27:17,407 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=270
+2011-07-14 18:27:18,407 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=270
+2011-07-14 18:27:19,407 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=270
+2011-07-14 18:27:20,407 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=270
+2011-07-14 18:27:20,598 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Guster
+2011-07-14 18:27:21,408 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=269
+2011-07-14 18:27:21,464 INFO  fetcher.Fetcher - fetching http://de.wikipedia.org/wiki/Beatsteaks
+2011-07-14 18:27:22,408 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=268
+2011-07-14 18:27:23,408 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=268
+2011-07-14 18:27:24,408 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=268
+2011-07-14 18:27:25,408 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=268
+2011-07-14 18:27:25,810 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Bruce_Springsteen
+2011-07-14 18:27:26,408 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=267
+2011-07-14 18:27:26,664 INFO  fetcher.Fetcher - fetching http://de.wikipedia.org/wiki/Die_Toten_Hosen
+2011-07-14 18:27:27,409 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=266
+2011-07-14 18:27:28,409 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=266
+2011-07-14 18:27:29,409 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=266
+2011-07-14 18:27:30,409 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=266
+2011-07-14 18:27:31,166 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Beastie_Boys
+2011-07-14 18:27:31,410 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=265
+2011-07-14 18:27:32,410 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=265
+2011-07-14 18:27:33,410 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=265
+2011-07-14 18:27:34,410 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=265
+2011-07-14 18:27:35,411 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=265
+2011-07-14 18:27:36,411 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=265
+2011-07-14 18:27:36,449 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Marilyn_Manson_(band)
+2011-07-14 18:27:37,411 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=264
+2011-07-14 18:27:38,411 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=264
+2011-07-14 18:27:39,411 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=264
+2011-07-14 18:27:40,412 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=264
+2011-07-14 18:27:41,412 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=264
+2011-07-14 18:27:41,798 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Propellerheads
+2011-07-14 18:27:42,412 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=263
+2011-07-14 18:27:43,412 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=263
+2011-07-14 18:27:44,412 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=263
+2011-07-14 18:27:45,413 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=263
+2011-07-14 18:27:46,413 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=263
+2011-07-14 18:27:47,308 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Static-X
+2011-07-14 18:27:47,413 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=262
+2011-07-14 18:27:48,413 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=262
+2011-07-14 18:27:49,413 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=262
+2011-07-14 18:27:50,413 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=262
+2011-07-14 18:27:51,414 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=262
+2011-07-14 18:27:52,414 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=262
+2011-07-14 18:27:52,527 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Eagles_(band)
+2011-07-14 18:27:53,414 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=261
+2011-07-14 18:27:54,414 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=261
+2011-07-14 18:27:55,414 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=261
+2011-07-14 18:27:56,415 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=261
+2011-07-14 18:27:57,415 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=261
+2011-07-14 18:27:57,827 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/John_Mayer
+2011-07-14 18:27:58,415 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=260
+2011-07-14 18:27:59,416 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=260
+2011-07-14 18:28:00,416 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=260
+2011-07-14 18:28:01,416 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=260
+2011-07-14 18:28:02,416 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=260
+2011-07-14 18:28:03,127 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/New_Order
+2011-07-14 18:28:03,416 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=259
+2011-07-14 18:28:04,417 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=259
+2011-07-14 18:28:05,417 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=259
+2011-07-14 18:28:06,417 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=259
+2011-07-14 18:28:07,417 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=259
+2011-07-14 18:28:08,370 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Dr._Dre
+2011-07-14 18:28:08,417 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=258
+2011-07-14 18:28:09,418 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=258
+2011-07-14 18:28:10,418 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=258
+2011-07-14 18:28:11,418 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=258
+2011-07-14 18:28:12,418 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=258
+2011-07-14 18:28:13,419 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=258
+2011-07-14 18:28:13,665 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Good_Charlotte
+2011-07-14 18:28:14,419 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=257
+2011-07-14 18:28:15,419 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=257
+2011-07-14 18:28:16,419 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=257
+2011-07-14 18:28:17,419 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=257
+2011-07-14 18:28:18,419 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=257
+2011-07-14 18:28:18,909 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Voodoo_Glow_Skulls
+2011-07-14 18:28:19,420 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=256
+2011-07-14 18:28:20,420 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=256
+2011-07-14 18:28:21,420 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=256
+2011-07-14 18:28:22,420 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=256
+2011-07-14 18:28:23,420 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=256
+2011-07-14 18:28:24,106 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Evanescence
+2011-07-14 18:28:24,421 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=255
+2011-07-14 18:28:25,421 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=255
+2011-07-14 18:28:26,421 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=255
+2011-07-14 18:28:27,421 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=255
+2011-07-14 18:28:28,422 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=255
+2011-07-14 18:28:29,396 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Fall_Out_Boy
+2011-07-14 18:28:29,424 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=254
+2011-07-14 18:28:30,424 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=254
+2011-07-14 18:28:31,426 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=254
+2011-07-14 18:28:32,426 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=254
+2011-07-14 18:28:33,426 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=254
+2011-07-14 18:28:34,426 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=254
+2011-07-14 18:28:34,727 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Beck
+2011-07-14 18:28:35,426 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=253
+2011-07-14 18:28:36,427 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=253
+2011-07-14 18:28:37,427 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=253
+2011-07-14 18:28:38,427 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=253
+2011-07-14 18:28:39,427 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=253
+2011-07-14 18:28:40,018 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Wilco
+2011-07-14 18:28:40,427 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=252
+2011-07-14 18:28:41,427 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=252
+2011-07-14 18:28:42,428 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=252
+2011-07-14 18:28:43,428 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=252
+2011-07-14 18:28:44,428 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=252
+2011-07-14 18:28:45,315 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Missy_Elliott
+2011-07-14 18:28:45,428 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=251
+2011-07-14 18:28:46,428 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=251
+2011-07-14 18:28:47,429 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=251
+2011-07-14 18:28:48,429 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=251
+2011-07-14 18:28:49,429 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=251
+2011-07-14 18:28:50,429 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=251
+2011-07-14 18:28:50,563 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Crazy_Town
+2011-07-14 18:28:51,429 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=250
+2011-07-14 18:28:52,430 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=250
+2011-07-14 18:28:53,430 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=250
+2011-07-14 18:28:54,430 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=250
+2011-07-14 18:28:55,430 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=250
+2011-07-14 18:28:55,761 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Dynamite_Hack
+2011-07-14 18:28:56,430 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=249
+2011-07-14 18:28:57,431 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=249
+2011-07-14 18:28:58,431 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=249
+2011-07-14 18:28:59,431 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=249
+2011-07-14 18:29:00,431 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=249
+2011-07-14 18:29:00,905 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Cracker_(band)
+2011-07-14 18:29:01,431 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=248
+2011-07-14 18:29:02,431 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=248
+2011-07-14 18:29:03,432 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=248
+2011-07-14 18:29:04,432 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=248
+2011-07-14 18:29:05,432 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=248
+2011-07-14 18:29:06,104 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Van_Halen
+2011-07-14 18:29:06,432 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=247
+2011-07-14 18:29:07,433 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=247
+2011-07-14 18:29:08,433 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=247
+2011-07-14 18:29:09,433 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=247
+2011-07-14 18:29:10,433 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=247
+2011-07-14 18:29:11,392 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Eric_Clapton
+2011-07-14 18:29:11,434 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=246
+2011-07-14 18:29:12,434 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=246
+2011-07-14 18:29:13,434 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=246
+2011-07-14 18:29:14,434 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=246
+2011-07-14 18:29:15,435 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=246
+2011-07-14 18:29:16,435 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=246
+2011-07-14 18:29:16,773 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Coldplay
+2011-07-14 18:29:17,435 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=245
+2011-07-14 18:29:18,435 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=245
+2011-07-14 18:29:19,436 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=245
+2011-07-14 18:29:20,436 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=245
+2011-07-14 18:29:21,436 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=245
+2011-07-14 18:29:22,412 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Trustcompany
+2011-07-14 18:29:22,437 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=244
+2011-07-14 18:29:23,437 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=244
+2011-07-14 18:29:24,438 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=244
+2011-07-14 18:29:25,438 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=244
+2011-07-14 18:29:26,438 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=244
+2011-07-14 18:29:27,439 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=244
+2011-07-14 18:29:27,606 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/TLC_(band)
+2011-07-14 18:29:28,439 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=243
+2011-07-14 18:29:29,439 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=243
+2011-07-14 18:29:30,440 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=243
+2011-07-14 18:29:31,440 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=243
+2011-07-14 18:29:32,440 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=243
+2011-07-14 18:29:32,867 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Hatebreed
+2011-07-14 18:29:33,441 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=242
+2011-07-14 18:29:34,441 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=242
+2011-07-14 18:29:35,441 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=242
+2011-07-14 18:29:36,442 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=242
+2011-07-14 18:29:37,442 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=242
+2011-07-14 18:29:38,078 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Tegan_and_Sara
+2011-07-14 18:29:38,442 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=241
+2011-07-14 18:29:39,443 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=241
+2011-07-14 18:29:40,443 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=241
+2011-07-14 18:29:41,444 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=241
+2011-07-14 18:29:42,444 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=241
+2011-07-14 18:29:43,277 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Avril_Lavigne
+2011-07-14 18:29:43,491 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=240
+2011-07-14 18:29:44,492 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=240
+2011-07-14 18:29:45,492 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=240
+2011-07-14 18:29:46,492 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=240
+2011-07-14 18:29:47,492 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=240
+2011-07-14 18:29:48,493 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=240
+2011-07-14 18:29:48,614 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Led_Zeppelin
+2011-07-14 18:29:49,493 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=239
+2011-07-14 18:29:50,493 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=239
+2011-07-14 18:29:51,493 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=239
+2011-07-14 18:29:52,494 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=239
+2011-07-14 18:29:53,494 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=239
+2011-07-14 18:29:53,971 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/ABBA
+2011-07-14 18:29:54,494 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=238
+2011-07-14 18:29:55,494 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=238
+2011-07-14 18:29:56,494 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=238
+2011-07-14 18:29:57,495 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=238
+2011-07-14 18:29:58,495 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=238
+2011-07-14 18:29:59,339 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Fenix_Tx
+2011-07-14 18:29:59,495 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=237
+2011-07-14 18:30:00,495 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=237
+2011-07-14 18:30:01,495 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=237
+2011-07-14 18:30:02,495 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=237
+2011-07-14 18:30:03,496 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=237
+2011-07-14 18:30:04,496 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=237
+2011-07-14 18:30:04,566 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Blink-182
+2011-07-14 18:30:05,496 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=236
+2011-07-14 18:30:06,496 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=236
+2011-07-14 18:30:07,497 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=236
+2011-07-14 18:30:08,497 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=236
+2011-07-14 18:30:09,497 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=236
+2011-07-14 18:30:09,854 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Killradio
+2011-07-14 18:30:10,497 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=235
+2011-07-14 18:30:11,498 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=235
+2011-07-14 18:30:12,498 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=235
+2011-07-14 18:30:13,498 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=235
+2011-07-14 18:30:14,498 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=235
+2011-07-14 18:30:15,004 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Moby
+2011-07-14 18:30:15,499 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=234
+2011-07-14 18:30:16,499 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=234
+2011-07-14 18:30:17,499 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=234
+2011-07-14 18:30:18,500 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=234
+2011-07-14 18:30:19,500 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=234
+2011-07-14 18:30:20,338 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Monster_Magnet
+2011-07-14 18:30:20,500 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=233
+2011-07-14 18:30:21,501 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=233
+2011-07-14 18:30:22,501 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=233
+2011-07-14 18:30:23,501 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=233
+2011-07-14 18:30:24,501 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=233
+2011-07-14 18:30:25,502 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=233
+2011-07-14 18:30:25,888 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Chemlab
+2011-07-14 18:30:26,502 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=232
+2011-07-14 18:30:27,502 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=232
+2011-07-14 18:30:28,503 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=232
+2011-07-14 18:30:29,503 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=232
+2011-07-14 18:30:30,503 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=232
+2011-07-14 18:30:31,504 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=10, fetchQueues.totalSize=232
+2011-07-14 18:31:08,706 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Stone_Sour
+2011-07-14 18:31:08,711 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=231
+2011-07-14 23:09:18,350 INFO  fetcher.Fetcher - -activeThreads=10, spinWaiting=9, fetchQueues.totalSize=231
+2011-07-14 23:09:18,350 WARN  fetcher.Fetcher - Aborting with 10 hung threads.
+2011-07-14 23:09:22,428 ERROR http.Http - java.net.ConnectException: No route to host
+2011-07-14 23:09:22,429 ERROR http.Http - at java.net.PlainSocketImpl.socketConnect(Native Method)
+2011-07-14 23:09:22,429 ERROR http.Http - at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:351)
+2011-07-14 23:09:22,429 ERROR http.Http - at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:213)
+2011-07-14 23:09:22,429 ERROR http.Http - at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:200)
+2011-07-14 23:09:22,429 ERROR http.Http - at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:432)
+2011-07-14 23:09:22,429 ERROR http.Http - at java.net.Socket.connect(Socket.java:529)
+2011-07-14 23:09:22,429 ERROR http.Http - at org.apache.nutch.protocol.http.HttpResponse.<init>(HttpResponse.java:97)
+2011-07-14 23:09:22,429 ERROR http.Http - at org.apache.nutch.protocol.http.Http.getResponse(Http.java:64)
+2011-07-14 23:09:22,429 ERROR http.Http - at org.apache.nutch.protocol.http.api.HttpBase.getProtocolOutput(HttpBase.java:138)
+2011-07-14 23:09:22,429 ERROR http.Http - at org.apache.nutch.fetcher.Fetcher$FetcherThread.run(Fetcher.java:628)
+2011-07-14 23:09:22,429 INFO  fetcher.Fetcher - fetch of http://en.wikipedia.org/wiki/Stone_Sour failed with: java.net.ConnectException: No route to host
+2011-07-14 23:09:25,664 INFO  fetcher.Fetcher - fetch of http://en.wikipedia.org/wiki/Stone_Sour failed with: java.lang.NullPointerException
+2011-07-14 23:09:25,665 FATAL fetcher.Fetcher - java.lang.NullPointerException
+2011-07-14 23:09:25,665 FATAL fetcher.Fetcher - at java.lang.System.arraycopy(Native Method)
+2011-07-14 23:09:25,920 FATAL fetcher.Fetcher - at org.apache.hadoop.mapred.MapTask$MapOutputBuffer$Buffer.write(MapTask.java:1108)
+2011-07-14 23:09:25,920 FATAL fetcher.Fetcher - at org.apache.hadoop.mapred.MapTask$MapOutputBuffer$Buffer.write(MapTask.java:1025)
+2011-07-14 23:09:25,920 FATAL fetcher.Fetcher - at java.io.DataOutputStream.writeByte(DataOutputStream.java:136)
+2011-07-14 23:09:25,921 FATAL fetcher.Fetcher - at org.apache.hadoop.io.WritableUtils.writeVLong(WritableUtils.java:263)
+2011-07-14 23:09:25,921 FATAL fetcher.Fetcher - at org.apache.hadoop.io.WritableUtils.writeVInt(WritableUtils.java:243)
+2011-07-14 23:09:25,921 FATAL fetcher.Fetcher - at org.apache.hadoop.io.Text.write(Text.java:281)
+2011-07-14 23:09:25,921 FATAL fetcher.Fetcher - at org.apache.hadoop.io.serializer.WritableSerialization$WritableSerializer.serialize(WritableSerialization.java:90)
+2011-07-14 23:09:25,921 FATAL fetcher.Fetcher - at org.apache.hadoop.io.serializer.WritableSerialization$WritableSerializer.serialize(WritableSerialization.java:77)
+2011-07-14 23:09:25,921 FATAL fetcher.Fetcher - at org.apache.hadoop.mapred.MapTask$MapOutputBuffer.collect(MapTask.java:892)
+2011-07-14 23:09:25,921 FATAL fetcher.Fetcher - at org.apache.hadoop.mapred.MapTask$OldOutputCollector.collect(MapTask.java:466)
+2011-07-14 23:09:25,921 FATAL fetcher.Fetcher - at org.apache.nutch.fetcher.Fetcher$FetcherThread.output(Fetcher.java:899)
+2011-07-14 23:09:25,921 FATAL fetcher.Fetcher - at org.apache.nutch.fetcher.Fetcher$FetcherThread.run(Fetcher.java:768)
+2011-07-14 23:09:25,922 FATAL fetcher.Fetcher - fetcher caught:java.lang.NullPointerException
+2011-07-14 23:09:25,923 INFO  fetcher.Fetcher - -finishing thread FetcherThread, activeThreads=9
+2011-07-14 23:09:31,375 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Hole_(band)
+2011-07-14 23:09:31,761 INFO  fetcher.Fetcher - fetch of http://en.wikipedia.org/wiki/Hole_(band) failed with: java.lang.NullPointerException
+2011-07-14 23:09:31,762 FATAL fetcher.Fetcher - java.lang.NullPointerException
+2011-07-14 23:09:31,763 FATAL fetcher.Fetcher - at java.lang.System.arraycopy(Native Method)
+2011-07-14 23:09:31,763 FATAL fetcher.Fetcher - at org.apache.hadoop.mapred.MapTask$MapOutputBuffer$Buffer.write(MapTask.java:1108)
+2011-07-14 23:09:31,763 FATAL fetcher.Fetcher - at org.apache.hadoop.mapred.MapTask$MapOutputBuffer$Buffer.write(MapTask.java:1025)
+2011-07-14 23:09:31,763 FATAL fetcher.Fetcher - at java.io.DataOutputStream.writeByte(DataOutputStream.java:136)
+2011-07-14 23:09:31,763 FATAL fetcher.Fetcher - at org.apache.hadoop.io.WritableUtils.writeVLong(WritableUtils.java:263)
+2011-07-14 23:09:31,763 FATAL fetcher.Fetcher - at org.apache.hadoop.io.WritableUtils.writeVInt(WritableUtils.java:243)
+2011-07-14 23:09:31,764 FATAL fetcher.Fetcher - at org.apache.hadoop.io.Text.write(Text.java:281)
+2011-07-14 23:09:31,764 FATAL fetcher.Fetcher - at org.apache.hadoop.io.serializer.WritableSerialization$WritableSerializer.serialize(WritableSerialization.java:90)
+2011-07-14 23:09:31,764 FATAL fetcher.Fetcher - at org.apache.hadoop.io.serializer.WritableSerialization$WritableSerializer.serialize(WritableSerialization.java:77)
+2011-07-14 23:09:31,764 FATAL fetcher.Fetcher - at org.apache.hadoop.mapred.MapTask$MapOutputBuffer.collect(MapTask.java:892)
+2011-07-14 23:09:31,764 FATAL fetcher.Fetcher - at org.apache.hadoop.mapred.MapTask$OldOutputCollector.collect(MapTask.java:466)
+2011-07-14 23:09:31,764 FATAL fetcher.Fetcher - at org.apache.nutch.fetcher.Fetcher$FetcherThread.output(Fetcher.java:899)
+2011-07-14 23:09:31,764 FATAL fetcher.Fetcher - at org.apache.nutch.fetcher.Fetcher$FetcherThread.run(Fetcher.java:768)
+2011-07-14 23:09:31,764 FATAL fetcher.Fetcher - fetcher caught:java.lang.NullPointerException
+2011-07-14 23:09:31,764 INFO  fetcher.Fetcher - -finishing thread FetcherThread, activeThreads=8
+2011-07-14 23:09:32,353 INFO  fetcher.Fetcher - Fetcher: finished at 2011-07-14 23:09:32, elapsed: 04:43:26
+2011-07-14 23:09:32,353 INFO  parse.ParseSegment - ParseSegment: starting at 2011-07-14 23:09:32
+2011-07-14 23:09:32,375 INFO  parse.ParseSegment - ParseSegment: segment: crawl-20110714182537/segments/20110714182604
+2011-07-14 23:09:34,589 WARN  parse.ParserFactory - ParserFactory:Plugin: org.apache.nutch.parse.html.HtmlParser mapped to contentType application/xhtml+xml via parse-plugins.xml, but its plugin.xml file does not claim to support contentType: application/xhtml+xml
+2011-07-14 23:09:35,517 INFO  crawl.SignatureFactory - Using Signature impl: org.apache.nutch.crawl.MD5Signature
+2011-07-14 23:09:36,936 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Dido_(singer)
+2011-07-14 23:09:37,195 INFO  fetcher.Fetcher - fetch of http://en.wikipedia.org/wiki/Dido_(singer) failed with: java.lang.NullPointerException
+2011-07-14 23:09:37,195 FATAL fetcher.Fetcher - java.lang.NullPointerException
+2011-07-14 23:09:37,196 FATAL fetcher.Fetcher - fetcher caught:java.lang.NullPointerException
+2011-07-14 23:09:37,196 INFO  fetcher.Fetcher - -finishing thread FetcherThread, activeThreads=7
+2011-07-14 23:09:42,187 WARN  regex.RegexURLNormalizer - can't find rules for scope 'outlink', using default
+2011-07-14 23:09:42,439 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Papa_Roach
+2011-07-14 23:09:42,696 INFO  fetcher.Fetcher - fetch of http://en.wikipedia.org/wiki/Papa_Roach failed with: java.lang.NullPointerException
+2011-07-14 23:09:42,696 FATAL fetcher.Fetcher - java.lang.NullPointerException
+2011-07-14 23:09:42,696 FATAL fetcher.Fetcher - fetcher caught:java.lang.NullPointerException
+2011-07-14 23:09:42,696 INFO  fetcher.Fetcher - -finishing thread FetcherThread, activeThreads=6
+2011-07-14 23:09:47,940 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Built_to_Spill
+2011-07-14 23:09:48,163 INFO  fetcher.Fetcher - fetch of http://en.wikipedia.org/wiki/Built_to_Spill failed with: java.lang.NullPointerException
+2011-07-14 23:09:48,163 FATAL fetcher.Fetcher - java.lang.NullPointerException
+2011-07-14 23:09:48,163 FATAL fetcher.Fetcher - fetcher caught:java.lang.NullPointerException
+2011-07-14 23:09:48,163 INFO  fetcher.Fetcher - -finishing thread FetcherThread, activeThreads=5
+2011-07-14 23:09:53,441 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/System_of_a_Down
+2011-07-14 23:09:54,187 INFO  fetcher.Fetcher - fetch of http://en.wikipedia.org/wiki/System_of_a_Down failed with: java.lang.NullPointerException
+2011-07-14 23:09:54,187 FATAL fetcher.Fetcher - java.lang.NullPointerException
+2011-07-14 23:09:54,188 FATAL fetcher.Fetcher - fetcher caught:java.lang.NullPointerException
+2011-07-14 23:09:54,188 INFO  fetcher.Fetcher - -finishing thread FetcherThread, activeThreads=4
+2011-07-14 23:09:58,074 INFO  parse.ParseSegment - ParseSegment: finished at 2011-07-14 23:09:58, elapsed: 00:00:25
+2011-07-14 23:09:58,379 INFO  crawl.CrawlDb - CrawlDb update: starting at 2011-07-14 23:09:58
+2011-07-14 23:09:58,386 INFO  crawl.CrawlDb - CrawlDb update: db: crawl-20110714182537/crawldb
+2011-07-14 23:09:58,388 INFO  crawl.CrawlDb - CrawlDb update: segments: [crawl-20110714182537/segments/20110714182604]
+2011-07-14 23:09:58,388 INFO  crawl.CrawlDb - CrawlDb update: additions allowed: true
+2011-07-14 23:09:58,388 INFO  crawl.CrawlDb - CrawlDb update: URL normalizing: true
+2011-07-14 23:09:58,388 INFO  crawl.CrawlDb - CrawlDb update: URL filtering: true
+2011-07-14 23:09:58,391 INFO  crawl.CrawlDb - CrawlDb update: Merging segment data into db.
+2011-07-14 23:09:59,445 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Arctic_Monkeys
+2011-07-14 23:09:59,727 INFO  fetcher.Fetcher - fetch of http://en.wikipedia.org/wiki/Arctic_Monkeys failed with: java.lang.NullPointerException
+2011-07-14 23:09:59,728 FATAL fetcher.Fetcher - java.lang.NullPointerException
+2011-07-14 23:09:59,728 FATAL fetcher.Fetcher - fetcher caught:java.lang.NullPointerException
+2011-07-14 23:09:59,728 INFO  fetcher.Fetcher - -finishing thread FetcherThread, activeThreads=3
+2011-07-14 23:10:04,954 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Metallica
+2011-07-14 23:10:05,721 INFO  fetcher.Fetcher - fetch of http://en.wikipedia.org/wiki/Metallica failed with: java.lang.NullPointerException
+2011-07-14 23:10:05,721 FATAL fetcher.Fetcher - java.lang.NullPointerException
+2011-07-14 23:10:05,722 FATAL fetcher.Fetcher - fetcher caught:java.lang.NullPointerException
+2011-07-14 23:10:05,722 INFO  fetcher.Fetcher - -finishing thread FetcherThread, activeThreads=2
+2011-07-14 23:10:09,039 WARN  regex.RegexURLNormalizer - can't find rules for scope 'crawldb', using default
+2011-07-14 23:10:10,978 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/Radiohead
+2011-07-14 23:10:11,337 INFO  fetcher.Fetcher - fetch of http://en.wikipedia.org/wiki/Radiohead failed with: java.lang.NullPointerException
+2011-07-14 23:10:11,338 FATAL fetcher.Fetcher - java.lang.NullPointerException
+2011-07-14 23:10:11,338 FATAL fetcher.Fetcher - fetcher caught:java.lang.NullPointerException
+2011-07-14 23:10:11,338 INFO  fetcher.Fetcher - -finishing thread FetcherThread, activeThreads=1
+2011-07-14 23:10:12,704 WARN  regex.RegexURLNormalizer - can't find rules for scope 'crawldb', using default
+2011-07-14 23:10:13,658 WARN  regex.RegexURLNormalizer - can't find rules for scope 'crawldb', using default
+2011-07-14 23:10:16,480 INFO  fetcher.Fetcher - fetching http://en.wikipedia.org/wiki/The_Dandy_Warhols
+2011-07-14 23:10:16,669 INFO  fetcher.Fetcher - fetch of http://en.wikipedia.org/wiki/The_Dandy_Warhols failed with: java.lang.NullPointerException
+2011-07-14 23:10:16,669 FATAL fetcher.Fetcher - java.lang.NullPointerException
+2011-07-14 23:10:16,669 FATAL fetcher.Fetcher - fetcher caught:java.lang.NullPointerException
+2011-07-14 23:10:16,669 INFO  fetcher.Fetcher - -finishing thread FetcherThread, activeThreads=0
+2011-07-14 23:10:17,259 INFO  crawl.FetchScheduleFactory - Using FetchSchedule impl: org.apache.nutch.crawl.DefaultFetchSchedule
+2011-07-14 23:10:17,259 INFO  crawl.AbstractFetchSchedule - defaultInterval=2592000
+2011-07-14 23:10:17,259 INFO  crawl.AbstractFetchSchedule - maxInterval=7776000
+2011-07-14 23:10:21,085 INFO  crawl.CrawlDb - CrawlDb update: finished at 2011-07-14 23:10:21, elapsed: 00:00:22
+2011-07-14 23:10:21,137 INFO  crawl.LinkDb - LinkDb: starting at 2011-07-14 23:10:21
+2011-07-14 23:10:21,137 INFO  crawl.LinkDb - LinkDb: linkdb: crawl-20110714182537/linkdb
+2011-07-14 23:10:21,137 INFO  crawl.LinkDb - LinkDb: URL normalize: true
+2011-07-14 23:10:21,137 INFO  crawl.LinkDb - LinkDb: URL filter: true
+2011-07-14 23:10:21,141 INFO  crawl.LinkDb - LinkDb: adding segment: file:/Users/epugh/Documents/projects/solrbook/trunk/examples/9/nutch/nutch-1.3/runtime/local/crawl-20110714182537/segments/20110714182604
+2011-07-14 23:10:24,133 INFO  crawl.LinkDb - LinkDb: finished at 2011-07-14 23:10:24, elapsed: 00:00:02
+2011-07-14 23:10:24,304 INFO  solr.SolrIndexer - SolrIndexer: starting at 2011-07-14 23:10:24
+2011-07-14 23:10:24,306 INFO  indexer.IndexerMapReduce - IndexerMapReduce: crawldb: crawl-20110714182537/crawldb
+2011-07-14 23:10:24,306 INFO  indexer.IndexerMapReduce - IndexerMapReduce: linkdb: crawl-20110714182537/linkdb
+2011-07-14 23:10:24,306 INFO  indexer.IndexerMapReduce - IndexerMapReduces: adding segment: file:/Users/epugh/Documents/projects/solrbook/trunk/examples/9/nutch/nutch-1.3/runtime/local/crawl-20110714182537/segments/20110714182604
+2011-07-14 23:10:26,325 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.basic.BasicIndexingFilter
+2011-07-14 23:10:26,354 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.more.MoreIndexingFilter
+2011-07-14 23:10:26,493 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.anchor.AnchorIndexingFilter
+2011-07-14 23:10:26,911 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.basic.BasicIndexingFilter
+2011-07-14 23:10:26,911 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.more.MoreIndexingFilter
+2011-07-14 23:10:26,911 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.anchor.AnchorIndexingFilter
+2011-07-14 23:10:29,113 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.basic.BasicIndexingFilter
+2011-07-14 23:10:29,300 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.more.MoreIndexingFilter
+2011-07-14 23:10:29,300 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.anchor.AnchorIndexingFilter
+2011-07-14 23:10:30,966 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.basic.BasicIndexingFilter
+2011-07-14 23:10:30,966 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.more.MoreIndexingFilter
+2011-07-14 23:10:30,966 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.anchor.AnchorIndexingFilter
+2011-07-14 23:10:32,713 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.basic.BasicIndexingFilter
+2011-07-14 23:10:32,713 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.more.MoreIndexingFilter
+2011-07-14 23:10:32,713 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.anchor.AnchorIndexingFilter
+2011-07-14 23:10:33,729 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.basic.BasicIndexingFilter
+2011-07-14 23:10:33,729 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.more.MoreIndexingFilter
+2011-07-14 23:10:33,729 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.anchor.AnchorIndexingFilter
+2011-07-14 23:10:34,409 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.basic.BasicIndexingFilter
+2011-07-14 23:10:34,409 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.more.MoreIndexingFilter
+2011-07-14 23:10:34,409 INFO  indexer.IndexingFilters - Adding org.apache.nutch.indexer.anchor.AnchorIndexingFilter
+2011-07-14 23:10:35,437 INFO  solr.SolrMappingReader - source: content dest: content
+2011-07-14 23:10:35,437 INFO  solr.SolrMappingReader - source: site dest: site
+2011-07-14 23:10:35,437 INFO  solr.SolrMappingReader - source: title dest: title
+2011-07-14 23:10:35,437 INFO  solr.SolrMappingReader - source: host dest: host
+2011-07-14 23:10:35,437 INFO  solr.SolrMappingReader - source: segment dest: segment
+2011-07-14 23:10:35,437 INFO  solr.SolrMappingReader - source: boost dest: boost
+2011-07-14 23:10:35,437 INFO  solr.SolrMappingReader - source: digest dest: digest
+2011-07-14 23:10:35,437 INFO  solr.SolrMappingReader - source: tstamp dest: tstamp
+2011-07-14 23:10:35,437 INFO  solr.SolrMappingReader - source: url dest: id
+2011-07-14 23:10:35,437 INFO  solr.SolrMappingReader - source: url dest: url
+2011-07-14 23:10:51,597 INFO  solr.SolrIndexer - SolrIndexer: finished at 2011-07-14 23:10:51, elapsed: 00:00:27
+2011-07-14 23:10:51,723 INFO  solr.SolrDeleteDuplicates - SolrDeleteDuplicates: starting at 2011-07-14 23:10:51
+2011-07-14 23:10:51,724 INFO  solr.SolrDeleteDuplicates - SolrDeleteDuplicates: Solr url: http://localhost:8983/solr/nutch/
+2011-07-14 23:10:56,780 INFO  solr.SolrDeleteDuplicates - SolrDeleteDuplicates: finished at 2011-07-14 23:10:56, elapsed: 00:00:05
+2011-07-14 23:10:56,780 INFO  crawl.Crawl - crawl finished: crawl-20110714182537

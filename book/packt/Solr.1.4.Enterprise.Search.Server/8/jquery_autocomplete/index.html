@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Artist Autocomplete Demo</title>
+<script type="text/javascript" src="http://view.jquery.com/trunk/plugins/autocomplete/lib/jquery.js"></script>
+<script type='text/javascript' src='http://view.jquery.com/trunk/plugins/autocomplete/lib/jquery.bgiframe.min.js'></script>
+<script type='text/javascript' src='http://view.jquery.com/trunk/plugins/autocomplete/lib/jquery.ajaxQueue.js'></script>
+<script type='text/javascript' src='http://view.jquery.com/trunk/plugins/autocomplete/lib/thickbox-compressed.js'></script>
+<script type='text/javascript' src='http://view.jquery.com/trunk/plugins/autocomplete/jquery.autocomplete.js'></script>
+<script type="text/javascript" src="./blackbirdjs/blackbird.js"></script>
+
+<link type="text/css" rel="Stylesheet" href="./blackbirdjs/blackbird.css" />
+<link rel="stylesheet" type="text/css" href="http://view.jquery.com/trunk/plugins/autocomplete/demo/main.css" />
+<link rel="stylesheet" type="text/css" href="http://view.jquery.com/trunk/plugins/autocomplete/demo/../jquery.autocomplete.css" />
+<link rel="stylesheet" type="text/css" href="http://view.jquery.com/trunk/plugins/autocomplete/demo/../lib/thickbox.css" />
+	
+<script type="text/javascript">
+$(function() {
+  
+	function formatForDisplay(doc) {
+		return doc.a_name;
+	}
+	
+	$("#artist").autocomplete( 'http://localhost:8983/solr/mbartists/select/?wt=json&json.wrf=?', {
+		dataType: "jsonp",
+		width: 300,
+		extraParams: {rows: 10, fq: "type:Artist", qt: "artistAutoComplete"},
+		minChars: 3,
+		parse: function(data) {
+		  log.debug("resulting documents count:" + data.response.docs.size);
+			return $.map(data.response.docs, function(doc) {
+			  log.debug("doc:" + doc.id);
+				return {
+					data: doc,
+					value: doc.id.toString(),
+					result: doc.a_name
+				}
+			});
+		},
+		formatItem: function(doc) {
+			return formatForDisplay(doc);
+		}
+	}).result(function(e, doc) {
+		$("#content").append("<p>selected " + formatForDisplay(doc) + "(" + doc.id + ")" + "</p>");
+		log.debug("Selected Artist ID:" + doc.id);
+	});
+});
+</script>
+	
+</head>
+
+<body>
+
+<h1 id="banner">Artist Autocomplete Demo</h1>
+
+<div id="content">
+	
+	<form autocomplete="off">
+		<p>
+			<label>Artist Name:</label>
+			<input type="text" id="artist" size="30"/>
+			Press "F2" key to see logging of events.
+		</p>
+		
+		<input type="submit" value="Submit" />
+	</form>
+
+</div>
+</body>
+</html>

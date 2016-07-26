@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+                    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<style type="text/css">
+		body { font-family: Arial, sans; font-size: 0.8em}
+	</style> 
+
+  <script src="../lib/jquery/jquery-1.2.6.js"></script>
+	<script src="../src/core/Core.js"></script>
+	<script src="../src/core/QueryItem.js"></script>
+	<script src="../src/core/Manager.js"></script>
+	<script src="../src/core/AbstractWidget.js"></script>
+	<script src="../src/core/AbstractServerSideWidget.js"></script>
+	<script src="../src/core/AbstractClientSideWidget.js"></script>
+	<script src="../src/serverside/SimpleServerSideWidget.js"/></script>
+	<script src="../src/serverside/FacetServerSideWidget.js"/></script>
+	
+	<script>
+	  var $sj = jQuery.noConflict();
+	</script>  
+
+
+    <script>
+      var solrjsManager;
+	  $sj(document).ready(function(){
+        solrjsManager = new $sj.solrjs.Manager({solrUrl:"http://localhost:8983/solr/select"});
+			
+		  // a custom result widget      
+      var resultWidget = new $sj.solrjs.SimpleServerSideWidget({
+  			id:"result", 
+  			target:"#result", 
+  			rows:5,
+  			templateName:"result"
+  		});	  	
+
+      solrjsManager.addWidget(resultWidget);	
+      solrjsManager.addWidget(new $sj.solrjs.FacetServerSideWidget({id:"topics", target:"#topics", fieldName:"topics"}));
+			solrjsManager.doRequestAll(); 
+		});
+	</script>
+  </head>
+
+<body>
+ <body>
+  <div id="facets" style="float:left;width:300px;">
+    <h3 style="margin-top:0px">topics</h3>    
+    <div id="topics"></div>
+  </div>
+  <div id="result" style="margin-left:300px;"></div>
+</body>
+</body>
+</html>

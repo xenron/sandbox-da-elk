@@ -1,0 +1,10 @@
+<%= "<TR>" if artist_counter % 4 == 0 %>
+<td align="center">
+<% if artist.image_url %>
+<%= image_tag(artist.image_url, :border=>0)%>
+<% end %>
+<p>
+<%= artist.name %>  |<%= link_to 'X', {:controller => :myfaves, :action => :destroy, :id => artist}, :confirm => "Are you sure you want to remove #{artist.name} from your favorites?", :method => :delete %>|
+</p>
+</td>
+<%= "</TR>" if artist_counter % 4 == 3 %>

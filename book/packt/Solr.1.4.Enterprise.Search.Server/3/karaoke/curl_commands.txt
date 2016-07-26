@@ -1,0 +1,22 @@
+# from ./3/karaoke/songs/angeleyes
+
+# basic index
+curl 'http://localhost:8983/solr/karaoke/update/extract?map.content=text' -F "file=@angeleyes.kar"
+
+curl http://localhost:8983/solr/karaoke/update/ -H "Content-Type: text/xml" --data-binary '<commit waitFlush="false"/>'
+
+# indexing unique documents via stream_name for id
+curl 'http://localhost:8983/solr/karaoke/update/extract?map.content=text&map.stream_name=id'  -F "file=@angeleyes.kar"
+
+# from ./3/karaoke/
+
+# index a PDF document
+curl 'http://localhost:8983/solr/karaoke/update/extract?map.content=text&map.stream_name=id&commit=true'  -F "file=@mccm.pdf"
+
+# extract and view only data
+curl 'http://localhost:8983/solr/karaoke/update/extract?map.content=text&capture=stream_name&map.stream_name=id&extractOnly=true'  -F "file=@mccm.pdf"
+
+# xpath filtering
+curl 'http://localhost:8983/solr/karaoke/update/extract?map.content=text&map.div=divs_s&capture=div&captureAttr=true&xpath=\/\/xhtml:p[1]'  -F "file=@mccm.pdf" 
+
+

@@ -1,0 +1,33 @@
+development:
+  url: http://127.0.0.1:8983/solr
+test:
+  url: http://127.0.0.1:8983/solr
+production:
+  url: http://127.0.0.1:8983/solr
+    
+display_fields:
+  show_view_html_title: title_t
+  show_view_record_heading: title_t
+  record_display_type: format_code_t
+  index_view_show_link: title_t
+  index_view_num_per_page: 10
+  marc_storage_field: marc_display
+    
+facet_fields:
+- type_facet  
+- language_facet
+- script_facet
+
+index_view_fields:
+- title_t
+- language_facet
+- script_facet
+- type_facet
+- releases_t
+
+show_view_fields:
+- title_t
+- language_facet
+- script_facet
+- type_facet
+- releases_t

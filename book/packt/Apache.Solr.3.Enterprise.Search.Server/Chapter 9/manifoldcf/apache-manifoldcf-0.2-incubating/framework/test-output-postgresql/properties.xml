@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+  <property name="org.apache.manifoldcf.databaseimplementationclass" value="org.apache.manifoldcf.core.database.DBInterfacePostgreSQL"/>
+  <property name="org.apache.manifoldcf.database.name" value="testdb"/>
+  <property name="org.apache.manifoldcf.database.username" value="testuser"/>
+  <property name="org.apache.manifoldcf.logconfigfile" value="C:/wip/mcf-release/release-0.2-incubating-branch/framework/test-output-postgresql/logging.ini"/>
+</configuration>

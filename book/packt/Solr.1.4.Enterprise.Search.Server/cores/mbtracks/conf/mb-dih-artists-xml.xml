@@ -1,0 +1,9 @@
+<dataConfig>
+   <dataSource name="artists" type="FileDataSource" encoding="UTF-8"/>
+   <document name="artists">
+       <entity name="artist" dataSource="artists" processor="XPathEntityProcessor" stream="true"
+          forEach="/wrap/table/tr" url="/home/dsmiley/musicbrainz/artists_small.xhtml" xsl="artists.xsl" useSolrAddSchema="true">
+       </entity>
+   </document>
+</dataConfig>
+

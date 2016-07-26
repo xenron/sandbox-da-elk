@@ -1,0 +1,292 @@
+
+<!--
+Automatically created by Apache Tomcat JspC.
+Place this fragment in the web.xml before all icon, display-name,
+description, distributable, and context-param elements.
+-->
+
+    <servlet>
+        <servlet-name>org.apache.jsp.adminDefaults_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.adminDefaults_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.adminHeaders_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.adminHeaders_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.banner_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.banner_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.checkAdminLogin_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.checkAdminLogin_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.documentstatus_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.documentstatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.editauthority_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.editauthority_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.editconnection_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.editconnection_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.editjob_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.editjob_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.editoutput_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.editoutput_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.error_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.error_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.execute_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.execute_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.index_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.index_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.listauthorities_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.listauthorities_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.listconnections_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.listconnections_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.listjobs_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.listjobs_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.listoutputs_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.listoutputs_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.maxactivityreport_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.maxactivityreport_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.maxbandwidthreport_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.maxbandwidthreport_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.navigation_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.navigation_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.queuestatus_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.queuestatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.resultreport_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.resultreport_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.setupAdminProfile_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.setupAdminProfile_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.showjobstatus_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.showjobstatus_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.simplereport_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.simplereport_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.viewauthority_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.viewauthority_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.viewconnection_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.viewconnection_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.viewjob_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.viewjob_jsp</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>org.apache.jsp.viewoutput_jsp</servlet-name>
+        <servlet-class>org.apache.jsp.viewoutput_jsp</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.adminDefaults_jsp</servlet-name>
+        <url-pattern>/adminDefaults.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.adminHeaders_jsp</servlet-name>
+        <url-pattern>/adminHeaders.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.banner_jsp</servlet-name>
+        <url-pattern>/banner.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.checkAdminLogin_jsp</servlet-name>
+        <url-pattern>/checkAdminLogin.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.documentstatus_jsp</servlet-name>
+        <url-pattern>/documentstatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.editauthority_jsp</servlet-name>
+        <url-pattern>/editauthority.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.editconnection_jsp</servlet-name>
+        <url-pattern>/editconnection.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.editjob_jsp</servlet-name>
+        <url-pattern>/editjob.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.editoutput_jsp</servlet-name>
+        <url-pattern>/editoutput.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.error_jsp</servlet-name>
+        <url-pattern>/error.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.execute_jsp</servlet-name>
+        <url-pattern>/execute.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.index_jsp</servlet-name>
+        <url-pattern>/index.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.listauthorities_jsp</servlet-name>
+        <url-pattern>/listauthorities.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.listconnections_jsp</servlet-name>
+        <url-pattern>/listconnections.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.listjobs_jsp</servlet-name>
+        <url-pattern>/listjobs.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.listoutputs_jsp</servlet-name>
+        <url-pattern>/listoutputs.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.maxactivityreport_jsp</servlet-name>
+        <url-pattern>/maxactivityreport.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.maxbandwidthreport_jsp</servlet-name>
+        <url-pattern>/maxbandwidthreport.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.navigation_jsp</servlet-name>
+        <url-pattern>/navigation.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.queuestatus_jsp</servlet-name>
+        <url-pattern>/queuestatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.resultreport_jsp</servlet-name>
+        <url-pattern>/resultreport.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.setupAdminProfile_jsp</servlet-name>
+        <url-pattern>/setupAdminProfile.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.showjobstatus_jsp</servlet-name>
+        <url-pattern>/showjobstatus.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.simplereport_jsp</servlet-name>
+        <url-pattern>/simplereport.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.viewauthority_jsp</servlet-name>
+        <url-pattern>/viewauthority.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.viewconnection_jsp</servlet-name>
+        <url-pattern>/viewconnection.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.viewjob_jsp</servlet-name>
+        <url-pattern>/viewjob.jsp</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>org.apache.jsp.viewoutput_jsp</servlet-name>
+        <url-pattern>/viewoutput.jsp</url-pattern>
+    </servlet-mapping>
+
+<!--
+All session-config, mime-mapping, welcome-file-list, error-page, taglib,
+resource-ref, security-constraint, login-config, security-role,
+env-entry, and ejb-ref elements should follow this fragment.
+-->

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<solr persistent="false" sharedLib="lib">
+
+  <cores adminPath="/admin/cores" shareSchema="true">
+    <!-- 
+    Note: You can turn off cores by commenting them out.  This may help in low memory situations or if you
+    are trying to track down a configuration error on startup. 
+    -->
+    <core name="mbtracks" instanceDir="mbtracks" dataDir="../../cores_data/mbtracks" />
+    <core name="mbartists" instanceDir="mbartists" dataDir="../../cores_data/mbartists" />
+    <core name="mbreleases" instanceDir="mbreleases" dataDir="../../cores_data/mbreleases" />
+    <core name="crawler" instanceDir="crawler" dataDir="../../cores_data/crawler" />   
+    <core name="karaoke" instanceDir="karaoke" dataDir="../../cores_data/karaoke" />       
+  </cores>
+</solr>

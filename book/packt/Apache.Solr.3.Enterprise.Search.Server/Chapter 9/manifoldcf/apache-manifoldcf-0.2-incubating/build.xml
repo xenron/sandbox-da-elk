@@ -1,0 +1,1822 @@
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<project name="manifoldcf" default="help">
+
+    <target name="clean">
+        <delete>
+          <fileset dir="." includes="apache-manifoldcf-*.zip"/>
+          <fileset dir="." includes="apache-manifoldcf-*.tar.gz"/>
+        </delete>
+        <delete dir="build"/>
+        <delete dir="dist"/>
+        <delete dir="test-output"/>
+        <ant dir="site" target="clean"/>
+        <ant dir="framework" target="clean"/>
+        <delete dir="framework/lib"/>
+        <ant dir="connectors/activedirectory" target="clean"/>
+        <delete dir="connectors/activedirectory/lib"/>
+        <ant dir="connectors/documentum" target="clean"/>
+        <delete dir="connectors/documentum/lib"/>
+        <ant dir="connectors/filenet" target="clean"/>
+        <delete dir="connectors/filenet/lib"/>
+        <ant dir="connectors/filesystem" target="clean"/>
+        <delete dir="connectors/filesystem/lib"/>
+        <ant dir="connectors/gts" target="clean"/>
+        <delete dir="connectors/gts/lib"/>
+        <ant dir="connectors/jcifs" target="clean"/>
+        <delete dir="connectors/jcifs/lib"/>
+        <ant dir="connectors/jdbc" target="clean"/>
+        <delete dir="connectors/jdbc/lib"/>
+        <ant dir="connectors/livelink" target="clean"/>
+        <delete dir="connectors/livelink/lib"/>
+        <ant dir="connectors/solr" target="clean"/>
+        <delete dir="connectors/solr/lib"/>
+        <ant dir="connectors/memex" target="clean"/>
+        <delete dir="connectors/memex/lib"/>
+        <ant dir="connectors/meridio" target="clean"/>
+        <delete dir="connectors/meridio/lib"/>
+        <ant dir="connectors/nullauthority" target="clean"/>
+        <delete dir="connectors/nullauthority/lib"/>
+        <ant dir="connectors/nulloutput" target="clean"/>
+        <delete dir="connectors/nulloutput/lib"/>
+        <ant dir="connectors/rss" target="clean"/>
+        <delete dir="connectors/rss/lib"/>
+        <ant dir="connectors/sharepoint" target="clean"/>
+        <delete dir="connectors/sharepoint/lib"/>
+        <ant dir="connectors/webcrawler" target="clean"/>
+        <delete dir="connectors/webcrawler/lib"/>
+    </target>
+    
+    <target name="build-site">
+      <ant dir="site" target="all"/>
+    </target>
+    
+    <target name="build-json">
+        <mkdir dir="build/json/classes"/>
+        <javac srcdir="json" destdir="build/json/classes" target="1.5" source="1.4" debug="true" debuglevel="lines,vars,source">
+            <classpath>
+            </classpath>
+        </javac>
+    </target>
+    
+    <target name="jar-json" depends="build-json">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/json.jar" basedir="build/json/classes"/>
+    </target>
+    
+    <target name="setup-framework" depends="jar-json">
+        <mkdir dir="framework/lib"/>
+        <!-- Individually specify the needed libraries, since otherwise that information would not be available readily -->
+        <copy todir="framework/lib">
+            <fileset dir="build/jar">
+                <include name="json.jar"/>
+            </fileset>
+            <fileset dir="lib">
+                <include name="commons-codec*.jar"/>
+                <include name="commons-collections*.jar"/>
+                <include name="commons-el*.jar"/>
+                <include name="commons-fileupload*.jar"/>
+                <include name="commons-httpclient-mcf.jar"/>
+                <include name="commons-io*.jar"/>
+                <include name="commons-logging*.jar"/>
+                <include name="eclipse*.jar"/>
+                <include name="jasper*.jar"/>
+                <include name="jetty*.jar"/>
+                <include name="jdbcpool-0.99.jar"/>
+                <include name="jsp-2.1*.jar"/>
+                <include name="jsp-api*.jar"/>
+                <include name="junit*.jar"/>
+                <include name="log4j*.jar"/>
+                <include name="serializer*.jar"/>
+                <include name="servlet-api*.jar"/>
+                <include name="tomcat-juli*.jar"/>
+                <include name="xalan*.jar"/>
+                <include name="xercesImpl-mcf.jar"/>
+                <include name="xml-apis*.jar"/>
+            </fileset>
+            <fileset dir="lib">
+                <include name="postgresql*.jar"/>
+                <include name="derby*.jar"/>
+                <include name="hsqldb*.jar"/>
+            </fileset>
+        </copy>
+      </target>
+      
+      <target name="build-framework" depends="setup-framework">
+        <ant dir="framework" target="build"/>
+    </target>
+
+    <target name="doc-framework" depends="setup-framework">
+        <ant dir="framework" target="doc"/>
+    </target>
+
+    <target name="build-tests-framework" depends="setup-framework">
+        <ant dir="framework" target="build-tests"/>
+    </target>
+
+    <target name="run-tests-framework" depends="setup-framework">
+        <ant dir="framework" target="run-tests"/>
+    </target>
+
+    <target name="run-tests-postgresql-framework" depends="setup-framework">
+        <ant dir="framework" target="run-tests-postgresql"/>
+    </target>
+
+    <target name="setup-activedirectory-connector" depends="build-framework">
+        <mkdir dir="connectors/activedirectory/lib"/>
+        <copy todir="connectors/activedirectory/lib">
+            <fileset dir="framework/lib"/>
+        </copy>
+        <copy todir="connectors/activedirectory/lib">
+            <fileset dir="framework/build/jar"/>
+        </copy>
+    </target>
+
+    <target name="setup-activedirectory-connector-tests" depends="build-tests-framework">
+        <mkdir dir="connectors/activedirectory/lib"/>
+        <copy todir="connectors/activedirectory/lib">
+            <fileset dir="framework/build/test-jar"/>
+        </copy>
+    </target>
+
+    <target name="build-activedirectory-connector" depends="setup-activedirectory-connector">
+        <ant dir="connectors/activedirectory" target="build"/>
+    </target>
+    
+    <target name="doc-activedirectory-connector" depends="setup-activedirectory-connector">
+      <ant dir="connectors/activedirectory" target="doc"/>
+    </target>
+    
+    <target name="build-tests-activedirectory-connector" depends="setup-activedirectory-connector,setup-activedirectory-connector-tests">
+        <ant dir="connectors/activedirectory" target="build-tests"/>
+    </target>
+
+    <target name="run-tests-activedirectory-connector" depends="setup-activedirectory-connector,setup-activedirectory-connector-tests">
+        <ant dir="connectors/activedirectory" target="run-tests"/>
+    </target>
+
+    <target name="run-tests-postgresql-activedirectory-connector" depends="setup-activedirectory-connector,setup-activedirectory-connector-tests">
+        <ant dir="connectors/activedirectory" target="run-tests-postgresql"/>
+    </target>
+
+    <target name="setup-documentum-connector" depends="build-framework">
+        <mkdir dir="connectors/documentum/lib"/>
+        <copy todir="connectors/documentum/lib">
+            <fileset dir="framework/lib"/>
+        </copy>
+        <copy todir="connectors/documentum/lib">
+            <fileset dir="framework/build/jar"/>
+        </copy>
+    </target>
+
+    <target name="setup-documentum-connector-tests" depends="build-tests-framework">
+        <mkdir dir="connectors/documentum/lib"/>
+        <copy todir="connectors/documentum/lib">
+            <fileset dir="framework/build/test-jar"/>
+        </copy>
+    </target>
+
+    <target name="build-documentum-connector" depends="setup-documentum-connector">
+        <ant dir="connectors/documentum" target="build"/>
+    </target>
+
+    <target name="doc-documentum-connector" depends="setup-documentum-connector">
+      <ant dir="connectors/documentum" target="doc"/>
+    </target>
+
+    <target name="build-tests-documentum-connector" depends="setup-documentum-connector,setup-documentum-connector-tests">
+        <ant dir="connectors/documentum" target="build-tests"/>
+    </target>
+
+    <target name="run-tests-documentum-connector" depends="setup-documentum-connector,setup-documentum-connector-tests">
+        <ant dir="connectors/documentum" target="run-tests"/>
+    </target>
+
+    <target name="run-tests-postgresql-documentum-connector" depends="setup-documentum-connector,setup-documentum-connector-tests">
+        <ant dir="connectors/documentum" target="run-tests-postgresql"/>
+    </target>
+
+    <target name="setup-filenet-connector" depends="build-framework">
+        <mkdir dir="connectors/filenet/lib"/>
+        <copy todir="connectors/filenet/lib">
+            <fileset dir="framework/lib"/>
+        </copy>
+        <copy todir="connectors/filenet/lib">
+            <fileset dir="framework/build/jar"/>
+        </copy>
+    </target>
+  
+      <target name="setup-filenet-connector-tests" depends="build-tests-framework">
+        <mkdir dir="connectors/filenet/lib"/>
+        <copy todir="connectors/filenet/lib">
+            <fileset dir="framework/build/test-jar"/>
+        </copy>
+    </target>
+
+    <target name="build-filenet-connector" depends="setup-filenet-connector">
+        <ant dir="connectors/filenet" target="build"/>
+    </target>
+
+    <target name="doc-filenet-connector" depends="setup-filenet-connector">
+      <ant dir="connectors/filenet" target="doc"/>
+    </target>
+
+    <target name="build-tests-filenet-connector" depends="setup-filenet-connector,setup-filenet-connector-tests">
+        <ant dir="connectors/filenet" target="build-tests"/>
+    </target>
+
+    <target name="run-tests-filenet-connector" depends="setup-filenet-connector,setup-filenet-connector-tests">
+        <ant dir="connectors/filenet" target="run-tests"/>
+    </target>
+
+    <target name="run-tests-postgresql-filenet-connector" depends="setup-filenet-connector,setup-filenet-connector-tests">
+        <ant dir="connectors/filenet" target="run-tests"/>
+    </target>
+
+    <target name="setup-filesystem-connector" depends="build-framework">
+        <mkdir dir="connectors/filesystem/lib"/>
+        <copy todir="connectors/filesystem/lib">
+            <fileset dir="framework/lib"/>
+        </copy>
+        <copy todir="connectors/filesystem/lib">
+            <fileset dir="framework/build/jar"/>
+        </copy>
+    </target>
+    
+    <target name="setup-filesystem-connector-tests" depends="build-tests-framework">
+        <mkdir dir="connectors/filesystem/lib"/>
+        <copy todir="connectors/filesystem/lib">
+            <fileset dir="framework/build/test-jar"/>
+        </copy>
+    </target>
+
+    <target name="build-filesystem-connector" depends="setup-filesystem-connector">
+        <ant dir="connectors/filesystem" target="build"/>
+    </target>
+
+    <target name="doc-filesystem-connector" depends="setup-filesystem-connector">
+      <ant dir="connectors/filesystem" target="doc"/>
+    </target>
+
+    <target name="build-tests-filesystem-connector" depends="setup-filesystem-connector,setup-filesystem-connector-tests">
+        <ant dir="connectors/filesystem" target="build-tests"/>
+    </target>
+
+    <target name="run-tests-filesystem-connector" depends="setup-filesystem-connector,setup-filesystem-connector-tests">
+        <ant dir="connectors/filesystem" target="run-tests"/>
+    </target>
+
+    <target name="run-tests-postgresql-filesystem-connector" depends="setup-filesystem-connector,setup-filesystem-connector-tests">
+        <ant dir="connectors/filesystem" target="run-tests-postgresql"/>
+    </target>
+
+    <target name="setup-gts-connector" depends="build-framework">
+        <mkdir dir="connectors/gts/lib"/>
+        <copy todir="connectors/gts/lib">
+            <fileset dir="framework/lib"/>
+            <fileset dir="lib">
+	      <include name="poi*.jar"/>
+            </fileset>
+        </copy>
+        <copy todir="connectors/gts/lib">
+            <fileset dir="framework/build/jar"/>
+        </copy>
+    </target>
+
+    <target name="setup-gts-connector-tests" depends="build-tests-framework">
+        <mkdir dir="connectors/gts/lib"/>
+        <copy todir="connectors/gts/lib">
+            <fileset dir="framework/build/test-jar"/>
+        </copy>
+    </target>
+
+    <target name="build-gts-connector" depends="setup-gts-connector">
+        <ant dir="connectors/gts" target="build"/>
+    </target>
+
+    <target name="doc-gts-connector" depends="setup-gts-connector">
+        <ant dir="connectors/gts" target="doc"/>
+    </target>
+
+    <target name="build-tests-gts-connector" depends="setup-gts-connector,setup-gts-connector-tests">
+        <ant dir="connectors/gts" target="build-tests"/>
+    </target>
+
+    <target name="run-tests-gts-connector" depends="setup-gts-connector,setup-gts-connector-tests">
+        <ant dir="connectors/gts" target="run-tests"/>
+    </target>
+
+    <target name="run-tests-postgresql-gts-connector" depends="setup-gts-connector,setup-gts-connector-tests">
+        <ant dir="connectors/gts" target="run-tests-postgresql"/>
+    </target>
+
+    <target name="setup-jcifs-connector" depends="build-framework">
+        <mkdir dir="connectors/jcifs/lib"/>
+        <copy todir="connectors/jcifs/lib">
+            <fileset dir="framework/lib"/>
+            <fileset dir="framework/build/jar"/>
+        </copy>
+    </target>
+
+    <target name="setup-jcifs-connector-tests" depends="build-tests-framework">
+        <mkdir dir="connectors/jcifs/lib"/>
+        <copy todir="connectors/jcifs/lib">
+            <fileset dir="framework/build/test-jar"/>
+        </copy>
+    </target>
+
+    <target name="build-jcifs-connector" depends="setup-jcifs-connector">
+        <ant dir="connectors/jcifs" target="build"/>
+    </target>
+
+    <target name="doc-jcifs-connector" depends="setup-jcifs-connector">
+        <ant dir="connectors/jcifs" target="doc"/>
+    </target>
+
+    <target name="build-tests-jcifs-connector" depends="setup-jcifs-connector,setup-jcifs-connector-tests">
+        <ant dir="connectors/jcifs" target="build-tests"/>
+    </target>
+
+    <target name="run-tests-jcifs-connector" depends="setup-jcifs-connector,setup-jcifs-connector-tests">
+        <ant dir="connectors/jcifs" target="run-tests"/>
+    </target>
+
+    <target name="run-tests-postgresql-jcifs-connector" depends="setup-jcifs-connector,setup-jcifs-connector-tests">
+        <ant dir="connectors/jcifs" target="run-tests-postgresql"/>
+    </target>
+
+    <target name="setup-jdbc-connector" depends="build-framework">
+        <mkdir dir="connectors/jdbc/lib"/>
+        <copy todir="connectors/jdbc/lib">
+            <fileset dir="framework/lib"/>
+        </copy>
+        <copy todir="connectors/jdbc/lib">
+            <fileset dir="framework/build/jar"/>
+        </copy>
+    </target>
+
+    <target name="setup-jdbc-connector-tests" depends="build-tests-framework">
+        <mkdir dir="connectors/jdbc/lib"/>
+        <copy todir="connectors/jdbc/lib">
+            <fileset dir="framework/build/test-jar"/>
+        </copy>
+    </target>
+
+    <target name="build-jdbc-connector" depends="setup-jdbc-connector">
+        <ant dir="connectors/jdbc" target="build"/>
+    </target>
+
+    <target name="doc-jdbc-connector" depends="setup-jdbc-connector">
+        <ant dir="connectors/jdbc" target="doc"/>
+    </target>
+
+    <target name="build-tests-jdbc-connector" depends="setup-jdbc-connector,setup-jdbc-connector-tests">
+        <ant dir="connectors/jdbc" target="build-tests"/>
+    </target>
+
+    <target name="run-tests-jdbc-connector" depends="setup-jdbc-connector,setup-jdbc-connector-tests">
+        <ant dir="connectors/jdbc" target="run-tests"/>
+    </target>
+
+    <target name="run-tests-postgresql-jdbc-connector" depends="setup-jdbc-connector,setup-jdbc-connector-tests">
+        <ant dir="connectors/jdbc" target="run-tests-postgresql"/>
+    </target>
+
+    <target name="setup-livelink-connector" depends="build-framework">
+        <mkdir dir="connectors/livelink/lib"/>
+        <copy todir="connectors/livelink/lib">
+            <fileset dir="framework/lib"/>
+        </copy>
+        <copy todir="connectors/livelink/lib">
+            <fileset dir="framework/build/jar"/>
+        </copy>
+    </target>
+    
+    <target name="setup-livelink-connector-tests" depends="build-tests-framework">
+        <mkdir dir="connectors/livelink/lib"/>
+        <copy todir="connectors/livelink/lib">
+            <fileset dir="framework/build/test-jar"/>
+        </copy>
+    </target>
+
+    <target name="build-livelink-connector" depends="setup-livelink-connector">
+        <ant dir="connectors/livelink" target="build"/>
+    </target>
+
+    <target name="doc-livelink-connector" depends="setup-livelink-connector">
+        <ant dir="connectors/livelink" target="doc"/>
+    </target>
+
+    <target name="build-tests-livelink-connector" depends="setup-livelink-connector,setup-livelink-connector-tests">
+        <ant dir="connectors/livelink" target="build-tests"/>
+    </target>
+
+    <target name="run-tests-livelink-connector" depends="setup-livelink-connector,setup-livelink-connector-tests">
+        <ant dir="connectors/livelink" target="run-tests"/>
+    </target>
+
+    <target name="run-tests-postgresql-livelink-connector" depends="setup-livelink-connector,setup-livelink-connector-tests">
+        <ant dir="connectors/livelink" target="run-tests-postgresql"/>
+    </target>
+
+    <target name="setup-solr-connector" depends="build-framework">
+        <mkdir dir="connectors/solr/lib"/>
+        <copy todir="connectors/solr/lib">
+            <fileset dir="framework/lib"/>
+        </copy>
+        <copy todir="connectors/solr/lib">
+            <fileset dir="framework/build/jar"/>
+        </copy>
+    </target>
+
+    <target name="setup-solr-connector-tests" depends="build-tests-framework">
+        <mkdir dir="connectors/solr/lib"/>
+        <copy todir="connectors/solr/lib">
+            <fileset dir="framework/build/test-jar"/>
+        </copy>
+    </target>
+
+    <target name="build-solr-connector" depends="setup-solr-connector">
+        <ant dir="connectors/solr" target="build"/>
+    </target>
+
+    <target name="doc-solr-connector" depends="setup-solr-connector">
+        <ant dir="connectors/solr" target="doc"/>
+    </target>
+
+    <target name="build-tests-solr-connector" depends="setup-solr-connector,setup-solr-connector-tests">
+        <ant dir="connectors/solr" target="build-tests"/>
+    </target>
+
+    <target name="run-tests-solr-connector" depends="setup-solr-connector,setup-solr-connector-tests">
+        <ant dir="connectors/solr" target="run-tests"/>
+    </target>
+
+    <target name="run-tests-postgresql-solr-connector" depends="setup-solr-connector,setup-solr-connector-tests">
+        <ant dir="connectors/solr" target="run-tests-postgresql"/>
+    </target>
+
+    <target name="setup-memex-connector" depends="build-framework">
+        <mkdir dir="connectors/memex/lib"/>
+        <copy todir="connectors/memex/lib">
+            <fileset dir="framework/lib"/>
+        </copy>
+        <copy todir="connectors/memex/lib">
+            <fileset dir="framework/build/jar"/>
+        </copy>
+    </target>
+    
+    <target name="setup-memex-connector-tests" depends="build-tests-framework">
+        <mkdir dir="connectors/memex/lib"/>
+        <copy todir="connectors/memex/lib">
+            <fileset dir="framework/build/test-jar"/>
+        </copy>
+    </target>
+
+    <target name="build-memex-connector" depends="setup-memex-connector">
+        <ant dir="connectors/memex" target="build"/>
+    </target>
+
+    <target name="doc-memex-connector" depends="setup-memex-connector">
+        <ant dir="connectors/memex" target="doc"/>
+    </target>
+
+    <target name="build-tests-memex-connector" depends="setup-memex-connector,setup-memex-connector-tests">
+        <ant dir="connectors/memex" target="build-tests"/>
+    </target>
+
+    <target name="run-tests-memex-connector" depends="setup-memex-connector,setup-memex-connector-tests">
+        <ant dir="connectors/memex" target="run-tests"/>
+    </target>
+
+    <target name="run-tests-postgresql-memex-connector" depends="setup-memex-connector,setup-memex-connector-tests">
+        <ant dir="connectors/memex" target="run-tests-postgresql"/>
+    </target>
+
+    <target name="setup-meridio-connector" depends="build-framework">
+        <mkdir dir="connectors/meridio/lib"/>
+        <copy todir="connectors/meridio/lib">
+            <fileset dir="lib">
+                <include name="axis*.jar"/>
+                <include name="wsdl4j*.jar"/>
+                <include name="castor*.jar"/>
+                <include name="commons-discovery*.jar"/>
+                <include name="geronimo-activation_1.1_spec*.jar"/>
+                <include name="geronimo-javamail_1.4_spec*.jar"/>
+            </fileset>
+        </copy>
+        <copy todir="connectors/meridio/lib">
+            <fileset dir="framework/lib"/>
+        </copy>
+        <copy todir="connectors/meridio/lib">
+            <fileset dir="framework/build/jar"/>
+        </copy>
+    </target>
+
+    <target name="setup-meridio-connector-tests" depends="build-tests-framework">
+        <mkdir dir="connectors/meridio/lib"/>
+        <copy todir="connectors/meridio/lib">
+            <fileset dir="framework/build/test-jar"/>
+        </copy>
+    </target>
+
+    <target name="build-meridio-connector" depends="setup-meridio-connector">
+        <ant dir="connectors/meridio" target="build"/>
+    </target>
+
+    <target name="doc-meridio-connector" depends="setup-meridio-connector">
+        <ant dir="connectors/meridio" target="doc"/>
+    </target>
+
+    <target name="build-tests-meridio-connector" depends="setup-meridio-connector,setup-meridio-connector-tests">
+        <ant dir="connectors/meridio" target="build-tests"/>
+    </target>
+
+    <target name="run-tests-meridio-connector" depends="setup-meridio-connector,setup-meridio-connector-tests">
+        <ant dir="connectors/meridio" target="run-tests"/>
+    </target>
+
+    <target name="run-tests-postgresql-meridio-connector" depends="setup-meridio-connector,setup-meridio-connector-tests">
+        <ant dir="connectors/meridio" target="run-tests-postgresql"/>
+    </target>
+
+    <target name="setup-nullauthority-connector" depends="build-framework">
+        <mkdir dir="connectors/nullauthority/lib"/>
+        <copy todir="connectors/nulloutput/lib">
+            <fileset dir="framework/lib"/>
+        </copy>
+        <copy todir="connectors/nullauthority/lib">
+            <fileset dir="framework/build/jar"/>
+        </copy>
+    </target>
+    
+    <target name="setup-nullauthority-connector-tests" depends="build-tests-framework">
+        <mkdir dir="connectors/nullauthority/lib"/>
+        <copy todir="connectors/nullauthority/lib">
+            <fileset dir="framework/build/test-jar"/>
+        </copy>
+    </target>
+
+    <target name="build-nullauthority-connector" depends="setup-nullauthority-connector">
+        <ant dir="connectors/nullauthority" target="build"/>
+    </target>
+
+    <target name="doc-nullauthority-connector" depends="setup-nullauthority-connector">
+        <ant dir="connectors/nullauthority" target="doc"/>
+    </target>
+
+    <target name="build-tests-nullauthority-connector" depends="setup-nullauthority-connector,setup-nullauthority-connector-tests">
+        <ant dir="connectors/nullauthority" target="build-tests"/>
+    </target>
+
+    <target name="run-tests-nullauthority-connector" depends="setup-nullauthority-connector,setup-nullauthority-connector-tests">
+        <ant dir="connectors/nullauthority" target="run-tests"/>
+    </target>
+
+    <target name="run-tests-postgresql-nullauthority-connector" depends="setup-nullauthority-connector,setup-nullauthority-connector-tests">
+        <ant dir="connectors/nullauthority" target="run-tests-postgresql"/>
+    </target>
+
+    <target name="setup-nulloutput-connector" depends="build-framework">
+        <mkdir dir="connectors/nulloutput/lib"/>
+        <copy todir="connectors/nulloutput/lib">
+            <fileset dir="framework/lib"/>
+        </copy>
+        <copy todir="connectors/nulloutput/lib">
+            <fileset dir="framework/build/jar"/>
+        </copy>
+    </target>
+    
+    <target name="setup-nulloutput-connector-tests" depends="build-tests-framework">
+        <mkdir dir="connectors/nulloutput/lib"/>
+        <copy todir="connectors/nulloutput/lib">
+            <fileset dir="framework/build/test-jar"/>
+        </copy>
+    </target>
+
+    <target name="build-nulloutput-connector" depends="setup-nulloutput-connector">
+        <ant dir="connectors/nulloutput" target="build"/>
+    </target>
+
+    <target name="doc-nulloutput-connector" depends="setup-nulloutput-connector">
+        <ant dir="connectors/nulloutput" target="doc"/>
+    </target>
+
+    <target name="build-tests-nulloutput-connector" depends="setup-nulloutput-connector,setup-nulloutput-connector-tests">
+        <ant dir="connectors/nulloutput" target="build-tests"/>
+    </target>
+
+    <target name="run-tests-nulloutput-connector" depends="setup-nulloutput-connector,setup-nulloutput-connector-tests">
+        <ant dir="connectors/nulloutput" target="run-tests"/>
+    </target>
+
+    <target name="run-tests-postgresql-nulloutput-connector" depends="setup-nulloutput-connector,setup-nulloutput-connector-tests">
+        <ant dir="connectors/nulloutput" target="run-tests-postgresql"/>
+    </target>
+
+    <target name="setup-rss-connector" depends="build-framework">
+        <mkdir dir="connectors/rss/lib"/>
+        <copy todir="connectors/rss/lib">
+            <fileset dir="framework/lib"/>
+        </copy>
+        <copy todir="connectors/rss/lib">
+            <fileset dir="framework/build/jar"/>
+        </copy>
+    </target>
+
+    <target name="setup-rss-connector-tests" depends="build-tests-framework">
+        <mkdir dir="connectors/rss/lib"/>
+        <copy todir="connectors/rss/lib">
+            <fileset dir="framework/build/test-jar"/>
+        </copy>
+    </target>
+
+    <target name="build-rss-connector" depends="setup-rss-connector">
+        <ant dir="connectors/rss" target="build"/>
+    </target>
+
+    <target name="doc-rss-connector" depends="setup-rss-connector">
+        <ant dir="connectors/rss" target="doc"/>
+    </target>
+
+    <target name="build-tests-rss-connector" depends="setup-rss-connector,setup-rss-connector-tests">
+        <ant dir="connectors/rss" target="build-tests"/>
+    </target>
+
+    <target name="run-tests-rss-connector" depends="setup-rss-connector,setup-rss-connector-tests">
+        <ant dir="connectors/rss" target="run-tests"/>
+    </target>
+
+    <target name="run-tests-postgresql-rss-connector" depends="setup-rss-connector,setup-rss-connector-tests">
+        <ant dir="connectors/rss" target="run-tests-postgresql"/>
+    </target>
+
+    <target name="setup-sharepoint-connector" depends="build-framework">
+        <mkdir dir="connectors/sharepoint/lib"/>
+        <copy todir="connectors/sharepoint/lib">
+            <fileset dir="lib">
+                <include name="axis*.jar"/>
+                <include name="wsdl4j*.jar"/>
+                <include name="commons-discovery*.jar"/>
+                <include name="geronimo-activation_1.1_spec*.jar"/>
+            </fileset>
+        </copy>
+        <copy todir="connectors/sharepoint/lib">
+            <fileset dir="framework/lib"/>
+        </copy>
+        <copy todir="connectors/sharepoint/lib">
+            <fileset dir="framework/build/jar"/>
+        </copy>
+    </target>
+    
+    <target name="setup-sharepoint-connector-tests" depends="build-tests-framework">
+        <mkdir dir="connectors/sharepoint/lib"/>
+        <copy todir="connectors/sharepoint/lib">
+            <fileset dir="framework/build/test-jar"/>
+        </copy>
+    </target>
+
+    <target name="build-sharepoint-connector" depends="setup-sharepoint-connector">
+        <ant dir="connectors/sharepoint" target="build"/>
+    </target>
+
+    <target name="doc-sharepoint-connector" depends="setup-sharepoint-connector">
+        <ant dir="connectors/sharepoint" target="doc"/>
+    </target>
+
+    <target name="build-tests-sharepoint-connector" depends="setup-sharepoint-connector,setup-sharepoint-connector-tests">
+        <ant dir="connectors/sharepoint" target="build-tests"/>
+    </target>
+
+    <target name="run-tests-sharepoint-connector" depends="setup-sharepoint-connector,setup-sharepoint-connector-tests">
+        <ant dir="connectors/sharepoint" target="run-tests"/>
+    </target>
+
+    <target name="run-tests-postgresql-sharepoint-connector" depends="setup-sharepoint-connector,setup-sharepoint-connector-tests">
+        <ant dir="connectors/sharepoint" target="run-tests-postgresql"/>
+    </target>
+
+    <target name="setup-webcrawler-connector" depends="build-framework">
+        <mkdir dir="connectors/webcrawler/lib"/>
+        <copy todir="connectors/webcrawler/lib">
+            <fileset dir="framework/lib"/>
+        </copy>
+        <copy todir="connectors/webcrawler/lib">
+            <fileset dir="framework/build/jar"/>
+        </copy>
+    </target>
+    
+    <target name="setup-webcrawler-connector-tests" depends="build-tests-framework">
+        <mkdir dir="connectors/webcrawler/lib"/>
+        <copy todir="connectors/webcrawler/lib">
+            <fileset dir="framework/build/test-jar"/>
+        </copy>
+    </target>
+
+    <target name="build-webcrawler-connector" depends="setup-webcrawler-connector">
+        <ant dir="connectors/webcrawler" target="build"/>
+    </target>
+
+    <target name="doc-webcrawler-connector" depends="setup-webcrawler-connector">
+        <ant dir="connectors/webcrawler" target="doc"/>
+    </target>
+
+    <target name="build-tests-webcrawler-connector" depends="setup-webcrawler-connector,setup-webcrawler-connector-tests">
+        <ant dir="connectors/webcrawler" target="build-tests"/>
+    </target>
+
+    <target name="run-tests-webcrawler-connector" depends="setup-webcrawler-connector,setup-webcrawler-connector-tests">
+        <ant dir="connectors/webcrawler" target="run-tests"/>
+    </target>
+
+    <target name="run-tests-postgresql-webcrawler-connector" depends="setup-webcrawler-connector,setup-webcrawler-connector-tests">
+        <ant dir="connectors/webcrawler" target="run-tests-postgresql"/>
+    </target>
+
+    <target name="deliver-site-doc" depends="build-site">
+          <mkdir dir="dist/doc"/>
+          <copy todir="dist/doc">
+              <fileset dir="site/build/site">
+                <exclude name="**/broken-links.xml"/>
+              </fileset>
+          </copy>
+    </target>
+
+    <target name="deliver-framework" depends="build-framework">
+        <mkdir dir="dist/processes"/>
+        <copy todir="dist/processes">
+            <fileset dir="framework/dist/processes"/>
+        </copy>
+        <mkdir dir="dist/web"/>
+        <copy todir="dist/web">
+            <fileset dir="framework/dist/web"/>
+        </copy>
+    </target>
+    
+    <target name="deliver-framework-doc" depends="doc-framework">
+        <mkdir dir="dist/doc/framework"/>
+        <copy todir="dist/doc/framework">
+	  <fileset dir="framework/dist/doc"/>
+        </copy>
+    </target>
+
+    <target name="calculate-activedirectory-condition" depends="build-activedirectory-connector">
+        <available file="connectors/activedirectory/dist/lib" type="dir" property="activedirectory.exists"/>
+        <condition property="activedirectory.include">
+            <isset property="activedirectory.exists"/>
+        </condition>
+    </target>
+
+    <target name="calculate-activedirectory-doc-condition" depends="doc-activedirectory-connector">
+        <available file="connectors/activedirectory/dist/doc" type="dir" property="activedirectory-doc.exists"/>
+        <condition property="activedirectory-doc.include">
+            <isset property="activedirectory-doc.exists"/>
+        </condition>
+    </target>
+
+    <target name="deliver-activedirectory-connector" depends="calculate-activedirectory-condition" if="activedirectory.include">
+        <mkdir dir="dist/lib"/>
+        <copy todir="dist/lib">
+            <fileset dir="connectors/activedirectory/dist/lib"/>
+        </copy>
+    </target>
+    
+    <target name="deliver-activedirectory-connector-doc" depends="calculate-activedirectory-doc-condition" if="activedirectory-doc.include">
+        <mkdir dir="dist/doc/activedirectory"/>
+        <copy todir="dist/doc/activedirectory">
+	  <fileset dir="connectors/activedirectory/dist/doc"/>
+        </copy>
+    </target>
+
+    <target name="calculate-documentum-condition" depends="build-documentum-connector">
+        <available file="connectors/documentum/dist/lib" type="dir" property="documentum.exists"/>
+        <condition property="documentum.include">
+            <isset property="documentum.exists"/>
+        </condition>
+    </target>
+
+    <target name="calculate-documentum-doc-condition" depends="doc-documentum-connector">
+        <available file="connectors/documentum/dist/doc" type="dir" property="documentum-doc.exists"/>
+        <condition property="documentum-doc.include">
+            <isset property="documentum-doc.exists"/>
+        </condition>
+    </target>
+
+    <target name="deliver-documentum-connector" depends="calculate-documentum-condition" if="documentum.include">
+        <mkdir dir="dist/lib"/>
+        <copy todir="dist/lib">
+            <fileset dir="connectors/documentum/dist/lib"/>
+        </copy>
+        <mkdir dir="dist/documentum-server-process"/>
+        <copy todir="dist/documentum-server-process">
+            <fileset dir="connectors/documentum/dist/server-process"/>
+        </copy>
+        <mkdir dir="dist/documentum-registry-process"/>
+        <copy todir="dist/documentum-registry-process">
+            <fileset dir="connectors/documentum/dist/registry-process"/>
+        </copy>
+    </target>
+    
+    <target name="deliver-documentum-connector-doc" depends="calculate-documentum-doc-condition" if="documentum-doc.include">
+        <mkdir dir="dist/doc/documentum"/>
+        <copy todir="dist/doc/documentum">
+	  <fileset dir="connectors/documentum/dist/doc"/>
+        </copy>
+    </target>
+
+    <target name="calculate-filenet-condition" depends="build-filenet-connector">
+        <available file="connectors/filenet/dist/lib" type="dir" property="filenet.exists"/>
+        <condition property="filenet.include">
+            <isset property="filenet.exists"/>
+        </condition>
+    </target>
+
+    <target name="calculate-filenet-doc-condition" depends="doc-filenet-connector">
+        <available file="connectors/filenet/dist/doc" type="dir" property="filenet-doc.exists"/>
+        <condition property="filenet-doc.include">
+            <isset property="filenet-doc.exists"/>
+        </condition>
+    </target>
+
+    <target name="deliver-filenet-connector" depends="calculate-filenet-condition" if="filenet.include">
+        <mkdir dir="dist/lib"/>
+        <copy todir="dist/lib">
+            <fileset dir="connectors/filenet/dist/lib"/>
+        </copy>
+        <mkdir dir="dist/filenet-server-process"/>
+        <copy todir="dist/filenet-server-process">
+            <fileset dir="connectors/filenet/dist/server-process"/>
+        </copy>
+        <mkdir dir="dist/filenet-registry-process"/>
+        <copy todir="dist/filenet-registry-process">
+            <fileset dir="connectors/filenet/dist/registry-process"/>
+        </copy>
+    </target>
+    
+    <target name="deliver-filenet-connector-doc" depends="calculate-filenet-doc-condition" if="filenet-doc.include">
+        <mkdir dir="dist/doc/filenet"/>
+        <copy todir="dist/doc/filenet">
+	  <fileset dir="connectors/filenet/dist/doc"/>
+        </copy>
+    </target>
+
+    <target name="calculate-filesystem-condition" depends="build-filesystem-connector">
+        <available file="connectors/filesystem/dist/lib" type="dir" property="filesystem.exists"/>
+        <condition property="filesystem.include">
+            <isset property="filesystem.exists"/>
+        </condition>
+    </target>
+
+    <target name="calculate-filesystem-doc-condition" depends="doc-filesystem-connector">
+        <available file="connectors/filesystem/dist/doc" type="dir" property="filesystem-doc.exists"/>
+        <condition property="filesystem-doc.include">
+            <isset property="filesystem-doc.exists"/>
+        </condition>
+    </target>
+
+    <target name="deliver-filesystem-connector" depends="calculate-filesystem-condition" if="filesystem.include">
+        <mkdir dir="dist/lib"/>
+        <copy todir="dist/lib">
+            <fileset dir="connectors/filesystem/dist/lib"/>
+        </copy>
+    </target>
+    
+    <target name="deliver-filesystem-connector-doc" depends="calculate-filesystem-doc-condition" if="filesystem-doc.include">
+        <mkdir dir="dist/doc/filesystem"/>
+        <copy todir="dist/doc/filesystem">
+	  <fileset dir="connectors/filesystem/dist/doc"/>
+        </copy>
+    </target>
+
+    <target name="calculate-gts-condition" depends="build-gts-connector">
+        <available file="connectors/gts/dist/lib" type="dir" property="gts.exists"/>
+        <condition property="gts.include">
+            <isset property="gts.exists"/>
+        </condition>
+    </target>
+
+    <target name="calculate-gts-doc-condition" depends="doc-gts-connector">
+        <available file="connectors/gts/dist/doc" type="dir" property="gts-doc.exists"/>
+        <condition property="gts-doc.include">
+            <isset property="gts-doc.exists"/>
+        </condition>
+    </target>
+
+    <target name="deliver-gts-connector" depends="calculate-gts-condition" if="gts.include">
+        <mkdir dir="dist/lib"/>
+        <copy todir="dist/lib">
+            <fileset dir="connectors/gts/dist/lib"/>
+        </copy>
+    </target>
+    
+    <target name="deliver-gts-connector-doc" depends="calculate-gts-doc-condition" if="gts-doc.include">
+        <mkdir dir="dist/doc/gts"/>
+        <copy todir="dist/doc/gts">
+	  <fileset dir="connectors/gts/dist/doc"/>
+        </copy>
+    </target>
+
+    <target name="calculate-jdbc-condition" depends="build-jdbc-connector">
+        <available file="connectors/jdbc/dist/lib" type="dir" property="jdbc.exists"/>
+        <condition property="jdbc.include">
+            <isset property="jdbc.exists"/>
+        </condition>
+    </target>
+
+    <target name="calculate-jdbc-doc-condition" depends="doc-jdbc-connector">
+        <available file="connectors/jdbc/dist/doc" type="dir" property="jdbc-doc.exists"/>
+        <condition property="jdbc-doc.include">
+            <isset property="jdbc-doc.exists"/>
+        </condition>
+    </target>
+
+    <target name="deliver-jdbc-connector" depends="calculate-jdbc-condition" if="jdbc.include">
+        <mkdir dir="dist/lib"/>
+        <copy todir="dist/lib">
+            <fileset dir="connectors/jdbc/dist/lib"/>
+        </copy>
+    </target>
+    
+    <target name="deliver-jdbc-connector-doc" depends="calculate-jdbc-doc-condition" if="jdbc-doc.include">
+        <mkdir dir="dist/doc/jdbc"/>
+        <copy todir="dist/doc/jdbc">
+	  <fileset dir="connectors/jdbc/dist/doc"/>
+        </copy>
+    </target>
+
+    <target name="calculate-jcifs-condition" depends="build-jcifs-connector">
+        <available file="connectors/jcifs/dist/lib" type="dir" property="jcifs.exists"/>
+        <condition property="jcifs.include">
+            <isset property="jcifs.exists"/>
+        </condition>
+    </target>
+
+    <target name="calculate-jcifs-doc-condition" depends="doc-jcifs-connector">
+        <available file="connectors/jcifs/dist/doc" type="dir" property="jcifs-doc.exists"/>
+        <condition property="jcifs-doc.include">
+            <isset property="jcifs-doc.exists"/>
+        </condition>
+    </target>
+
+    <target name="deliver-jcifs-connector" depends="calculate-jcifs-condition" if="jcifs.include">
+        <mkdir dir="dist/lib"/>
+        <copy todir="dist/lib">
+            <fileset dir="connectors/jcifs/dist/lib"/>
+        </copy>
+    </target>
+    
+    <target name="deliver-jcifs-connector-doc" depends="calculate-jcifs-doc-condition" if="jcifs-doc.include">
+        <mkdir dir="dist/doc/jcifs"/>
+        <copy todir="dist/doc/jcifs">
+	  <fileset dir="connectors/jcifs/dist/doc"/>
+        </copy>
+    </target>
+
+    <target name="calculate-livelink-condition" depends="build-livelink-connector">
+        <available file="connectors/livelink/dist/lib" type="dir" property="livelink.exists"/>
+        <condition property="livelink.include">
+            <isset property="livelink.exists"/>
+        </condition>
+    </target>
+
+    <target name="calculate-livelink-doc-condition" depends="doc-livelink-connector">
+        <available file="connectors/livelink/dist/doc" type="dir" property="livelink-doc.exists"/>
+        <condition property="livelink-doc.include">
+            <isset property="livelink-doc.exists"/>
+        </condition>
+    </target>
+
+    <target name="deliver-livelink-connector" depends="calculate-livelink-condition" if="livelink.include">
+        <mkdir dir="dist/lib"/>
+        <copy todir="dist/lib">
+            <fileset dir="connectors/livelink/dist/lib"/>
+        </copy>
+    </target>
+
+    <target name="deliver-livelink-connector-doc" depends="calculate-livelink-doc-condition" if="livelink-doc.include">
+        <mkdir dir="dist/doc/livelink"/>
+        <copy todir="dist/doc/livelink">
+	  <fileset dir="connectors/livelink/dist/doc"/>
+        </copy>
+    </target>
+
+    <target name="calculate-solr-condition" depends="build-solr-connector">
+        <available file="connectors/solr/dist/lib" type="dir" property="solr.exists"/>
+        <condition property="solr.include">
+            <isset property="solr.exists"/>
+        </condition>
+    </target>
+
+    <target name="calculate-solr-doc-condition" depends="doc-solr-connector">
+        <available file="connectors/solr/dist/doc" type="dir" property="solr-doc.exists"/>
+        <condition property="solr-doc.include">
+            <isset property="solr-doc.exists"/>
+        </condition>
+    </target>
+
+    <target name="deliver-solr-connector" depends="calculate-solr-condition" if="solr.include">
+        <mkdir dir="dist/lib"/>
+        <copy todir="dist/lib">
+            <fileset dir="connectors/solr/dist/lib"/>
+        </copy>
+    </target>
+    
+    <target name="deliver-solr-connector-doc" depends="calculate-solr-doc-condition" if="solr-doc.include">
+        <mkdir dir="dist/doc/solr"/>
+        <copy todir="dist/doc/solr">
+	  <fileset dir="connectors/solr/dist/doc"/>
+        </copy>
+    </target>
+
+    <target name="calculate-memex-condition" depends="build-memex-connector">
+        <available file="connectors/memex/dist/lib" type="dir" property="memex.exists"/>
+        <condition property="memex.include">
+            <isset property="memex.exists"/>
+        </condition>
+    </target>
+
+    <target name="calculate-memex-doc-condition" depends="doc-memex-connector">
+        <available file="connectors/memex/dist/doc" type="dir" property="memex-doc.exists"/>
+        <condition property="memex-doc.include">
+            <isset property="memex-doc.exists"/>
+        </condition>
+    </target>
+
+    <target name="deliver-memex-connector" depends="calculate-memex-condition" if="memex.include">
+        <mkdir dir="dist/lib"/>
+        <copy todir="dist/lib">
+            <fileset dir="connectors/memex/dist/lib"/>
+        </copy>
+    </target>
+    
+    <target name="deliver-memex-connector-doc" depends="calculate-memex-doc-condition" if="memex-doc.include">
+        <mkdir dir="dist/doc/memex"/>
+        <copy todir="dist/doc/memex">
+	  <fileset dir="connectors/memex/dist/doc"/>
+        </copy>
+    </target>
+
+    <target name="calculate-meridio-condition" depends="build-meridio-connector">
+        <available file="connectors/meridio/dist/lib" type="dir" property="meridio.exists"/>
+        <condition property="meridio.include">
+            <isset property="meridio.exists"/>
+        </condition>
+    </target>
+
+    <target name="calculate-meridio-doc-condition" depends="doc-meridio-connector">
+        <available file="connectors/meridio/dist/doc" type="dir" property="meridio-doc.exists"/>
+        <condition property="meridio-doc.include">
+            <isset property="meridio-doc.exists"/>
+        </condition>
+    </target>
+
+    <target name="deliver-meridio-connector" depends="calculate-meridio-condition" if="meridio.include">
+        <mkdir dir="dist/lib"/>
+        <copy todir="dist/lib">
+            <fileset dir="connectors/meridio/dist/lib"/>
+        </copy>
+        <mkdir dir="dist/wsdd"/>
+        <copy todir="dist/wsdd">
+            <fileset dir="connectors/meridio/dist/wsdd"/>
+        </copy>
+    </target>
+    
+    <target name="deliver-meridio-connector-doc" depends="calculate-meridio-doc-condition" if="meridio-doc.include">
+        <mkdir dir="dist/doc/meridio"/>
+        <copy todir="dist/doc/meridio">
+	  <fileset dir="connectors/meridio/dist/doc"/>
+        </copy>
+    </target>
+
+    <target name="calculate-nullauthority-condition" depends="build-nullauthority-connector">
+        <available file="connectors/nullauthority/dist/lib" type="dir" property="nullauthority.exists"/>
+        <condition property="nullauthority.include">
+            <isset property="nullauthority.exists"/>
+        </condition>
+    </target>
+
+    <target name="calculate-nullauthority-doc-condition" depends="doc-nullauthority-connector">
+        <available file="connectors/nullauthority/dist/doc" type="dir" property="nullauthority-doc.exists"/>
+        <condition property="nullauthority-doc.include">
+            <isset property="nullauthority-doc.exists"/>
+        </condition>
+    </target>
+
+    <target name="deliver-nullauthority-connector" depends="calculate-nullauthority-condition" if="nullauthority.include">
+        <mkdir dir="dist/lib"/>
+        <copy todir="dist/lib">
+            <fileset dir="connectors/nullauthority/dist/lib"/>
+        </copy>
+    </target>
+    
+    <target name="deliver-nullauthority-connector-doc" depends="calculate-nullauthority-doc-condition" if="nullauthority-doc.include">
+        <mkdir dir="dist/doc/nullauthority"/>
+        <copy todir="dist/doc/nullauthority">
+	  <fileset dir="connectors/nullauthority/dist/doc"/>
+        </copy>
+    </target>
+
+    <target name="calculate-nulloutput-condition" depends="build-nulloutput-connector">
+        <available file="connectors/nulloutput/dist/lib" type="dir" property="nulloutput.exists"/>
+        <condition property="nulloutput.include">
+            <isset property="nulloutput.exists"/>
+        </condition>
+    </target>
+
+    <target name="calculate-nulloutput-doc-condition" depends="doc-nulloutput-connector">
+        <available file="connectors/nulloutput/dist/doc" type="dir" property="nulloutput-doc.exists"/>
+        <condition property="nulloutput-doc.include">
+            <isset property="nulloutput-doc.exists"/>
+        </condition>
+    </target>
+
+    <target name="deliver-nulloutput-connector" depends="calculate-nulloutput-condition" if="nulloutput.include">
+        <mkdir dir="dist/lib"/>
+        <copy todir="dist/lib">
+            <fileset dir="connectors/nulloutput/dist/lib"/>
+        </copy>
+    </target>
+    
+    <target name="deliver-nulloutput-connector-doc" depends="calculate-nulloutput-doc-condition" if="nulloutput-doc.include">
+        <mkdir dir="dist/doc/nulloutput"/>
+        <copy todir="dist/doc/nulloutput">
+	  <fileset dir="connectors/nulloutput/dist/doc"/>
+        </copy>
+    </target>
+
+    <target name="calculate-rss-condition" depends="build-rss-connector">
+        <available file="connectors/rss/dist/lib" type="dir" property="rss.exists"/>
+        <condition property="rss.include">
+            <isset property="rss.exists"/>
+        </condition>
+    </target>
+
+    <target name="calculate-rss-doc-condition" depends="doc-rss-connector">
+        <available file="connectors/rss/dist/doc" type="dir" property="rss-doc.exists"/>
+        <condition property="rss-doc.include">
+            <isset property="rss-doc.exists"/>
+        </condition>
+    </target>
+
+    <target name="deliver-rss-connector" depends="calculate-rss-condition" if="rss.include">
+        <mkdir dir="dist/lib"/>
+        <copy todir="dist/lib">
+            <fileset dir="connectors/rss/dist/lib"/>
+        </copy>
+    </target>
+    
+    <target name="deliver-rss-connector-doc" depends="calculate-rss-doc-condition" if="rss-doc.include">
+        <mkdir dir="dist/doc/rss"/>
+        <copy todir="dist/doc/rss">
+	  <fileset dir="connectors/rss/dist/doc"/>
+        </copy>
+    </target>
+
+    <target name="calculate-sharepoint-condition" depends="build-sharepoint-connector">
+        <available file="connectors/sharepoint/dist/lib" type="dir" property="sharepoint.exists"/>
+        <condition property="sharepoint.include">
+            <isset property="sharepoint.exists"/>
+        </condition>
+    </target>
+
+    <target name="calculate-sharepoint-doc-condition" depends="doc-sharepoint-connector">
+        <available file="connectors/sharepoint/dist/doc" type="dir" property="sharepoint-doc.exists"/>
+        <condition property="sharepoint-doc.include">
+            <isset property="sharepoint-doc.exists"/>
+        </condition>
+    </target>
+
+    <target name="deliver-sharepoint-connector" depends="calculate-sharepoint-condition" if="sharepoint.include">
+        <mkdir dir="dist/lib"/>
+        <copy todir="dist/lib">
+            <fileset dir="connectors/sharepoint/dist/lib"/>
+        </copy>
+        <mkdir dir="dist/wsdd"/>
+        <copy todir="dist/wsdd">
+            <fileset dir="connectors/sharepoint/dist/wsdd"/>
+        </copy>
+    </target>
+    
+    <target name="deliver-sharepoint-connector-doc" depends="calculate-sharepoint-doc-condition" if="sharepoint-doc.include">
+        <mkdir dir="dist/doc/sharepoint"/>
+        <copy todir="dist/doc/sharepoint">
+	  <fileset dir="connectors/sharepoint/dist/doc"/>
+        </copy>
+    </target>
+
+    <target name="calculate-webcrawler-condition" depends="build-webcrawler-connector">
+        <available file="connectors/webcrawler/dist/lib" type="dir" property="webcrawler.exists"/>
+        <condition property="webcrawler.include">
+            <isset property="webcrawler.exists"/>
+        </condition>
+    </target>
+
+    <target name="calculate-webcrawler-doc-condition" depends="doc-webcrawler-connector">
+        <available file="connectors/webcrawler/dist/doc" type="dir" property="webcrawler-doc.exists"/>
+        <condition property="webcrawler-doc.include">
+            <isset property="webcrawler-doc.exists"/>
+        </condition>
+    </target>
+
+    <target name="deliver-webcrawler-connector" depends="calculate-webcrawler-condition" if="webcrawler.include">
+        <mkdir dir="dist/lib"/>
+        <copy todir="dist/lib">
+            <fileset dir="connectors/webcrawler/dist/lib"/>
+        </copy>
+    </target>
+    
+    <target name="deliver-webcrawler-connector-doc" depends="calculate-webcrawler-doc-condition" if="webcrawler-doc.include">
+        <mkdir dir="dist/doc/webcrawler"/>
+        <copy todir="dist/doc/webcrawler">
+	  <fileset dir="connectors/webcrawler/dist/doc"/>
+        </copy>
+    </target>
+
+    <target name="cleanup-example">
+        <delete file="dist/example/connectors.xml"/>
+        <delete file="dist/example/properties.xml"/>
+    </target>
+    
+    <target name="deliver-framework-example" depends="cleanup-example,build-framework">
+        <mkdir dir="dist/example"/>
+        <copy todir="dist/example">
+            <fileset dir="framework/dist/example"/>
+        </copy>
+    </target>
+    
+    <target name="deliver-activedirectory-example" depends="deliver-framework-example,calculate-activedirectory-condition" if="activedirectory.include">
+        <mkdir dir="dist/example/connector-lib"/>
+        <copy todir="dist/example/connector-lib">
+            <fileset dir="connectors/activedirectory/dist/lib"/>
+        </copy>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your authority connectors here --&gt;" value="&lt;!-- Add your authority connectors here --&gt;&#0010;  &lt;authorityconnector name=&quot;Active Directory&quot; class=&quot;org.apache.manifoldcf.authorities.authorities.activedirectory.ActiveDirectoryAuthority&quot;/&gt;"/>
+    </target>
+
+    <target name="deliver-documentum-example" depends="deliver-framework-example,calculate-documentum-condition" if="documentum.include">
+        <mkdir dir="dist/example/documentum-server-process"/>
+        <copy todir="dist/example/documentum-server-process">
+            <fileset dir="connectors/documentum/dist/server-process"/>
+        </copy>
+        <mkdir dir="dist/example/documentum-registry-process"/>
+        <copy todir="dist/example/documentum-registry-process">
+            <fileset dir="connectors/documentum/dist/registry-process"/>
+        </copy>
+        <mkdir dir="dist/example/connector-lib"/>
+        <copy todir="dist/example/connector-lib">
+            <fileset dir="connectors/documentum/dist/lib"/>
+        </copy>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your authority connectors here --&gt;" value="&lt;!-- Add your authority connectors here --&gt;&#0010;  &lt;authorityconnector name=&quot;Documentum&quot; class=&quot;org.apache.manifoldcf.crawler.authorities.DCTM.AuthorityConnector&quot;/&gt;"/>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your repository connectors here --&gt;" value="&lt;!-- Add your repository connectors here --&gt;&#0010;  &lt;repositoryconnector name=&quot;Documentum&quot; class=&quot;org.apache.manifoldcf.crawler.connectors.DCTM.DCTM&quot;/&gt;"/>
+    </target>
+
+    <target name="deliver-filesystem-example" depends="deliver-framework-example,calculate-filesystem-condition" if="filesystem.include">
+        <mkdir dir="dist/example/connector-lib"/>
+        <copy todir="dist/example/connector-lib">
+            <fileset dir="connectors/filesystem/dist/lib"/>
+        </copy>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your repository connectors here --&gt;" value="&lt;!-- Add your repository connectors here --&gt;&#0010;  &lt;repositoryconnector name=&quot;File system&quot; class=&quot;org.apache.manifoldcf.crawler.connectors.filesystem.FileConnector&quot;/&gt;"/>
+    </target>
+
+    <target name="deliver-filenet-example" depends="deliver-framework-example,calculate-filenet-condition" if="filenet.include">
+        <mkdir dir="dist/example/filenet-server-process"/>
+        <copy todir="dist/example/filenet-server-process">
+            <fileset dir="connectors/filenet/dist/server-process"/>
+        </copy>
+        <mkdir dir="dist/example/filenet-registry-process"/>
+        <copy todir="dist/example/filenet-registry-process">
+            <fileset dir="connectors/filenet/dist/registry-process"/>
+        </copy>
+        <mkdir dir="dist/example/connector-lib"/>
+        <copy todir="dist/example/connector-lib">
+            <fileset dir="connectors/filenet/dist/lib"/>
+        </copy>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your repository connectors here --&gt;" value="&lt;!-- Add your repository connectors here --&gt;&#0010;  &lt;repositoryconnector name=&quot;FileNet&quot; class=&quot;org.apache.manifoldcf.crawler.connectors.filenet.FilenetConnector&quot;/&gt;"/>
+    </target>
+
+    <target name="deliver-gts-example" depends="deliver-framework-example,calculate-gts-condition" if="gts.include">
+        <mkdir dir="dist/example/connector-lib"/>
+        <copy todir="dist/example/connector-lib">
+            <fileset dir="connectors/gts/dist/lib"/>
+        </copy>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your output connectors here --&gt;" value="&lt;!-- Add your output connectors here --&gt;&#0010;  &lt;outputconnector name=&quot;MetaCarta GTS&quot; class=&quot;org.apache.manifoldcf.agents.output.gts.GTSConnector&quot;/&gt;"/>
+    </target>
+
+    <target name="deliver-jcifs-example" depends="deliver-framework-example,calculate-jcifs-condition" if="jcifs.include">
+        <mkdir dir="dist/example/connector-lib"/>
+        <copy todir="dist/example/connector-lib">
+            <fileset dir="connectors/jcifs/dist/lib"/>
+        </copy>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your repository connectors here --&gt;" value="&lt;!-- Add your repository connectors here --&gt;&#0010;  &lt;repositoryconnector name=&quot;Windows shares&quot; class=&quot;org.apache.manifoldcf.crawler.connectors.sharedrive.SharedDriveConnector&quot;/&gt;"/>
+    </target>
+
+    <target name="deliver-jdbc-example" depends="deliver-framework-example,calculate-jdbc-condition" if="jdbc.include">
+        <mkdir dir="dist/example/connector-lib"/>
+        <copy todir="dist/example/connector-lib">
+            <fileset dir="connectors/jdbc/dist/lib"/>
+        </copy>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your repository connectors here --&gt;" value="&lt;!-- Add your repository connectors here --&gt;&#0010;  &lt;repositoryconnector name=&quot;JDBC&quot; class=&quot;org.apache.manifoldcf.crawler.connectors.jdbc.JDBCConnector&quot;/&gt;"/>
+    </target>
+
+    <target name="deliver-livelink-example" depends="deliver-framework-example,calculate-livelink-condition" if="livelink.include">
+        <mkdir dir="dist/example/connector-lib"/>
+        <copy todir="dist/example/connector-lib">
+            <fileset dir="connectors/livelink/dist/lib"/>
+        </copy>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your authority connectors here --&gt;" value="&lt;!-- Add your authority connectors here --&gt;&#0010;  &lt;authorityconnector name=&quot;LiveLink&quot; class=&quot;org.apache.manifoldcf.crawler.connectors.livelink.LivelinkAuthority&quot;/&gt;"/>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your repository connectors here --&gt;" value="&lt;!-- Add your repository connectors here --&gt;&#0010;  &lt;repositoryconnector name=&quot;LiveLink&quot; class=&quot;org.apache.manifoldcf.crawler.connectors.livelink.LivelinkConnector&quot;/&gt;"/>
+    </target>
+
+    <target name="deliver-memex-example" depends="deliver-framework-example,calculate-memex-condition" if="memex.include">
+        <mkdir dir="dist/example/connector-lib"/>
+        <copy todir="dist/example/connector-lib">
+            <fileset dir="connectors/memex/dist/lib"/>
+        </copy>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your authority connectors here --&gt;" value="&lt;!-- Add your authority connectors here --&gt;&#0010;  &lt;authorityconnector name=&quot;Memex Patriarch&quot; class=&quot;org.apache.manifoldcf.crawler.connectors.memex.MemexAuthority&quot;/&gt;"/>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your repository connectors here --&gt;" value="&lt;!-- Add your repository connectors here --&gt;&#0010;  &lt;repositoryconnector name=&quot;Memex Patriarch&quot; class=&quot;org.apache.manifoldcf.crawler.connectors.memex.MemexConnector&quot;/&gt;"/>
+    </target>
+
+    <target name="deliver-meridio-example" depends="deliver-framework-example,calculate-meridio-condition" if="meridio.include">
+        <mkdir dir="dist/example/connector-lib"/>
+        <copy todir="dist/example/connector-lib">
+            <fileset dir="connectors/meridio/dist/lib"/>
+        </copy>
+        <mkdir dir="dist/example/wsdd"/>
+        <copy todir="dist/example/wsdd">
+            <fileset dir="connectors/meridio/dist/wsdd"/>
+        </copy>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your authority connectors here --&gt;" value="&lt;!-- Add your authority connectors here --&gt;&#0010;  &lt;authorityconnector name=&quot;Meridio&quot; class=&quot;org.apache.manifoldcf.crawler.connectors.meridio.MeridioAuthority&quot;/&gt;"/>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your repository connectors here --&gt;" value="&lt;!-- Add your repository connectors here --&gt;&#0010;  &lt;repositoryconnector name=&quot;Meridio&quot; class=&quot;org.apache.manifoldcf.crawler.connectors.meridio.MeridioConnector&quot;/&gt;"/>
+        <replace file="dist/example/properties.xml" token="&lt;!-- WSDD references --&gt;" value="&lt;!-- WSDD references --&gt;&#0010;  &lt;property name=&quot;org.apache.manifoldcf.meridio.wsddpath&quot; value=&quot;./wsdd/meridio-client-config.wsdd&quot;/&gt;"/>
+    </target>
+
+    <target name="deliver-nullauthority-example" depends="deliver-framework-example,calculate-nullauthority-condition" if="nullauthority.include">
+        <mkdir dir="dist/example/connector-lib"/>
+        <copy todir="dist/example/connector-lib">
+            <fileset dir="connectors/nullauthority/dist/lib"/>
+        </copy>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your authority connectors here --&gt;" value="&lt;!-- Add your authority connectors here --&gt;&#0010;  &lt;authorityconnector name=&quot;Null&quot; class=&quot;org.apache.manifoldcf.authorities.authorities.nullauthority.NullAuthority&quot;/&gt;"/>
+    </target>
+
+    <target name="deliver-nulloutput-example" depends="deliver-framework-example,calculate-nulloutput-condition" if="nulloutput.include">
+        <mkdir dir="dist/example/connector-lib"/>
+        <copy todir="dist/example/connector-lib">
+            <fileset dir="connectors/nulloutput/dist/lib"/>
+        </copy>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your output connectors here --&gt;" value="&lt;!-- Add your output connectors here --&gt;&#0010;  &lt;outputconnector name=&quot;Null&quot; class=&quot;org.apache.manifoldcf.agents.output.nullconnector.NullConnector&quot;/&gt;"/>
+    </target>
+
+    <target name="deliver-rss-example" depends="deliver-framework-example,calculate-rss-condition" if="rss.include">
+        <mkdir dir="dist/example/connector-lib"/>
+        <copy todir="dist/example/connector-lib">
+            <fileset dir="connectors/rss/dist/lib"/>
+        </copy>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your repository connectors here --&gt;" value="&lt;!-- Add your repository connectors here --&gt;&#0010;  &lt;repositoryconnector name=&quot;RSS&quot; class=&quot;org.apache.manifoldcf.crawler.connectors.rss.RSSConnector&quot;/&gt;"/>
+    </target>
+
+    <target name="deliver-sharepoint-example" depends="deliver-framework-example,calculate-sharepoint-condition" if="sharepoint.include">
+        <mkdir dir="dist/example/connector-lib"/>
+        <copy todir="dist/example/connector-lib">
+            <fileset dir="connectors/sharepoint/dist/lib"/>
+        </copy>
+        <mkdir dir="dist/example/wsdd"/>
+        <copy todir="dist/example/wsdd">
+            <fileset dir="connectors/sharepoint/dist/wsdd"/>
+        </copy>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your repository connectors here --&gt;" value="&lt;!-- Add your repository connectors here --&gt;&#0010;  &lt;repositoryconnector name=&quot;SharePoint&quot; class=&quot;org.apache.manifoldcf.crawler.connectors.sharepoint.SharePointRepository&quot;/&gt;"/>
+        <replace file="dist/example/properties.xml" token="&lt;!-- WSDD references --&gt;" value="&lt;!-- WSDD references --&gt;&#0010;  &lt;property name=&quot;org.apache.manifoldcf.sharepoint.wsddpath&quot; value=&quot;./wsdd/sharepoint-client-config.wsdd&quot;/&gt;"/>
+    </target>
+
+    <target name="deliver-solr-example" depends="deliver-framework-example,calculate-solr-condition" if="solr.include">
+        <mkdir dir="dist/example/connector-lib"/>
+        <copy todir="dist/example/connector-lib">
+            <fileset dir="connectors/solr/dist/lib"/>
+        </copy>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your output connectors here --&gt;" value="&lt;!-- Add your output connectors here --&gt;&#0010;  &lt;outputconnector name=&quot;Solr&quot; class=&quot;org.apache.manifoldcf.agents.output.solr.SolrConnector&quot;/&gt;"/>
+    </target>
+
+    <target name="deliver-webcrawler-example" depends="deliver-framework-example,calculate-webcrawler-condition" if="webcrawler.include">
+        <mkdir dir="dist/example/connector-lib"/>
+        <copy todir="dist/example/connector-lib">
+            <fileset dir="connectors/webcrawler/dist/lib"/>
+        </copy>
+        <replace file="dist/example/connectors.xml" token="&lt;!-- Add your repository connectors here --&gt;" value="&lt;!-- Add your repository connectors here --&gt;&#0010;  &lt;repositoryconnector name=&quot;Web&quot; class=&quot;org.apache.manifoldcf.crawler.connectors.webcrawler.WebcrawlerConnector&quot;/&gt;"/>
+    </target>
+
+    <target name="deliver-example" depends="deliver-framework-example,deliver-activedirectory-example,deliver-documentum-example,deliver-filesystem-example,deliver-filenet-example,deliver-gts-example,deliver-jcifs-example,deliver-jdbc-example,deliver-livelink-example,deliver-memex-example,deliver-meridio-example,deliver-nullauthority-example,deliver-nulloutput-example,deliver-rss-example,deliver-sharepoint-example,deliver-solr-example,deliver-webcrawler-example">
+        <!-- Build a manifest file.  There doesn't seem to be any good way to do this automatically in ant without developing my own
+        custom task, so I've hard coded all the class path libs. -->
+        <mkdir dir="build/example"/>
+        <manifest file="build/example/manifest">
+            <attribute name="Main-Class" value="org.apache.manifoldcf.jettyrunner.ManifoldCFJettyRunner"/>
+            <attribute name="Class-Path" value="lib/commons-codec.jar lib/commons-collections.jar lib/commons-el.jar lib/commons-fileupload.jar lib/commons-httpclient-mcf.jar lib/commons-io.jar lib/commons-logging.jar lib/hsqldb.jar lib/derbyclient.jar lib/derby.jar lib/derbyLocale_cs.jar lib/derbyLocale_de_DE.jar lib/derbyLocale_es.jar lib/derbyLocale_fr.jar lib/derbyLocale_hu.jar lib/derbyLocale_it.jar lib/derbyLocale_ja_JP.jar lib/derbyLocale_ko_KR.jar lib/derbyLocale_pl.jar lib/derbyLocale_pt_BR.jar lib/derbyLocale_ru.jar lib/derbyLocale_zh_CN.jar lib/derbyLocale_zh_TW.jar lib/derbynet.jar lib/derbyrun.jar lib/derbytools.jar lib/eclipse-ecj.jar lib/jasper-6.0.24.jar lib/jasper-el-6.0.24.jar lib/jdbcpool-0.99.jar lib/jetty-6.1.26-patched-JETTY-1340.jar lib/jetty-util-6.1.26-patched-JETTY-1340.jar lib/jsp-api-2.1-glassfish-2.1.v20091210.jar lib/json.jar lib/mcf-agents.jar lib/mcf-core.jar lib/mcf-jetty-runner.jar lib/mcf-pull-agent.jar lib/mcf-ui-core.jar lib/log4j-1.2.jar lib/postgresql.jar lib/serializer.jar lib/servlet-api-2.5-20081211.jar lib/tomcat-juli-6.0.24.jar lib/xalan2.jar lib/xercesImpl-mcf.jar lib/xml-apis.jar"/>
+        </manifest>
+        <jar destfile="dist/example/start.jar" manifest="build/example/manifest"/>
+    </target>
+    
+    <target name="calculate-filesystem-tests-condition" depends="calculate-filesystem-condition,calculate-nulloutput-condition">
+      <condition property="filesystem-tests.include">
+        <and>
+            <isset property="filesystem.include"/>
+            <isset property="nulloutput.include"/>
+        </and>
+      </condition>
+    </target>
+
+    <target name="calculate-sharepoint-tests-condition" depends="calculate-sharepoint-condition,calculate-nulloutput-condition">
+      <condition property="sharepoint-tests.include">
+        <and>
+            <isset property="sharepoint.include"/>
+            <isset property="nulloutput.include"/>
+        </and>
+      </condition>
+    </target>
+
+    <target name="compile-filesystem-tests" depends="build-framework,build-filesystem-connector,build-nulloutput-connector,calculate-filesystem-tests-condition,build-tests-filesystem-connector,build-tests-nulloutput-connector" if="filesystem-tests.include">
+        <mkdir dir="build/filesystem-tests/classes"/>
+        <javac srcdir="tests/filesystem" destdir="build/filesystem-tests/classes" target="1.5" source="1.5" debug="true" debuglevel="lines,vars,source">
+            <classpath>
+                 <fileset dir="framework/lib"> 
+                    <include name="*.jar"/> 
+                </fileset>
+                <fileset dir="framework/lib">
+                    <include name="*.jar"/>
+                </fileset>
+	      <fileset dir="framework/build/jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="framework/build/test-jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/filesystem/build/jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/filesystem/build/test-jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/nulloutput/build/jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/nulloutput/build/test-jar">
+		<include name="*.jar"/>
+	      </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="compile-sharepoint-tests" depends="build-framework,build-sharepoint-connector,build-nulloutput-connector,calculate-sharepoint-tests-condition,build-tests-sharepoint-connector,build-tests-nulloutput-connector" if="sharepoint-tests.include">
+        <mkdir dir="build/sharepoint-tests/classes"/>
+        <javac srcdir="tests/sharepoint" destdir="build/sharepoint-tests/classes" target="1.5" source="1.5" debug="true" debuglevel="lines,vars,source">
+            <classpath>
+                <fileset dir="framework/lib">
+                    <include name="*.jar"/>
+                </fileset>
+	      <fileset dir="framework/build/jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="framework/build/test-jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/sharepoint/build/jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/sharepoint/build/test-jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/nulloutput/build/jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/nulloutput/build/test-jar">
+		<include name="*.jar"/>
+	      </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="run-filesystem-tests" depends="compile-filesystem-tests,calculate-filesystem-tests-condition" if="filesystem-tests.include">
+        <mkdir dir="test-output/filesystem"/>
+        <junit fork="true" maxmemory="128m" dir="test-output/filesystem" showoutput="true" haltonfailure="true">
+            <classpath>
+                <fileset dir="framework/lib">
+                    <include name="*.jar"/>
+                </fileset>
+	      <fileset dir="framework/build/jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="framework/build/test-jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/filesystem/build/jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/filesystem/build/test-jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/nulloutput/build/jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/nulloutput/build/test-jar">
+		<include name="*.jar"/>
+	      </fileset>
+                <pathelement location="build/filesystem-tests/classes"/>
+            </classpath>
+            <test name="org.apache.manifoldcf.filesystem_tests.Sanity" todir="test-output/filesystem"/>
+            <test name="org.apache.manifoldcf.filesystem_tests.APISanity" todir="test-output/filesystem"/>
+            <test name="org.apache.manifoldcf.filesystem_tests.Hopcount" todir="test-output/filesystem"/>
+            <test name="org.apache.manifoldcf.filesystem_tests.Expiration" todir="test-output/filesystem"/>
+            <!-- MHL -->
+        </junit>
+    </target>
+
+    <target name="run-sharepoint-tests" depends="compile-sharepoint-tests,calculate-sharepoint-tests-condition" if="sharepoint-tests.include">
+        <mkdir dir="test-output/sharepoint"/>
+        <junit fork="true" maxmemory="128m" dir="test-output/sharepoint" showoutput="true" haltonfailure="true">
+            <classpath>
+                <fileset dir="framework/lib">
+                    <include name="*.jar"/>
+                </fileset>
+	      <fileset dir="framework/build/jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="framework/build/test-jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/sharepoint/build/jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/sharepoint/build/test-jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/nulloutput/build/jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/nulloutput/build/test-jar">
+		<include name="*.jar"/>
+	      </fileset>
+                <pathelement location="build/sharepoint-tests/classes"/>
+            </classpath>
+            <!-- MHL -->
+        </junit>
+    </target>
+
+    <target name="run-filesystem-tests-postgresql" depends="compile-filesystem-tests,calculate-filesystem-tests-condition" if="filesystem-tests.include">
+        <mkdir dir="test-postgresql-output/filesystem"/>
+        <junit fork="true" maxmemory="128m" dir="test-postgresql-output/filesystem" showoutput="true" haltonfailure="true">
+            <classpath>
+                <fileset dir="framework/lib">
+                    <include name="*.jar"/>
+                </fileset>
+	      <fileset dir="framework/build/jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="framework/build/test-jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/filesystem/build/jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/filesystem/build/test-jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/nulloutput/build/jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/nulloutput/build/test-jar">
+		<include name="*.jar"/>
+	      </fileset>
+                <pathelement location="build/filesystem-tests/classes"/>
+            </classpath>
+            <test name="org.apache.manifoldcf.filesystem_tests.SanityPostgresql" todir="test-postgresql-output/filesystem"/>
+            <test name="org.apache.manifoldcf.filesystem_tests.APISanityPostgresql" todir="test-postgresql-output/filesystem"/>
+            <test name="org.apache.manifoldcf.filesystem_tests.HopcountPostgresql" todir="test-postgresql-output/filesystem"/>
+            <test name="org.apache.manifoldcf.filesystem_tests.ExpirationPostgresql" todir="test-postgresql-output/filesystem"/>
+            <!-- MHL -->
+        </junit>
+    </target>
+
+    <target name="run-sharepoint-tests-postgresql" depends="compile-sharepoint-tests,calculate-sharepoint-tests-condition" if="sharepoint-tests.include">
+        <mkdir dir="test-postgresql-output/sharepoint"/>
+        <junit fork="true" maxmemory="128m" dir="test-postgresql-output/sharepoint" showoutput="true" haltonfailure="true">
+            <classpath>
+                <fileset dir="framework/lib">
+                    <include name="*.jar"/>
+                </fileset>
+	      <fileset dir="framework/build/jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="framework/build/test-jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/sharepoint/build/jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/sharepoint/build/test-jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/nulloutput/build/jar">
+		<include name="*.jar"/>
+	      </fileset>
+	      <fileset dir="connectors/nulloutput/build/test-jar">
+		<include name="*.jar"/>
+	      </fileset>
+                <pathelement location="build/sharepoint-tests/classes"/>
+            </classpath>
+            <!-- MHL -->
+        </junit>
+    </target>
+
+    <target name="run-tests-open-connectors" depends="run-tests-activedirectory-connector,run-tests-filesystem-connector,run-tests-nullauthority-connector,run-tests-nulloutput-connector,run-tests-rss-connector,run-tests-solr-connector,run-tests-webcrawler-connector,run-tests-jdbc-connector"/>
+    <target name="run-tests-lgpl-connectors" depends="run-tests-jcifs-connector"/>
+    <target name="run-tests-proprietary-connectors" depends="run-tests-documentum-connector,run-tests-filenet-connector,run-tests-livelink-connector,run-tests-memex-connector,run-tests-meridio-connector,run-tests-sharepoint-connector"/>
+    
+    <target name="end-to-end-tests" depends="run-filesystem-tests,run-sharepoint-tests"/>
+
+    <target name="run-tests-postgresql-open-connectors" depends="run-tests-postgresql-activedirectory-connector,run-tests-postgresql-filesystem-connector,run-tests-postgresql-nullauthority-connector,run-tests-postgresql-nulloutput-connector,run-tests-postgresql-rss-connector,run-tests-postgresql-solr-connector,run-tests-postgresql-webcrawler-connector,run-tests-postgresql-jdbc-connector"/>
+    <target name="run-tests-postgresql-lgpl-connectors" depends="run-tests-postgresql-jcifs-connector"/>
+    <target name="run-tests-postgresql-proprietary-connectors" depends="run-tests-postgresql-documentum-connector,run-tests-postgresql-filenet-connector,run-tests-postgresql-livelink-connector,run-tests-postgresql-memex-connector,run-tests-postgresql-meridio-connector,run-tests-postgresql-sharepoint-connector"/>
+    
+    <target name="end-to-end-tests-postgresql" depends="run-filesystem-tests-postgresql,run-sharepoint-tests-postgresql"/>
+
+    <target name="deliver-open-connectors" depends="deliver-nullauthority-connector,deliver-activedirectory-connector,deliver-filesystem-connector,deliver-rss-connector,deliver-webcrawler-connector,deliver-jdbc-connector"/>
+    <target name="deliver-open-connectors-doc" depends="deliver-nullauthority-connector-doc,deliver-activedirectory-connector-doc,deliver-filesystem-connector-doc,deliver-rss-connector-doc,deliver-webcrawler-connector-doc,deliver-jdbc-connector-doc"/>
+    
+    <target name="deliver-output-connectors" depends="deliver-gts-connector,deliver-solr-connector,deliver-nulloutput-connector"/>
+    <target name="deliver-output-connectors-doc" depends="deliver-gts-connector-doc,deliver-solr-connector-doc,deliver-nulloutput-connector-doc"/>
+    
+    <target name="deliver-lgpl-connectors" depends="deliver-jcifs-connector"/>
+    <target name="deliver-lgpl-connectors-doc" depends="deliver-jcifs-connector-doc"/>
+    
+    <target name="deliver-proprietary-connectors" depends="deliver-documentum-connector,deliver-filenet-connector,deliver-livelink-connector,deliver-memex-connector,deliver-meridio-connector,deliver-sharepoint-connector"/>
+    <target name="deliver-proprietary-connectors-doc" depends="deliver-documentum-connector-doc,deliver-filenet-connector-doc,deliver-livelink-connector-doc,deliver-memex-connector-doc,deliver-meridio-connector-doc,deliver-sharepoint-connector-doc"/>
+        
+
+    <target name="build" depends="deliver-framework,deliver-open-connectors,deliver-output-connectors,deliver-lgpl-connectors,deliver-proprietary-connectors,deliver-example"/>
+    <target name="javadoc" depends="deliver-framework-doc,deliver-open-connectors-doc,deliver-output-connectors-doc,deliver-lgpl-connectors-doc,deliver-proprietary-connectors-doc"/>
+    <target name="doc" depends="deliver-site-doc"/>
+    
+    <target name="set-version">
+      <property name="release-version" value="0.2-incubating"/>
+    </target>
+    
+    <target name="create-source-zip" depends="set-version">
+      <zip destfile="apache-manifoldcf-${release-version}-src.zip" update="false">
+        <zipfileset dir="." prefix="apache-manifoldcf-${release-version}">
+          <exclude name="/connectors/*/lib/"/>
+          <exclude name="/framework/lib/"/>
+          <exclude name="**/build/"/>
+          <exclude name="/dist/"/>
+          <exclude name="/connectors/*/dist/"/>
+          <exclude name="/framework/dist/"/>
+          <exclude name="**/test-output/"/>
+          <exclude name="/legacy-*/"/>
+          <exclude name="/apache-manifoldcf-*"/>
+        </zipfileset>
+      </zip>
+    </target>
+    
+    <target name="create-source-tar" depends="set-version">
+      <tar destfile="apache-manifoldcf-${release-version}-src.tar.gz" compression="gzip" longfile="gnu">
+        <tarfileset dir="." prefix="apache-manifoldcf-${release-version}">
+          <exclude name="/connectors/*/lib/"/>
+          <exclude name="/framework/lib/"/>
+          <exclude name="**/build/"/>
+          <exclude name="/dist/"/>
+          <exclude name="/connectors/*/dist/"/>
+          <exclude name="/framework/dist/"/>
+          <exclude name="**/test-output/"/>
+          <exclude name="/legacy-*/"/>
+          <exclude name="/apache-manifoldcf-*"/>
+        </tarfileset>
+      </tar>
+    </target>
+
+    <target name="create-bin-zip" depends="build,doc,javadoc,set-version">
+      <zip destfile="apache-manifoldcf-${release-version}-bin.zip" update="false">
+        <zipfileset dir="." prefix="apache-manifoldcf-${release-version}">
+          <exclude name="/connectors/*/lib/"/>
+          <exclude name="/framework/lib/"/>
+          <exclude name="**/build/"/>
+          <exclude name="/connectors/*/dist/"/>
+          <exclude name="/framework/dist/"/>
+          <exclude name="**/test-output/"/>
+          <exclude name="/legacy-*/"/>
+          <exclude name="**/*.pdf"/>
+          <exclude name="/apache-manifoldcf-*"/>
+        </zipfileset>
+      </zip>
+    </target>
+    
+    <target name="create-bin-tar" depends="build,doc,javadoc,set-version">
+      <tar destfile="apache-manifoldcf-${release-version}-bin.tar.gz" compression="gzip" longfile="gnu">
+        <tarfileset dir="." prefix="apache-manifoldcf-${release-version}">
+          <exclude name="/connectors/*/lib/"/>
+          <exclude name="/framework/lib/"/>
+          <exclude name="**/build/"/>
+          <exclude name="/connectors/*/dist/"/>
+          <exclude name="/framework/dist/"/>
+          <exclude name="**/test-output/"/>
+          <exclude name="/legacy-*/"/>
+          <exclude name="**/*.pdf"/>
+          <exclude name="/apache-manifoldcf-*"/>
+        </tarfileset>
+      </tar>
+    </target>
+
+    <target name="image" depends="create-source-zip,create-source-tar,create-bin-zip,create-bin-tar"/>
+    
+    <target name="test" depends="run-tests-framework,run-tests-open-connectors,run-tests-lgpl-connectors,run-tests-proprietary-connectors,end-to-end-tests"/>
+
+    <target name="test-pg" depends="run-tests-postgresql-framework,run-tests-postgresql-open-connectors,run-tests-postgresql-lgpl-connectors,run-tests-postgresql-proprietary-connectors,end-to-end-tests-postgresql"/>
+
+    <target name="all" depends="build,javadoc,doc,image,test,test-pg"/>
+
+    <target name="help">
+      <echo level="info">
+ManifoldCF build file.  Use this file to build ManifoldCF, generate
+javadocs, generate site docs, run tests, or build distributables.
+
+Valid targets are:
+
+clean   - Clean the build area
+build   - Build executable code, jars, processes, and example,
+          under the 'dist' directory
+javadoc - Create the javadocs, under the 'dist/doc' directory
+test    - Compile and run tests for all connectors and framework
+test-pg - Compile and run postgresql-based tests (needs Postgresql)
+doc     - Build html site, under the 'dist/doc' directory
+          (requires Apache Forrest)
+image   - Build release image, under the '.' directory (requires
+          Apache Forrest)
+all     - Do it all (requires Apache Forrest and Postgresql)
+
+Use Apache Forrest version forrest-0.9-dev or higher.
+      </echo>
+    </target>
+
+    <target name="-taskdef">
+      <typedef resource="org/apache/rat/anttasks/antlib.xml" uri="antlib:rat.anttasks">
+        <classpath>
+          <fileset dir="." includes="rat*.jar"/>
+        </classpath>
+      </typedef>
+    </target>
+    <target name="rat-sources" depends="-taskdef"
+      description="runs the tasks over src/java excluding the license directory">
+      <rat:report xmlns:rat="antlib:org.apache.rat.anttasks">
+        <fileset dir="json/">
+          <exclude name="**/*.java"/>
+        </fileset>
+        <fileset dir="mod-authz-annotate/">
+        </fileset>
+        <fileset dir="connectors/">
+          <exclude name="**/build/"/>
+          <exclude name="**/dist/"/>
+          <exclude name="**/test-output/"/>
+          <exclude name="filenet/filenet-api/*.jar"/>
+          <exclude name="documentum/dfc/*.jar"/>
+          <exclude name="jcifs/jcifs/*.jar"/>
+          <exclude name="jcifs/jcifs/*.diffs"/>
+          <exclude name="jdbc/jdbc-drivers/*.jar"/>
+          <exclude name="livelink/lapi/*.jar"/>
+          <exclude name="meridio/wsdls/*.wsdl"/>
+          <exclude name="meridio/wsdls/*.xsd"/>
+          <exclude name="sharepoint/wsdls/*.wsdl"/>
+          <exclude name="meridio/webservice/Test Harness/source code/TestHarness.cs"/>
+          <exclude name="sharepoint/webservice/Web References/SPPermissionsService/Reference.map"/>
+          <exclude name="sharepoint/webservice/Properties/Settings.settings"/>
+          <exclude name="sharepoint/webservice/Properties/AssemblyInfo.cs"/>
+          <exclude name="meridio/webservice/Test Harness/Installation files/Setup.Ini"/>
+          <exclude name="meridio/webservice/Web Service/Installation files/Setup.Ini"/>
+          <exclude name="sharepoint/webservice/MCPermissionsService.csproj"/>
+          <exclude name="sharepoint/webservice/MetaCarta.snk"/>
+          <exclude name="sharepoint/webservice/Properties/Settings.Designer.cs"/>
+          <exclude name="sharepoint/webservice/Web References/SPPermissionsService/Reference.cs"/>
+        </fileset>
+        <fileset dir="framework/">
+          <exclude name="**/build/"/>
+          <exclude name="**/dist/"/>
+          <exclude name="**/test-output/"/>
+          <exclude name="**/web-generated.xml"/>
+        </fileset>
+        <fileset dir="site/">
+          <exclude name="**/build/"/>
+        </fileset>
+      </rat:report>
+    </target>
+
+    
+</project>

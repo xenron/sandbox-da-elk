@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="0" time="0.941" errors="1" skipped="0" tests="1" name="solrbook.BrainzSolrClientTest">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries"/>
+    <property name="java.vm.version" value="20.1-b02-384"/>
+    <property name="awt.nativeDoubleBuffering" value="true"/>
+    <property name="gopherProxySet" value="false"/>
+    <property name="mrj.build" value="10M3425"/>
+    <property name="java.vm.vendor" value="Apple Inc."/>
+    <property name="java.vendor.url" value="http://www.apple.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/Users/epugh/Documents/projects/solrbook/trunk/examples/9/crawler/SolrJForMusicBrainz"/>
+    <property name="java.runtime.version" value="1.6.0_26-b03-384-10M3425"/>
+    <property name="java.awt.graphicsenv" value="apple.awt.CGraphicsEnvironment"/>
+    <property name="basedir" value="/Users/epugh/Documents/projects/solrbook/trunk/examples/9/crawler/SolrJForMusicBrainz"/>
+    <property name="java.endorsed.dirs" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/endorsed"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="surefire.real.class.path" value="/Users/epugh/Documents/projects/solrbook/trunk/examples/9/crawler/SolrJForMusicBrainz/target/surefire/surefirebooter1136540388997487892.jar"/>
+    <property name="java.io.tmpdir" value="/var/folders/3C/3CGK76La2RaO6++F758Av++++TQ/-Tmp-/"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="sun.jnu.encoding" value="MacRoman"/>
+    <property name="java.library.path" value=".:/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
+    <property name="surefire.test.class.path" value="/Users/epugh/Documents/projects/solrbook/trunk/examples/9/crawler/SolrJForMusicBrainz/target/test-classes:/Users/epugh/Documents/projects/solrbook/trunk/examples/9/crawler/SolrJForMusicBrainz/target/classes:/Users/epugh/.m2/repository/org/apache/solr/solr-core/3.4.0/solr-core-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/solr/solr-noggit/3.4.0/solr-noggit-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/lucene/lucene-analyzers/3.4.0/lucene-analyzers-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/lucene/lucene-highlighter/3.4.0/lucene-highlighter-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/lucene/lucene-memory/3.4.0/lucene-memory-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/lucene/lucene-misc/3.4.0/lucene-misc-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/lucene/lucene-queries/3.4.0/lucene-queries-3.4.0.jar:/Users/epugh/.m2/repository/jakarta-regexp/jakarta-regexp/1.4/jakarta-regexp-1.4.jar:/Users/epugh/.m2/repository/org/apache/lucene/lucene-spatial/3.4.0/lucene-spatial-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/lucene/lucene-spellchecker/3.4.0/lucene-spellchecker-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/lucene/lucene-grouping/3.4.0/lucene-grouping-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/solr/solr-commons-csv/3.4.0/solr-commons-csv-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/geronimo/specs/geronimo-stax-api_1.0_spec/1.0.1/geronimo-stax-api_1.0_spec-1.0.1.jar:/Users/epugh/.m2/repository/commons-codec/commons-codec/1.4/commons-codec-1.4.jar:/Users/epugh/.m2/repository/commons-fileupload/commons-fileupload/1.2.1/commons-fileupload-1.2.1.jar:/Users/epugh/.m2/repository/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar:/Users/epugh/.m2/repository/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar:/Users/epugh/.m2/repository/commons-io/commons-io/1.4/commons-io-1.4.jar:/Users/epugh/.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar:/Users/epugh/.m2/repository/org/apache/velocity/velocity/1.6.4/velocity-1.6.4.jar:/Users/epugh/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar:/Users/epugh/.m2/repository/oro/oro/2.0.8/oro-2.0.8.jar:/Users/epugh/.m2/repository/org/apache/velocity/velocity-tools/2.0/velocity-tools-2.0.jar:/Users/epugh/.m2/repository/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar:/Users/epugh/.m2/repository/commons-digester/commons-digester/1.8/commons-digester-1.8.jar:/Users/epugh/.m2/repository/commons-chain/commons-chain/1.1/commons-chain-1.1.jar:/Users/epugh/.m2/repository/commons-validator/commons-validator/1.3.1/commons-validator-1.3.1.jar:/Users/epugh/.m2/repository/dom4j/dom4j/1.1/dom4j-1.1.jar:/Users/epugh/.m2/repository/sslext/sslext/1.2-0/sslext-1.2-0.jar:/Users/epugh/.m2/repository/org/apache/struts/struts-core/1.3.8/struts-core-1.3.8.jar:/Users/epugh/.m2/repository/antlr/antlr/2.7.2/antlr-2.7.2.jar:/Users/epugh/.m2/repository/org/apache/struts/struts-taglib/1.3.8/struts-taglib-1.3.8.jar:/Users/epugh/.m2/repository/org/apache/struts/struts-tiles/1.3.8/struts-tiles-1.3.8.jar:/Users/epugh/.m2/repository/org/apache/solr/solr-solrj/3.4.0/solr-solrj-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/lucene/lucene-core/3.4.0/lucene-core-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/zookeeper/zookeeper/3.3.1/zookeeper-3.3.1.jar:/Users/epugh/.m2/repository/log4j/log4j/1.2.15/log4j-1.2.15.jar:/Users/epugh/.m2/repository/javax/mail/mail/1.4/mail-1.4.jar:/Users/epugh/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar:/Users/epugh/.m2/repository/jline/jline/0.9.94/jline-0.9.94.jar:/Users/epugh/.m2/repository/org/codehaus/woodstox/wstx-asl/3.2.7/wstx-asl-3.2.7.jar:/Users/epugh/.m2/repository/stax/stax-api/1.0.1/stax-api-1.0.1.jar:/Users/epugh/.m2/repository/org/slf4j/slf4j-api/1.5.6/slf4j-api-1.5.6.jar:/Users/epugh/.m2/repository/org/slf4j/slf4j-jdk14/1.5.6/slf4j-jdk14-1.5.6.jar:/Users/epugh/.m2/repository/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar:/Users/epugh/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/Users/epugh/.m2/repository/org/archive/heritrix/heritrix-commons-solrbook/2.0.2/heritrix-commons-solrbook-2.0.2.jar:/Users/epugh/.m2/repository/fastutil/fastutil/5.0.7/fastutil-5.0.7.jar:"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="50.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.6.8"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16|localhost|*.localhost"/>
+    <property name="user.home" value="/Users/epugh"/>
+    <property name="user.timezone" value="America/New_York"/>
+    <property name="java.awt.printerjob" value="apple.awt.CPrinterJob"/>
+    <property name="java.specification.version" value="1.6"/>
+    <property name="file.encoding" value="MacRoman"/>
+    <property name="user.name" value="epugh"/>
+    <property name="java.class.path" value="/Users/epugh/Documents/projects/solrbook/trunk/examples/9/crawler/SolrJForMusicBrainz/target/test-classes:/Users/epugh/Documents/projects/solrbook/trunk/examples/9/crawler/SolrJForMusicBrainz/target/classes:/Users/epugh/.m2/repository/org/apache/solr/solr-core/3.4.0/solr-core-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/solr/solr-noggit/3.4.0/solr-noggit-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/lucene/lucene-analyzers/3.4.0/lucene-analyzers-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/lucene/lucene-highlighter/3.4.0/lucene-highlighter-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/lucene/lucene-memory/3.4.0/lucene-memory-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/lucene/lucene-misc/3.4.0/lucene-misc-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/lucene/lucene-queries/3.4.0/lucene-queries-3.4.0.jar:/Users/epugh/.m2/repository/jakarta-regexp/jakarta-regexp/1.4/jakarta-regexp-1.4.jar:/Users/epugh/.m2/repository/org/apache/lucene/lucene-spatial/3.4.0/lucene-spatial-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/lucene/lucene-spellchecker/3.4.0/lucene-spellchecker-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/lucene/lucene-grouping/3.4.0/lucene-grouping-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/solr/solr-commons-csv/3.4.0/solr-commons-csv-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/geronimo/specs/geronimo-stax-api_1.0_spec/1.0.1/geronimo-stax-api_1.0_spec-1.0.1.jar:/Users/epugh/.m2/repository/commons-codec/commons-codec/1.4/commons-codec-1.4.jar:/Users/epugh/.m2/repository/commons-fileupload/commons-fileupload/1.2.1/commons-fileupload-1.2.1.jar:/Users/epugh/.m2/repository/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar:/Users/epugh/.m2/repository/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar:/Users/epugh/.m2/repository/commons-io/commons-io/1.4/commons-io-1.4.jar:/Users/epugh/.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar:/Users/epugh/.m2/repository/org/apache/velocity/velocity/1.6.4/velocity-1.6.4.jar:/Users/epugh/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar:/Users/epugh/.m2/repository/oro/oro/2.0.8/oro-2.0.8.jar:/Users/epugh/.m2/repository/org/apache/velocity/velocity-tools/2.0/velocity-tools-2.0.jar:/Users/epugh/.m2/repository/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar:/Users/epugh/.m2/repository/commons-digester/commons-digester/1.8/commons-digester-1.8.jar:/Users/epugh/.m2/repository/commons-chain/commons-chain/1.1/commons-chain-1.1.jar:/Users/epugh/.m2/repository/commons-validator/commons-validator/1.3.1/commons-validator-1.3.1.jar:/Users/epugh/.m2/repository/dom4j/dom4j/1.1/dom4j-1.1.jar:/Users/epugh/.m2/repository/sslext/sslext/1.2-0/sslext-1.2-0.jar:/Users/epugh/.m2/repository/org/apache/struts/struts-core/1.3.8/struts-core-1.3.8.jar:/Users/epugh/.m2/repository/antlr/antlr/2.7.2/antlr-2.7.2.jar:/Users/epugh/.m2/repository/org/apache/struts/struts-taglib/1.3.8/struts-taglib-1.3.8.jar:/Users/epugh/.m2/repository/org/apache/struts/struts-tiles/1.3.8/struts-tiles-1.3.8.jar:/Users/epugh/.m2/repository/org/apache/solr/solr-solrj/3.4.0/solr-solrj-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/lucene/lucene-core/3.4.0/lucene-core-3.4.0.jar:/Users/epugh/.m2/repository/org/apache/zookeeper/zookeeper/3.3.1/zookeeper-3.3.1.jar:/Users/epugh/.m2/repository/log4j/log4j/1.2.15/log4j-1.2.15.jar:/Users/epugh/.m2/repository/javax/mail/mail/1.4/mail-1.4.jar:/Users/epugh/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar:/Users/epugh/.m2/repository/jline/jline/0.9.94/jline-0.9.94.jar:/Users/epugh/.m2/repository/org/codehaus/woodstox/wstx-asl/3.2.7/wstx-asl-3.2.7.jar:/Users/epugh/.m2/repository/stax/stax-api/1.0.1/stax-api-1.0.1.jar:/Users/epugh/.m2/repository/org/slf4j/slf4j-api/1.5.6/slf4j-api-1.5.6.jar:/Users/epugh/.m2/repository/org/slf4j/slf4j-jdk14/1.5.6/slf4j-jdk14-1.5.6.jar:/Users/epugh/.m2/repository/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar:/Users/epugh/.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar:/Users/epugh/.m2/repository/org/archive/heritrix/heritrix-commons-solrbook/2.0.2/heritrix-commons-solrbook-2.0.2.jar:/Users/epugh/.m2/repository/fastutil/fastutil/5.0.7/fastutil-5.0.7.jar:"/>
+    <property name="java.vm.specification.version" value="1.0"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"/>
+    <property name="sun.java.command" value="/Users/epugh/Documents/projects/solrbook/trunk/examples/9/crawler/SolrJForMusicBrainz/target/surefire/surefirebooter1136540388997487892.jar /Users/epugh/Documents/projects/solrbook/trunk/examples/9/crawler/SolrJForMusicBrainz/target/surefire/surefire3389134393316634337tmp /Users/epugh/Documents/projects/solrbook/trunk/examples/9/crawler/SolrJForMusicBrainz/target/surefire/surefire1133659513958269722tmp"/>
+    <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="apple.awt.CToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.6.0_26"/>
+    <property name="java.ext.dirs" value="/Library/Java/Extensions:/System/Library/Java/Extensions:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext"/>
+    <property name="sun.boot.class.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsfd.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar:/System/Library/Frameworks/JavaVM.framework/Frameworks/JavaRuntimeSupport.framework/Resources/Java/JavaRuntimeSupport.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/ui.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/laf.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/sunrsasign.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsse.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jce.jar:/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/charsets.jar"/>
+    <property name="java.vendor" value="Apple Inc."/>
+    <property name="localRepository" value="/Users/epugh/.m2/repository"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.apple.com/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="mrj.version" value="1060.1.6.0_26-384"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16|localhost|*.localhost"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16|localhost|*.localhost"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase time="0.929" classname="solrbook.BrainzSolrClientTest" name="testHeritrix2">
+    <error message="java.net.ConnectException: Connection refused" type="org.apache.solr.client.solrj.SolrServerException">org.apache.solr.client.solrj.SolrServerException: java.net.ConnectException: Connection refused
+	at org.apache.solr.client.solrj.impl.CommonsHttpSolrServer.request(CommonsHttpSolrServer.java:478)
+	at org.apache.solr.client.solrj.impl.CommonsHttpSolrServer.request(CommonsHttpSolrServer.java:244)
+	at org.apache.solr.client.solrj.request.AbstractUpdateRequest.process(AbstractUpdateRequest.java:105)
+	at org.apache.solr.client.solrj.SolrServer.deleteByQuery(SolrServer.java:110)
+	at solrbook.Indexer.deleteAll(Indexer.java:266)
+	at solrbook.BrainzSolrClient.main(BrainzSolrClient.java:51)
+	at solrbook.BrainzSolrClientTest.testHeritrix2(BrainzSolrClientTest.java:36)
+Caused by: java.net.ConnectException: Connection refused
+	at java.net.PlainSocketImpl.socketConnect(Native Method)
+	at java.net.PlainSocketImpl.doConnect(PlainSocketImpl.java:351)
+	at java.net.PlainSocketImpl.connectToAddress(PlainSocketImpl.java:213)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:200)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:385)
+	at java.net.Socket.connect(Socket.java:529)
+	at java.net.Socket.connect(Socket.java:478)
+	at java.net.Socket.&lt;init&gt;(Socket.java:375)
+	at java.net.Socket.&lt;init&gt;(Socket.java:249)
+	at org.apache.commons.httpclient.protocol.DefaultProtocolSocketFactory.createSocket(DefaultProtocolSocketFactory.java:80)
+	at org.apache.commons.httpclient.protocol.DefaultProtocolSocketFactory.createSocket(DefaultProtocolSocketFactory.java:122)
+	at org.apache.commons.httpclient.HttpConnection.open(HttpConnection.java:707)
+	at org.apache.commons.httpclient.MultiThreadedHttpConnectionManager$HttpConnectionAdapter.open(MultiThreadedHttpConnectionManager.java:1361)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeWithRetry(HttpMethodDirector.java:387)
+	at org.apache.commons.httpclient.HttpMethodDirector.executeMethod(HttpMethodDirector.java:171)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:397)
+	at org.apache.commons.httpclient.HttpClient.executeMethod(HttpClient.java:323)
+	at org.apache.solr.client.solrj.impl.CommonsHttpSolrServer.request(CommonsHttpSolrServer.java:422)
+	... 34 more
+</error>
+    <system-out>@HL
+@HL-------------------------------------------------------
+@HL T E S T S
+@HL-------------------------------------------------------
+@SLRunning solrbook.BrainzSolrClientTest
+</system-out>
+    <system-err>log4j:WARN No appenders could be found for logger (org.apache.commons.httpclient.HttpClient).
+log4j:WARN Please initialize the log4j system properly.
+</system-err>
+  </testcase>
+</testsuite>

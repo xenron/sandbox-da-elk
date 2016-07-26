@@ -1,0 +1,341 @@
+ManifoldCF Change Log
+$Id: CHANGES.txt 1096925 2011-04-26 21:47:01Z kwright $
+
+======================= Release 0.2 =======================
+Release Date:  See http://incubator.apache.org/connectors for the official release date.
+
+CONNECTORS-188: Change the eol-style attribute to LF for all the .sh files.
+(Erlend Garåsen, Karl Wright)
+
+Web site updated to reflect proposed release.
+
+CONNECTORS-172: At the advice of the Derby team, build Derby in
+"insane" mode to allow it to recover from internal errors.
+(Koji Sekiguchi, Karl Wright)
+
+CONNECTORS-170: Add support to the Derby driver for periodic analysis and
+reindexing, since after 10.7.1.1 it seems this is now supported.
+(Karl Wright)
+
+CONNECTORS-169: Add a method to the database abstraction to
+return the maximum number of OR clauses in a query.  This is to make
+Derby efficient, since it can't seem to use indexes in this situation
+(Karl Wright)
+
+CONNECTORS-166: Pull a Derby fix down from trunk into Derby 10.7.1.1,
+to fix deadlock problems
+(Oleg Tikhonov, Karl Wright)
+
+CONNECTORS-168: Change error reporting logic in Solr connector
+to handle non-XML responses
+(Fuad Efendi, Karl Wright)
+
+CONNECTORS-159: Add support for external PostgreSQL server
+(Erlend Garåsen, Karl Wright)
+
+CONNECTORS-165: Upgrade to jetty 6.1.26, plus patches, which is what
+Solr is using.
+(Robert Muir, Karl Wright)
+
+CONNECTORS-163: Use Derby 10.7.1.1.
+(Oleg Tikhonov, Karl Wright)
+
+CONNECTORS-162: Add infrastructure support for derived resource
+loading, so that individual connectors can use this model to prevent jar
+conflicts.
+(Karl Wright)
+
+CONNECTORS-160: Add local trust store and working https support
+for Solr connector.
+(Carina Lannig, Karl Wright)
+
+CONNECTORS-151: Add folder support to FileNet connector.
+(Oleg Tikhonov, Karl Wright)
+
+CONNECTORS-157: Web crawler url resolution was broken for relative
+paths, because the way java.net.URI resolved them changed.
+(Karl Wright)
+
+CONNECTORS-156: Update site to describe work-around instructions.
+(Karl Wright)
+
+CONNECTORS-154: Add an ant target, and tests, that work against the
+postgresql database.
+(Karl Wright)
+
+CONNECTORS-155: Fix a query bug with fetching the job status of a single,
+specified job.
+(Karl Wright)
+
+CONNECTORS-148: Intermittent failures creating the PostgreSQL database
+still occurring; traced the problem this time to PostgreSQL not accepting
+a parameter for the password when creating a user.
+(Nicolas Max, Karl Wright)
+
+CONNECTORS-153: Add support for robots meta tag to web connector.
+(Erlend Garåsen, Karl Wright)
+
+CONNECTORS-152: Refactor notification thread and states to make the framework
+more resilient.
+(Karl Wright)
+
+CONNECTORS-145: Refactor cleanup worker threads, expire threads, and
+document delete threads to handle failure of the output connection gracefully.
+(Karl Wright)
+
+CONNECTORS-130: Block the Solr output connector from accepting documents
+that have folder-level security.
+(Karl Wright)
+
+CONNECTORS-129: Add an API reset/outputconnections/xxx command, to 
+forget the index state for an output connection.
+(Karl Wright)
+
+======================= Release 0.1 =======================
+Release Date:  See http://incubator.apache.org/connectors for the official release date.
+
+CONNECTORS-149: Expire threads did not obey rules as far as deleting documents
+belonging to other jobs.  Also, the test for whether a document was shared between
+jobs did not take the output connection into account.  Finally, I found an infinite
+loop in the job delete stuffer thread code.
+(Karl Wright)
+
+CONNECTORS-147: Disable PDF's everywhere except for user documentation.
+(Grant Ingersoll, David Crossley, Karl Wright)
+
+CONNECTORS-148: Creating the database in PostgreSQL failed intermittently
+when a parameter was used for the encoding; the PostgreSQL documentation
+specifies that it must be a quoted string in that case.
+(Karl Wright)
+
+CONNECTORS-146: Problem with document cleanup logic would cause data corruption
+in carrydown data and in hopcount information.
+(Karl Wright)
+
+CONNECTORS-143: Copyright notice needs to be changed to 2011.
+(Sebb, Karl Wright)
+
+CONNECTORS-142: License and notice file revisions.
+(Ant Elder, Sebb, Ralph Goers, Karl Wright)
+
+CONNECTORS-140: Change build to generate both a -src and a -bin distribution.
+(Grant Ingersoll, Karl Wright)
+
+CONNECTORS-139: Change download area to www.apache.org/dist/incubator/manifoldcf,
+as according to incubator rules.
+(Karl Wright)
+
+CONNECTORS-138: Change name of release from 0.1-incubator to 0.1-incubating,
+as according to incubator rules.
+(Various)
+
+CONNECTORS-137: Add ASF headers to the jakarta standard tag library tld's
+that the crawler-ui uses.  RAT detected these as a problem, and I have confirmed
+that they have an Apache origin.
+(Sebb, Karl Wright)
+
+CONNECTORS-132: Remove build artifacts from the archives, except for documentation.
+This is to save space.
+(Karl Wright)
+
+CONNECTORS-136: Change rat-sources build target to exclude all files known good
+despite RAT complaints.
+(Sebb, Karl Wright)
+
+CONNECTORS-135: Adjust svn properties of files to be consistent with intended
+usage.
+(Sebb)
+
+CONNECTORS-134: Put README.txt files in all empty directories that are meant
+for a user to supply third-party content.  This prevents the archive from not
+delivering an empty directory.
+(Ant Elder, Sebb, Karl Wright)
+
+CONNECTORS-133: Update README.txt to include incubator disclaimer.
+(Ant Elder, Sebb, Karl Wright)
+
+CONNECTORS-131: Create download page with separate references for KEYS,
+CHANGES.txt, signatures, and artifacts.
+(Chris Mattmann, Karl Wright)
+
+CONNECTORS-128: Remove sql quoting logic to make sql injection attacks
+less possible.
+(Grant Ingersoll, Robert Muir, Karl Wright)
+
+CONNECTORS-122: FileNet and Documentum connector-specific process
+scripts needed.
+(Oleg Tikhonov, Karl Wright)
+
+CONNECTORS-127: Broken FileNet Document Classes tab.
+(Oleg Tikhonov, Karl Wright)
+
+CONNECTORS-126: Added a performance tuning page to the site.
+(Farzad, Karl Wright)
+
+Removed modules level of tree, and revamped build.xml in anticipation of
+a release.
+(Karl Wright)
+
+CONNECTORS-125: Set the default max handles property to be consistent with
+a default PostgreSQL installation.
+(Farzad, Karl Wright)
+
+CONNECTORS-124: Add a null authority connector, so authority tests can be
+written.
+(Karl Wright)
+
+CONNECTORS-109: Hooked up user-defined functions in Derby to perform the needed
+regular expression matching and grouping.
+(Karl Wright)
+
+CONNECTORS-121: Fixed broken javascript in the Windows Share connector "insert here"
+button.
+(Fred Schmitt, Karl Wright)
+
+CONNECTORS-117: Revised manner by which dynamic table maintenance is performed,
+so that it can be controlled by configuration parameters.
+(Farzad, Karl Wright)
+
+CONNECTORS-116: Removed Memex connector due to intellectual property concerns.
+(Robert Muir)
+
+CONNECTORS-113: Add properties that allow quick-start example to work properly with
+PostgreSQL.
+(Farzad, Karl Wright)
+
+Name change to ManifoldCF
+(Community)
+
+CONNECTORS-107: Entering report forms now preselects all activities.
+(Karl Wright)
+
+CONNECTORS-106: noteJobCompleted() method in IOutputConnector now receives an
+activities object, so activities can be recorded.
+(Karl Wright)
+
+CONNECTORS-98: Convert the API into a RESTful implementation.
+(Jack Krupansky, Mark Miller, Karl Wright)
+
+CONNECTORS-104: Add convenience feature to web connector to limit hosts to those
+explicitly mentioned in seeds.
+(Jack Krupansky, Karl Wright)
+
+CONNECTORS-102: Web connector default throttling settings.
+(Karl Wright)
+
+CONNECTORS-103: RSS connector default throttling settings.
+(Karl Wright)
+
+CONNECTORS-105: File system connector UI enhancements, to use a table-based
+metaphor for paths and rules.
+(Karl Wright)
+
+CONNECTORS-101: File system connector paths should automatically get default 
+rules added.
+(Karl Wright)
+
+CONNECTORS-57: Add support in Solr connector for selecting whether end-of-job
+commits take place, on a per-connection basis.
+(Jack Krupansky, Karl Wright)
+
+CONNECTORS-41: Add support in the framework for end-of-job notification to the
+associated output connector, which can take an extended period of time.
+(Jack Krupansky, Karl Wright)
+
+CONNECTORS-97: Web connector session authentication was failing for some sites
+due to cookies httpclient thought were illegal, but browsers would accept.
+(Karl Wright)
+
+CONNECTORS-91: Made the initialization commands more accessible via code. 
+(Jettro Coenradie, Karl Wright)
+
+CONNECTORS-90: Fixed a localization issue where database errors that should be
+soft errors were instead interpreted as hard failures for non-English locales.
+(Carina <c.a.r.e@gmx.de>, Marc Emery, Karl Wright)
+
+CONNECTORS-62: Added additional LCF API Documentation (Karl Wright)
+
+CONNECTORS-59: Packaged application so that it is ready to run with embedded
+Jetty App Server. (Jack Krupansky, Karl Wright)
+
+CONNECTORS-56: Enhanced API so that more features are accessible programmatically.
+(Jack Krupansky, Karl Wright)
+
+CONNECTORS-52: Updated documentation to reflect new features added to the Solr
+connector.  (Karl Wright)
+
+CONNECTORS-51: Reduce the number of required system properties needed to run the
+JCIFS connector.  (Karl Wright)
+
+CONNECTORS-49: Allow mapping of the metadata ID field in the Solr connector.
+(Rohan G Patil, Jack Krupansky, Erik Hatcher, Karl Wright)
+
+CONNECTORS-48: Improve rules description for the SharePoint connector.
+(Karl Wright)
+
+CONNECTORS-47: Framework UI called connector post-processing more than needed.
+(Karl Wright)
+
+CONNECTORS-46: Improve documentation for metadata with the JDBC Connector.
+(Rohan G Patil, Karl Wright)
+
+CONNECTORS-45: Allow specifying the Solr core name with the Solr Connector.
+(Jack Krupansky, Erik Hatcher, Karl Wright)
+
+CONNECTORS-44: Add metadata support to the JDBC Connector.
+(Rohan G Patil, Karl Wright)
+
+CONNECTORS-43: Wseless call to String.trim in MultiLineParser
+(Mark Miller, Karl Wright)
+
+CONNECTORS-42: Impossible cast in org.apache.lcf.core.database.Database
+(Mark Miller, Karl Wright)
+
+CONNECTORS-40: Change to a classloader-based plugin architecture
+(Jack Krupansky, Mark Miller, Erik Hatcher, Karl Wright)
+
+CONNECTORS-39: Allow abstraction of database transaction management.  (Karl Wright)
+
+CONNECTORS-38: Add a jetty-based "quick-start". (Jack Krupansky, Karl Wright)
+
+CONNECTORS-37: Switch to an XML configuration file.
+(Erik Hatcher, Jack Krupansky, Karl Wright)
+
+CONNECTORS-36: Improve the Solr Connector's UI to be more intuitive.  (Karl Wright)
+
+CONNECTORS-35: Add a method to reset the framework.  (Karl Wright)
+
+CONNECTORS-33: Document how to use the framework programmatically. (Karl Wright)
+
+CONNECTORS-26: Rename war files from "tomcat" to "web" as there is nothing
+tomcat-specific about them.  (Erik Hatcher, Karl Wright)
+
+CONNECTORS-23: Add usage examples to Command documentation
+(Damien Mabin, Karl Wright)
+
+CONNECTORS-22: Add support for ACLs to the Solr Connector.
+(Dominique Bejean, Peter Sturge, Karl Wright)
+
+CONNECTORS-20, CONNECTORS-3: Add an ant build system. (Karl Wright)
+
+CONNECTORS-18: The Lucene Connector was renamed to Solr Connector. (Karl Wright)
+
+CONNECTORS-17: Fix broken link in the Crawler UI's help page.  (Karl Wright)
+
+CONNECTORS-16: Generalize JCIFS connector's fingerprinting.
+(Sami Siren, Karl Wright)
+
+CONNECTORS-14: Remove some javac warnings.  (Robert Muir, Karl Wright)
+
+CONNECTORS-12: Improve whitespace formatting to be consistent. (Erik Hatcher, Karl Wright)
+
+CONNECTORS-11: Add automated build for the Apache2 Module. (Karl Wright)
+
+CONNECTORS-9, CONNECTORS-8, CONNECTORS-7, CONNECTORS-5, CONNECTORS-2:
+Remove Metacarta branding and setup.  (Karl Wright)
+
+CONNECTORS-6: Move documentation from LaTeX to the wiki.  (Karl Wright)
+
+CONNECTORS-4: Submit changes to other packages as patches.  (Oleg Kalnichevski, Karl Wright)
+
+CONNECTORS-1: Created connectors website. (Grant Ingersoll)

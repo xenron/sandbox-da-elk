@@ -1,0 +1,39 @@
+<img src="http://musicbrainz.org/images/header_logo_a.gif"/>
+<br clear="all">
+<p/>&nbsp;<p/>
+
+<%
+  require 'uri'
+  
+  artist_img_url = nil
+  artist_img_query = @document[:title_t].first
+  unless @document[:release_t].nil? or @document[:releases_t].empty?
+    artist_img_query = "#{artist_img_query} #{@document[:releases_t].join(' ')}"
+  end
+  
+  artist_img_query = URI.escape(artist_img_query)
+  resp = Net::HTTP.get_response(URI.parse("http://search.yahooapis.com/ImageSearchService/V1/imageSearch?appid=YahooDemo&query=#{artist_img_query}&results=4&output=json"))
+  result = ActiveSupport::JSON.decode(resp.body)    
+  
+  unless result["ResultSet"]["totalResultsReturned"] == 0
+    artist_img_url = result["ResultSet"]["Result"].first["Thumbnail"]["Url"]
+  end
+    
+%>
+
+<% result["ResultSet"]["Result"].each do |result| %>
+  <%= link_to image_tag(result["Thumbnail"]["Url"], :border=>0), result["Url"]%>
+<% end %>
+
+
+<dl class="defList">
+
+  <% DisplayFields.show_view_fields[:field_names].each do |field| %>
+    <div class="row">
+      <dt><%= field_label field %></dt>
+      <dd><%= @document[field].join(', ') %></dd>
+    </div>
+  <% end %>
+
+</dl>
+Image courtesy of <a href="http://developer.yahoo.com/search/image/V1/imageSearch.html">Yahoo Image Search</a>.

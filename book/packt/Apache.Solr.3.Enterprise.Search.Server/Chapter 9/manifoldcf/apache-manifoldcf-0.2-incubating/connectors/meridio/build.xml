@@ -1,0 +1,206 @@
+<!--
+ Licensed to the Apache Software Foundation (ASF) under one or more
+ contributor license agreements.  See the NOTICE file distributed with
+ this work for additional information regarding copyright ownership.
+ The ASF licenses this file to You under the Apache License, Version 2.0
+ (the "License"); you may not use this file except in compliance with
+ the License.  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<project default="all">
+
+    <target name="clean">
+        <delete dir="build"/>
+        <delete dir="dist"/>
+    </target>
+
+    <target name="calculate-condition">
+        <available file="wsdls/MeridioDMWS_axis.wsdl" property="meridioDMWS_axisStatus"/>
+        <available file="wsdls/MeridioRMWS_axis.wsdl" property="meridioRMWS_axisStatus"/>
+        <available file="wsdls/DMDataSet_castor.xsd" property="DMDataSetStatus"/>
+        <available file="wsdls/RMDataSet_castor.xsd" property="RMDataSetStatus"/>
+        <available file="wsdls/RMClassificationDataSet_castor.xsd" property="RMClassificationDataSetStatus"/>
+        <condition property="canBuild">
+            <and>
+                <isset property="meridioDMWS_axisStatus"/>
+                <isset property="meridioRMWS_axisStatus"/>
+                <isset property="DMDataSetStatus"/>
+                <isset property="RMDataSetStatus"/>
+                <isset property="RMClassificationDataSetStatus"/>
+            </and>
+        </condition>
+    </target>
+
+    <target name="precompile-check" depends="calculate-condition" unless="canBuild">
+        <echo message="Meridio Connector cannot be built without MeridioDMWS_axis.wsdl, MeridioRMWS_axis.wsdl, DMDataSet_castor.xsd, RMDataSet_castor.xsd, and RMClassificationDataSet_castor.xsd"/>
+    </target>
+
+    <target name="copy-wsdls" depends="precompile-check" if="canBuild">
+        <mkdir dir="build/wsdls"/>
+        <copy tofile="build/wsdls/MeridioRMWS.wsdl" file="wsdls/MeridioRMWS_axis.wsdl"/>
+        <copy tofile="build/wsdls/MeridioDMWS.wsdl" file="wsdls/MeridioDMWS_axis.wsdl"/>
+        <copy tofile="build/wsdls/RMDataSet.xsd" file="wsdls/RMDataSet_castor.xsd"/>
+        <copy tofile="build/wsdls/DMDataSet.xsd" file="wsdls/DMDataSet_castor.xsd"/>
+        <copy tofile="build/wsdls/RMClassificationDataSet.xsd" file="wsdls/RMClassificationDataSet_castor.xsd"/>
+        <copy tofile="build/wsdls/MetaCartaWS.wsdl" file="wsdls/MetaCartaWS_axis.wsdl"/>
+    </target>
+    
+    <target name="classcreate-wsdl">
+        <mkdir dir="build/wsdljava"/>
+        <java classname="org.apache.axis.wsdl.WSDL2Java" fork="true">
+            <classpath>
+                <fileset dir="lib" includes="*.jar"/>
+            </classpath>
+            <arg value="--timeout"/>
+            <arg value="0"/>
+            <arg value="--noImports"/>
+            <arg value="-o"/>
+            <arg value="build/wsdljava"/>
+            <arg value="${wsdlname}"/>
+        </java>
+    </target>
+    
+    <target name="classcreate-wsdls" depends="copy-wsdls,precompile-check" if="canBuild">
+        <antcall target="classcreate-wsdl">
+            <param name="wsdlname" value="build/wsdls/MeridioDMWS.wsdl"/>
+        </antcall>
+        <antcall target="classcreate-wsdl">
+            <param name="wsdlname" value="build/wsdls/MeridioRMWS.wsdl"/>
+        </antcall>
+        <antcall target="classcreate-wsdl">
+            <param name="wsdlname" value="build/wsdls/MetaCartaWS.wsdl"/>
+        </antcall>
+    </target>
+    
+    <target name="classcreate-xsd">
+        <mkdir dir="build/xsdjava"/>
+        <java classname="org.exolab.castor.builder.SourceGeneratorMain" fork="true">
+            <classpath>
+                <fileset dir="lib">
+                    <include name="*.jar"/>
+                </fileset>
+            </classpath>
+            <arg value="-i"/>
+            <arg value="${xsdname}"/>
+            <arg value="=f"/>
+            <arg value="-dest"/>
+            <arg value="build/xsdjava"/>
+            <arg value="-package"/>
+            <arg value="org.apache.manifoldcf.crawler.connectors.meridio.${packagename}"/>
+        </java>
+    </target>
+
+    <target name="classcreate-xsds" depends="precompile-check" if="canBuild">
+        <delete dir="build/xsdjava"/>
+        <antcall target="classcreate-xsd">
+            <param name="xsdname" value="build/wsdls/DMDataSet.xsd"/>
+            <param name="packagename" value="DMDataSet"/>
+        </antcall>
+        <antcall target="classcreate-xsd">
+            <param name="xsdname" value="build/wsdls/RMClassificationDataSet.xsd"/>
+            <param name="packagename" value="RMClassificationDataSet"/>
+        </antcall>
+        <antcall target="classcreate-xsd">
+            <param name="xsdname" value="build/wsdls/RMDataSet.xsd"/>
+            <param name="packagename" value="RMDataSet"/>
+        </antcall>
+    </target>
+
+
+    <target name="compile-wsdls" depends="classcreate-wsdls,precompile-check" if="canBuild">
+        <mkdir dir="build/wsdlclasses"/>
+        <javac srcdir="build/wsdljava" destdir="build/wsdlclasses" target="1.5" source="1.4" debug="true" debuglevel="lines,vars,source">
+            <classpath>
+                <fileset dir="lib" includes="*.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="compile-xsds" depends="classcreate-xsds,precompile-check" if="canBuild">
+        <mkdir dir="build/xsdclasses"/>
+        <javac srcdir="build/xsdjava" destdir="build/xsdclasses" target="1.5" source="1.5" debug="true" debuglevel="lines,vars,source">
+            <classpath>
+                <fileset dir="lib" includes="*.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="doc" depends="precompile-check,compile-wsdls,compile-xsds" if="canBuild">
+        <mkdir dir="dist/doc"/>
+        <javadoc destdir="dist/doc" source="1.5">
+            <classpath>
+                <fileset dir="lib" includes="*.jar"/>
+                <pathelement location="build/wsdljava"/>
+                <pathelement location="build/xsdjava"/>
+            </classpath>
+            <fileset dir="connector/src/main/java" includes="**/*.java"/>
+        </javadoc>
+    </target>
+
+    <target name="compile-connector" depends="compile-wsdls,compile-xsds,precompile-check" if="canBuild">
+        <mkdir dir="build/connector/classes"/>
+        <javac srcdir="connector/src/main/java" destdir="build/connector/classes" target="1.5" source="1.4" debug="true" debuglevel="lines,vars,source">
+            <classpath>
+                <fileset dir="lib" includes="*.jar"/>
+                <pathelement location="build/wsdlclasses"/>
+                <pathelement location="build/xsdclasses"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="jar-connector" depends="compile-connector,precompile-check" if="canBuild">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/mcf-meridio-connector.jar" basedir="build/connector/classes"/>
+    </target>
+    
+    <target name="jar-wsdls" depends="compile-wsdls,precompile-check" if="canBuild">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/mcf-meridio-wsdlstub.jar" basedir="build/wsdlclasses"/>
+    </target>
+    
+    <target name="jar-xsds" depends="compile-xsds,precompile-check" if="canBuild">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/mcf-meridio-xsdstub.jar" basedir="build/xsdclasses"/>
+    </target>
+
+    <target name="wsdd" depends="precompile-check" if="canBuild">
+        <mkdir dir="dist/wsdd"/>
+        <copy todir="dist/wsdd" file="meridio-client-config.wsdd"/>
+    </target>
+    
+    <target name="lib" depends="jar-connector,jar-wsdls,jar-xsds,precompile-check" if="canBuild">
+        <mkdir dir="dist/lib"/>
+        <copy todir="dist/lib">
+            <fileset dir="build/jar">
+                <include name="mcf-meridio-connector.jar"/>
+                <include name="mcf-meridio-wsdlstub.jar"/>
+                <include name="mcf-meridio-xsdstub.jar"/>
+            </fileset>
+            <fileset dir="lib">
+                <include name="axis*.jar"/>
+                <include name="wsdl4j*.jar"/>
+                <include name="commons-discovery*.jar"/>
+                <include name="castor*.jar"/>
+                <include name="geronimo-activation_1.1_spec*.jar"/>
+                <include name="geronimo-javamail_1.4_spec*.jar"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="build" depends="lib,wsdd"/>
+    <target name="build-tests">
+      <mkdir dir="build/test-jar"/>
+    </target>
+    <target name="run-tests"/>
+    <target name="run-tests-postgresql"/>
+    <target name="all" depends="build,doc,build-tests,run-tests,run-tests-postgresql"/>
+    
+</project>

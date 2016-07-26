@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+ This is a stripped down config file used for a simple example...  
+ It is *not* a good example to work from. 
+-->
+<config>
+  <abortOnConfigurationError>${solr.abortOnConfigurationError:true}</abortOnConfigurationError>
+
+  <dataDir>${solr.solr.home}/../cores_data/${solr.core.name}</dataDir>
+  
+  <lib dir="./lib/*.jar" />
+
+  <luceneMatchVersion>LUCENE_33</luceneMatchVersion>
+
+  <indexDefaults>
+    <useCompoundFile>false</useCompoundFile>
+
+    <mergeFactor>10</mergeFactor>
+    <ramBufferSizeMB>32</ramBufferSizeMB>
+    <maxMergeDocs>2147483647</maxMergeDocs>
+    <maxFieldLength>10000</maxFieldLength>
+    <writeLockTimeout>1000</writeLockTimeout>
+    <commitLockTimeout>10000</commitLockTimeout>
+
+    <lockType>single</lockType>
+  </indexDefaults>
+
+  <mainIndex>
+    <useCompoundFile>false</useCompoundFile>
+    <ramBufferSizeMB>32</ramBufferSizeMB>
+    <mergeFactor>10</mergeFactor>
+    <maxMergeDocs>2147483647</maxMergeDocs>
+    <maxFieldLength>10000</maxFieldLength>
+    <unlockOnStartup>false</unlockOnStartup>
+    <reopenReaders>true</reopenReaders>
+    <deletionPolicy class="solr.SolrDeletionPolicy">
+      <str name="keepOptimizedOnly">false</str>
+      <str name="maxCommitsToKeep">1</str>
+    </deletionPolicy>
+
+  </mainIndex>
+  <jmx />
+  <updateHandler class="solr.DirectUpdateHandler2">
+  </updateHandler>
+
+
+  <!-- Use XInclude to bring in partial fragment <query/> for use in solrconfig.xml -->
+  <xi:include href="cores/karaoke/conf/${karaoke.xinclude.query}" 
+    parse="xml" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <xi:fallback>
+      <xi:include href="cores/karaoke/conf/solrconfig-query-default.xml"/>
+    </xi:fallback>
+  </xi:include>
+
+  <requestDispatcher handleSelect="true" >
+    <requestParsers enableRemoteStreaming="true" multipartUploadLimitInKB="2048" />
+    <httpCaching lastModifiedFrom="openTime"
+                 etagSeed="Solr" never304="true">
+       <cacheControl>max-age=43200, must-revalidate</cacheControl>
+    </httpCaching>
+  </requestDispatcher>
+  
+  <requestHandler name="standard" class="solr.SearchHandler" default="true">
+     <lst name="defaults">
+       <str name="echoParams">explicit</str>
+     </lst>
+  </requestHandler>
+
+  <!-- needed so you can do /update?commit=true -->
+  <requestHandler name="/update" 
+                  class="solr.XmlUpdateRequestHandler">
+  </requestHandler>
+    
+
+  <requestHandler name="/update/extract" class="solr.extraction.ExtractingRequestHandler">
+    <lst name="defaults">
+      <!-- All the main content goes into "text"-->
+      <str name="fmap.content">text</str>
+      <!-- Store the content_type metadata in the content_type field -->
+      <str name="fmap.content_type">content_type</str>
+      <str name="fmap.stream_name">stream_name</str>
+      <str name="lowernames">true</str>
+      <str name="uprefix">metadata_</str>
+
+      <!-- capture link hrefs but ignore div attributes -->
+      <str name="captureAttr">true</str>
+      <str name="fmap.a">links</str>
+      <!--str name="fmap.div">ignored_</str-->
+    </lst>    
+  </requestHandler>
+
+  <requestHandler name="/analysis" class="solr.AnalysisRequestHandler" />
+
+  <requestHandler name="/admin/" class="org.apache.solr.handler.admin.AdminHandlers" />
+
+
+  <queryResponseWriter name="xml" class="org.apache.solr.response.XMLResponseWriter" default="true"/>
+  <queryResponseWriter name="json" class="org.apache.solr.response.JSONResponseWriter"/>
+  <queryResponseWriter name="xslt" class="org.apache.solr.response.XSLTResponseWriter">
+    <int name="xsltCacheLifetimeSeconds">5</int>
+  </queryResponseWriter>
+
+  <admin>
+    <defaultQuery>*:*</defaultQuery>
+  </admin>    
+</config>
+
