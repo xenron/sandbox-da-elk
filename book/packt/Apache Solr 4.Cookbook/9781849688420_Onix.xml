@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE ONIXMessage SYSTEM "http://www.editeur.org/onix/2.1/reference/onix-international.dtd"[]>
+<ONIXMessage release="2.1">
+  <Header>
+    <FromCompany>Packt Publishing</FromCompany>
+    <FromPerson>Juhi Trivedi</FromPerson>
+    <ToCompany>O'Reilly Media</ToCompany>
+    <SentDate>20130618</SentDate>
+    <DefaultLanguageOfText>eng</DefaultLanguageOfText>
+  </Header>
+  <Product>
+    <RecordReference>9781849688420.epub</RecordReference>
+    <NotificationType>03</NotificationType>
+    <ProductIdentifier>
+      <ProductIDType>15</ProductIDType>
+      <IDValue>9781849688437</IDValue>
+    </ProductIdentifier>
+    <ProductForm>DG</ProductForm>
+    <EpubType>029</EpubType>
+    <NoSeries />
+    <Title>
+      <TitleType>01</TitleType>
+      <TitleText>Instant Autodesk Revit 2013 Customization with .NET How-to</TitleText>
+      <Subtitle>
+      </Subtitle>
+    </Title>
+    <WorkIdentifier>
+      <WorkIDType>15</WorkIDType>
+      <IDValue>9781849688420</IDValue>
+    </WorkIdentifier>
+    <Contributor>
+      <SequenceNumber>1</SequenceNumber>
+      <ContributorRole>A01</ContributorRole>
+      <PersonName>Don Rudder</PersonName>
+      <PersonNameInverted>Rudder Don</PersonNameInverted>
+      <NamesBeforeKey>Don</NamesBeforeKey>
+      <KeyNames>Rudder</KeyNames>
+      <BiographicalNote>Don Rudder is the Director of Software Development at CASE and focuses on the creation and management of specialized software and add-ons for various applications developed for client support. With over 16 years of experience in the AEC industry, Don has served well over 10 of those years as an HVAC and electrical designer for various MEP firms. He later began to focus more heavily on software development and related support where he eventually ended up in San Francisco serving as BIM Manager for HOK. Self-taught in some 14 programming languages and well versed in .NET, web-based AEC tools, and pretty much any kind of Automation, Don has presented at Autodesk University and the Revit Technology Conference of North America. Don has been the contributing author of the API chapters for Mastering Autodesk Revit Architecture 2011, "Mastering Autodesk Revit Architecture 2012, and Mastering Autodesk Revit Architecture 2013". I would like to thank my rock star friends and co-workers at CASE for just being awesome and bringing me into their mix. Without them, I would probably still be buried too deep in insignificant obligations without any real time to share stuff like what's in this book.</BiographicalNote>
+    </Contributor>
+    <EditionNumber>1</EditionNumber>
+    <Language>
+      <LanguageRole>01</LanguageRole>
+      <LanguageCode>eng</LanguageCode>
+    </Language>
+    <NumberOfPages>82</NumberOfPages>
+    <Subject>
+      <SubjectSchemeIdentifier>10</SubjectSchemeIdentifier>
+      <SubjectCode>COM007000</SubjectCode>
+    </Subject>
+    <Subject>
+      <SubjectSchemeIdentifier>10</SubjectSchemeIdentifier>
+      <SubjectCode>COM012000</SubjectCode>
+    </Subject>
+    <Subject>
+      <SubjectSchemeIdentifier>10</SubjectSchemeIdentifier>
+      <SubjectCode>COM084000</SubjectCode>
+    </Subject>
+    <Subject>
+      <SubjectSchemeIdentifier>10</SubjectSchemeIdentifier>
+      <SubjectCode>COM051000</SubjectCode>
+    </Subject>
+    <Subject>
+      <SubjectSchemeIdentifier>20</SubjectSchemeIdentifier>
+      <SubjectHeadingText>Revit; Autodesk Revit; Customizing Revit; Revit Plug-in</SubjectHeadingText>
+    </Subject>
+    <OtherText>
+      <TextTypeCode>01</TextTypeCode>
+      <TextFormat>06</TextFormat>
+      <Text>&lt;![CDATA[&lt;h2&gt;In Detail&lt;/h2&gt;&lt;p&gt;Autodesk Revit is a Building Information Modelling software designed for architects and engineers. Extending the features and power of a BIM application such as Revit can increase personal productivity, speed up basic drafting tasks, and aid cross-team collaboration.&lt;/p&gt;&lt;p&gt;"Instant Autodesk Revit 2013 Customization with .NET How-to" is a hands-on guide to getting up and running with the Autodesk Revit 2013 API through a series of plugins and add-ons that are extremely useful in your everyday tasks.&lt;/p&gt;&lt;p&gt;This book takes you through several of the Autodesk Revit 2013 API features in an easy to follow, step-by-step process using powerful code samples. Tons of great tips and solutions are provided throughout this book to help you get the most out of Revit 2013.&lt;/p&gt;&lt;p&gt;Using practical code samples you will also learn the new Autodesk Revit 2013 API features such as floor plan creation, schedule creation, and analysis display of custom analysis results.&lt;/p&gt;&lt;p&gt;If you've ever wanted to learn how to customize Autodesk Revit but were intimidated by any perceived difficulty or complexity, this book will give you what you've been looking for.&lt;/p&gt;&lt;h2&gt;Approach&lt;/h2&gt;&lt;p&gt;Filled with practical, step-by-step instructions and clear explanations for the most important and useful tasks. Get the job done and learn as you go. "Instant Autodesk Revit 2013 Customization with .NET How-to" is written in a friendly, practical style with an introductory chapter that walks through everything in detail to get you going with your very first add-on.&lt;/p&gt;&lt;h2&gt;Who this book is for&lt;/h2&gt;&lt;p&gt;This book is for anyone that has an interest in customizing or automating Autodesk Revit 2013. A very basic level of programming experience is assumed but not necessarily required.&lt;/p&gt;]]&gt;</Text>
+    </OtherText>
+    <Imprint>
+      <ImprintName>Packt Publishing</ImprintName>
+    </Imprint>
+    <Publisher>
+      <PublisherName>Packt Publishing Pvt. Ltd.</PublisherName>
+    </Publisher>
+    <PublicationDate>20130125</PublicationDate>
+    <SupplyDetail>
+      <SupplierName>O'Reilly Media</SupplierName>
+      <ProductAvailability>20</ProductAvailability>
+      <Price>
+        <PriceTypeCode>01</PriceTypeCode>
+        <PriceAmount>14.99</PriceAmount>
+        <CurrencyCode>USD</CurrencyCode>
+      </Price>
+    </SupplyDetail>
+    <SupplyDetail>
+      <SupplierName>O'Reilly Media</SupplierName>
+      <ProductAvailability>20</ProductAvailability>
+      <Price>
+        <PriceTypeCode>01</PriceTypeCode>
+        <PriceAmount>8.99</PriceAmount>
+        <CurrencyCode>GBP</CurrencyCode>
+      </Price>
+    </SupplyDetail>
+    <SupplyDetail>
+      <SupplierName>O'Reilly Media</SupplierName>
+      <ProductAvailability>20</ProductAvailability>
+      <Price>
+        <PriceTypeCode>01</PriceTypeCode>
+        <PriceAmount>13.99</PriceAmount>
+        <CurrencyCode>EUR</CurrencyCode>
+      </Price>
+    </SupplyDetail>
+  </Product>
+  <Product>
+    <RecordReference>9781849688420.mobi</RecordReference>
+    <NotificationType>03</NotificationType>
+    <ProductIdentifier>
+      <ProductIDType>15</ProductIDType>
+      <IDValue>9781849688437</IDValue>
+    </ProductIdentifier>
+    <ProductForm>DG</ProductForm>
+    <EpubType>022</EpubType>
+    <NoSeries />
+    <Title>
+      <TitleType>01</TitleType>
+      <TitleText>Instant Autodesk Revit 2013 Customization with .NET How-to</TitleText>
+      <Subtitle>
+      </Subtitle>
+    </Title>
+    <WorkIdentifier>
+      <WorkIDType>15</WorkIDType>
+      <IDValue>9781849688420</IDValue>
+    </WorkIdentifier>
+    <Contributor>
+      <SequenceNumber>1</SequenceNumber>
+      <ContributorRole>A01</ContributorRole>
+      <PersonName>Don Rudder</PersonName>
+      <PersonNameInverted>Rudder Don</PersonNameInverted>
+      <NamesBeforeKey>Don</NamesBeforeKey>
+      <KeyNames>Rudder</KeyNames>
+      <BiographicalNote>Don Rudder is the Director of Software Development at CASE and focuses on the creation and management of specialized software and add-ons for various applications developed for client support. With over 16 years of experience in the AEC industry, Don has served well over 10 of those years as an HVAC and electrical designer for various MEP firms. He later began to focus more heavily on software development and related support where he eventually ended up in San Francisco serving as BIM Manager for HOK. Self-taught in some 14 programming languages and well versed in .NET, web-based AEC tools, and pretty much any kind of Automation, Don has presented at Autodesk University and the Revit Technology Conference of North America. Don has been the contributing author of the API chapters for Mastering Autodesk Revit Architecture 2011, "Mastering Autodesk Revit Architecture 2012, and Mastering Autodesk Revit Architecture 2013". I would like to thank my rock star friends and co-workers at CASE for just being awesome and bringing me into their mix. Without them, I would probably still be buried too deep in insignificant obligations without any real time to share stuff like what's in this book.</BiographicalNote>
+    </Contributor>
+    <EditionNumber>1</EditionNumber>
+    <Language>
+      <LanguageRole>01</LanguageRole>
+      <LanguageCode>eng</LanguageCode>
+    </Language>
+    <NumberOfPages>82</NumberOfPages>
+    <Subject>
+      <SubjectSchemeIdentifier>10</SubjectSchemeIdentifier>
+      <SubjectCode>COM007000</SubjectCode>
+    </Subject>
+    <Subject>
+      <SubjectSchemeIdentifier>10</SubjectSchemeIdentifier>
+      <SubjectCode>COM012000</SubjectCode>
+    </Subject>
+    <Subject>
+      <SubjectSchemeIdentifier>10</SubjectSchemeIdentifier>
+      <SubjectCode>COM084000</SubjectCode>
+    </Subject>
+    <Subject>
+      <SubjectSchemeIdentifier>10</SubjectSchemeIdentifier>
+      <SubjectCode>COM051000</SubjectCode>
+    </Subject>
+    <Subject>
+      <SubjectSchemeIdentifier>20</SubjectSchemeIdentifier>
+      <SubjectHeadingText>Revit; Autodesk Revit; Customizing Revit; Revit Plug-in</SubjectHeadingText>
+    </Subject>
+    <OtherText>
+      <TextTypeCode>01</TextTypeCode>
+      <TextFormat>06</TextFormat>
+      <Text>&lt;![CDATA[&lt;h2&gt;In Detail&lt;/h2&gt;&lt;p&gt;Autodesk Revit is a Building Information Modelling software designed for architects and engineers. Extending the features and power of a BIM application such as Revit can increase personal productivity, speed up basic drafting tasks, and aid cross-team collaboration.&lt;/p&gt;&lt;p&gt;"Instant Autodesk Revit 2013 Customization with .NET How-to" is a hands-on guide to getting up and running with the Autodesk Revit 2013 API through a series of plugins and add-ons that are extremely useful in your everyday tasks.&lt;/p&gt;&lt;p&gt;This book takes you through several of the Autodesk Revit 2013 API features in an easy to follow, step-by-step process using powerful code samples. Tons of great tips and solutions are provided throughout this book to help you get the most out of Revit 2013.&lt;/p&gt;&lt;p&gt;Using practical code samples you will also learn the new Autodesk Revit 2013 API features such as floor plan creation, schedule creation, and analysis display of custom analysis results.&lt;/p&gt;&lt;p&gt;If you've ever wanted to learn how to customize Autodesk Revit but were intimidated by any perceived difficulty or complexity, this book will give you what you've been looking for.&lt;/p&gt;&lt;h2&gt;Approach&lt;/h2&gt;&lt;p&gt;Filled with practical, step-by-step instructions and clear explanations for the most important and useful tasks. Get the job done and learn as you go. "Instant Autodesk Revit 2013 Customization with .NET How-to" is written in a friendly, practical style with an introductory chapter that walks through everything in detail to get you going with your very first add-on.&lt;/p&gt;&lt;h2&gt;Who this book is for&lt;/h2&gt;&lt;p&gt;This book is for anyone that has an interest in customizing or automating Autodesk Revit 2013. A very basic level of programming experience is assumed but not necessarily required.&lt;/p&gt;]]&gt;</Text>
+    </OtherText>
+    <Imprint>
+      <ImprintName>Packt Publishing</ImprintName>
+    </Imprint>
+    <Publisher>
+      <PublisherName>Packt Publishing Pvt. Ltd.</PublisherName>
+    </Publisher>
+    <PublicationDate>20130125</PublicationDate>
+    <SupplyDetail>
+      <SupplierName>O'Reilly Media</SupplierName>
+      <ProductAvailability>20</ProductAvailability>
+      <Price>
+        <PriceTypeCode>01</PriceTypeCode>
+        <PriceAmount>14.99</PriceAmount>
+        <CurrencyCode>USD</CurrencyCode>
+      </Price>
+    </SupplyDetail>
+    <SupplyDetail>
+      <SupplierName>O'Reilly Media</SupplierName>
+      <ProductAvailability>20</ProductAvailability>
+      <Price>
+        <PriceTypeCode>01</PriceTypeCode>
+        <PriceAmount>8.99</PriceAmount>
+        <CurrencyCode>GBP</CurrencyCode>
+      </Price>
+    </SupplyDetail>
+    <SupplyDetail>
+      <SupplierName>O'Reilly Media</SupplierName>
+      <ProductAvailability>20</ProductAvailability>
+      <Price>
+        <PriceTypeCode>01</PriceTypeCode>
+        <PriceAmount>13.99</PriceAmount>
+        <CurrencyCode>EUR</CurrencyCode>
+      </Price>
+    </SupplyDetail>
+  </Product>
+  <Product>
+    <RecordReference>9781849688420.pdf</RecordReference>
+    <NotificationType>03</NotificationType>
+    <ProductIdentifier>
+      <ProductIDType>15</ProductIDType>
+      <IDValue>9781849688437</IDValue>
+    </ProductIdentifier>
+    <ProductForm>DG</ProductForm>
+    <EpubType>002</EpubType>
+    <NoSeries />
+    <Title>
+      <TitleType>01</TitleType>
+      <TitleText>Instant Autodesk Revit 2013 Customization with .NET How-to</TitleText>
+      <Subtitle>
+      </Subtitle>
+    </Title>
+    <WorkIdentifier>
+      <WorkIDType>15</WorkIDType>
+      <IDValue>9781849688420</IDValue>
+    </WorkIdentifier>
+    <Contributor>
+      <SequenceNumber>1</SequenceNumber>
+      <ContributorRole>A01</ContributorRole>
+      <PersonName>Don Rudder</PersonName>
+      <PersonNameInverted>Rudder Don</PersonNameInverted>
+      <NamesBeforeKey>Don</NamesBeforeKey>
+      <KeyNames>Rudder</KeyNames>
+      <BiographicalNote>Don Rudder is the Director of Software Development at CASE and focuses on the creation and management of specialized software and add-ons for various applications developed for client support. With over 16 years of experience in the AEC industry, Don has served well over 10 of those years as an HVAC and electrical designer for various MEP firms. He later began to focus more heavily on software development and related support where he eventually ended up in San Francisco serving as BIM Manager for HOK. Self-taught in some 14 programming languages and well versed in .NET, web-based AEC tools, and pretty much any kind of Automation, Don has presented at Autodesk University and the Revit Technology Conference of North America. Don has been the contributing author of the API chapters for Mastering Autodesk Revit Architecture 2011, "Mastering Autodesk Revit Architecture 2012, and Mastering Autodesk Revit Architecture 2013". I would like to thank my rock star friends and co-workers at CASE for just being awesome and bringing me into their mix. Without them, I would probably still be buried too deep in insignificant obligations without any real time to share stuff like what's in this book.</BiographicalNote>
+    </Contributor>
+    <EditionNumber>1</EditionNumber>
+    <Language>
+      <LanguageRole>01</LanguageRole>
+      <LanguageCode>eng</LanguageCode>
+    </Language>
+    <NumberOfPages>82</NumberOfPages>
+    <Subject>
+      <SubjectSchemeIdentifier>10</SubjectSchemeIdentifier>
+      <SubjectCode>COM007000</SubjectCode>
+    </Subject>
+    <Subject>
+      <SubjectSchemeIdentifier>10</SubjectSchemeIdentifier>
+      <SubjectCode>COM012000</SubjectCode>
+    </Subject>
+    <Subject>
+      <SubjectSchemeIdentifier>10</SubjectSchemeIdentifier>
+      <SubjectCode>COM084000</SubjectCode>
+    </Subject>
+    <Subject>
+      <SubjectSchemeIdentifier>10</SubjectSchemeIdentifier>
+      <SubjectCode>COM051000</SubjectCode>
+    </Subject>
+    <Subject>
+      <SubjectSchemeIdentifier>20</SubjectSchemeIdentifier>
+      <SubjectHeadingText>Revit; Autodesk Revit; Customizing Revit; Revit Plug-in</SubjectHeadingText>
+    </Subject>
+    <OtherText>
+      <TextTypeCode>01</TextTypeCode>
+      <TextFormat>06</TextFormat>
+      <Text>&lt;![CDATA[&lt;h2&gt;In Detail&lt;/h2&gt;&lt;p&gt;Autodesk Revit is a Building Information Modelling software designed for architects and engineers. Extending the features and power of a BIM application such as Revit can increase personal productivity, speed up basic drafting tasks, and aid cross-team collaboration.&lt;/p&gt;&lt;p&gt;"Instant Autodesk Revit 2013 Customization with .NET How-to" is a hands-on guide to getting up and running with the Autodesk Revit 2013 API through a series of plugins and add-ons that are extremely useful in your everyday tasks.&lt;/p&gt;&lt;p&gt;This book takes you through several of the Autodesk Revit 2013 API features in an easy to follow, step-by-step process using powerful code samples. Tons of great tips and solutions are provided throughout this book to help you get the most out of Revit 2013.&lt;/p&gt;&lt;p&gt;Using practical code samples you will also learn the new Autodesk Revit 2013 API features such as floor plan creation, schedule creation, and analysis display of custom analysis results.&lt;/p&gt;&lt;p&gt;If you've ever wanted to learn how to customize Autodesk Revit but were intimidated by any perceived difficulty or complexity, this book will give you what you've been looking for.&lt;/p&gt;&lt;h2&gt;Approach&lt;/h2&gt;&lt;p&gt;Filled with practical, step-by-step instructions and clear explanations for the most important and useful tasks. Get the job done and learn as you go. "Instant Autodesk Revit 2013 Customization with .NET How-to" is written in a friendly, practical style with an introductory chapter that walks through everything in detail to get you going with your very first add-on.&lt;/p&gt;&lt;h2&gt;Who this book is for&lt;/h2&gt;&lt;p&gt;This book is for anyone that has an interest in customizing or automating Autodesk Revit 2013. A very basic level of programming experience is assumed but not necessarily required.&lt;/p&gt;]]&gt;</Text>
+    </OtherText>
+    <Imprint>
+      <ImprintName>Packt Publishing</ImprintName>
+    </Imprint>
+    <Publisher>
+      <PublisherName>Packt Publishing Pvt. Ltd.</PublisherName>
+    </Publisher>
+    <PublicationDate>20130125</PublicationDate>
+    <SupplyDetail>
+      <SupplierName>O'Reilly Media</SupplierName>
+      <ProductAvailability>20</ProductAvailability>
+      <Price>
+        <PriceTypeCode>01</PriceTypeCode>
+        <PriceAmount>14.99</PriceAmount>
+        <CurrencyCode>USD</CurrencyCode>
+      </Price>
+    </SupplyDetail>
+    <SupplyDetail>
+      <SupplierName>O'Reilly Media</SupplierName>
+      <ProductAvailability>20</ProductAvailability>
+      <Price>
+        <PriceTypeCode>01</PriceTypeCode>
+        <PriceAmount>8.99</PriceAmount>
+        <CurrencyCode>GBP</CurrencyCode>
+      </Price>
+    </SupplyDetail>
+    <SupplyDetail>
+      <SupplierName>O'Reilly Media</SupplierName>
+      <ProductAvailability>20</ProductAvailability>
+      <Price>
+        <PriceTypeCode>01</PriceTypeCode>
+        <PriceAmount>13.99</PriceAmount>
+        <CurrencyCode>EUR</CurrencyCode>
+      </Price>
+    </SupplyDetail>
+  </Product>
+</ONIXMessage>

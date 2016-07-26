@@ -1,0 +1,22 @@
+<dataConfig>
+        <dataSource type="HttpDataSource" />
+        <document>
+                <entity name="Tender Site"
+                        pk="link"
+                        url="<your site-name>"
+                        processor="XPathEntityProcessor"
+                        forEach="/RDF/channel | /RDF/item"
+                        transformer="RegexTransformer,DateFormatTransformer">
+
+                        <field column="id"       xpath="/RDF/channel/id"/>
+                        <field column="tender_name"  xpath="/RDF/item/tender"/>
+                        <field column="client_name"      xpath="/RDF/channel/from"/>
+
+                        <field column="technologies"        xpath="/RDF/item/skills" />
+                        <field column="link"         xpath="/RDF/item/link" />
+                        <field column="bidding_cost"  xpath="/RDF/item/cost" />
+                        <field column="contact_person"      xpath="/RDF/item/floated by" />
+                        <field column="ending_date" xpath="/RDF/item/date" dateTimeFormat="yyyy-MM-dd'T'hh:mm:ss" />
+						......
+                </entity>
+        </document>

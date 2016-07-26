@@ -1,0 +1,17 @@
+<dataConfig>
+  <dataSource type="JdbcDataSource" 
+              driver="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://localhost:3306/deptdb" 
+              user="root" 
+              password="hrishi">
+  </dataSource>
+  <document name="departments">
+    <entity name="id" 
+            query="select id,department_code,department_name from department">
+	   <field column="id" name="id"/>
+       <field column="department_code" name="department_code"/>
+       <field column="department_name" name="department_name"/>
+    </entity>
+  </document>
+  
+</dataConfig>

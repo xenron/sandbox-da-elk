@@ -1,0 +1,70 @@
+<html>
+<head>
+<title>XML HTTP Response</title>
+<script language="Javascript">
+
+function xmlhttpPost(strURL) {
+    var xmlHttpReq = false;
+    if (window.XMLHttpRequest) { // Mozilla/Safari
+        this.xmlHttpReq = new XMLHttpRequest(); 
+    }
+    else if (window.ActiveXObject) { // IE
+        this.xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    this.xmlHttpReq.open('GET', strURL, true);
+    this.xmlHttpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    this.xmlHttpReq.onreadystatechange = function() {
+        if (this.xmlHttpReq.readyState == 4) { //Holds the status of the XMLHttpRequest.
+            updatepage(this.xmlHttpReq.responseText);
+        }
+    }
+
+    var params = getstandardargs().concat(getquerystring());
+    var strData = params.join('&');
+	alert(strURL + strData);
+    this.xmlHttpReq.send(strData);
+}
+
+function getstandardargs() {
+    var params = [
+        'wt=json'
+        , 'indent=on'
+        , 'hl=true'
+        , 'hl.fl=name,features'
+        ];
+
+    return params;
+}
+function getquerystring() {
+  var form = document.forms['f1'];
+  var query = form.query.value;
+  qstr = 'q=' + escape(query);
+  return qstr;
+}
+
+// this function does all the work of parsing the solr response and updating the page.
+function updatepage(str){
+//alert(str);
+  document.getElementById("raw").innerHTML = str;
+  var rsp = eval("("+str+")"); // use eval to parse Solr's JSON response
+  var html= "<br>numFound=" + rsp.response.numFound;
+  var first = rsp.response.docs[0];
+  html += "<br>product name="+ first.name;
+  var hl=rsp.highlighting[first.id];
+  if (hl.name != null) { html += "<br>name highlighted: " + hl.name[0]; }
+  if (hl.features != null) { html += "<br>features highligted: " + hl.features[0]; }
+  document.getElementById("result").innerHTML = html;
+}
+</script>
+</head>
+<body>
+
+<form name="f1" onsubmit='xmlhttpPost("http://localhost:8983/solr/select"); return false;'>
+  <p>query: <input name="query" type="text">  
+  <input value="Go" type="submit"></p>
+  
+<div id="result"></div>
+<p/><pre>Raw JSON String: <div id="raw"></div></pre>
+</form>
+</body>
+</html>
